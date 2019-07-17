@@ -1,0 +1,133 @@
+<template>
+    <div id="simStatus">
+      <apexchart
+        id="simStatusHour"
+        type="radialBar"
+        height="350"
+        :options="chartOptions"
+        :series="series"
+      />
+    </div>
+</template>
+
+<script>
+export default {
+  data: function() {
+    return {
+      series: [10, 35, 50],
+      chartOptions: {
+        chart: {
+          animations: {
+            enabled: true,
+            easing: "easeinout",
+            speed: 1000,
+            animateGradually: {
+              delay: 150,
+              enabled: true
+            },
+            dynamicAnimation: {
+              enabled: true,
+              speed: 350
+            }
+          },
+          toolbar: {
+            show: false
+          },
+          fontFamily: "Roboto, sans-serif"
+        },
+        theme: {
+          mode: "dark",
+          palette: "palette5",
+          monochrome: {
+            enabled: false,
+            color: "#255aee",
+            shadeTo: "light",
+            shadeIntensity: 0.65
+          }
+        },
+        title: {
+          text: "SIM Status Check",
+          align: "left",
+          offsetX: 10,
+          offsetY: 10,
+          floating: false,
+          style: {
+            fontSize: "16px",
+            color: "whitesmoke"
+          }
+        },
+        plotOptions: {
+          radialBar: {
+            inverseOrder: true,
+            startAngle: -180,
+            endAngle: 90,
+            offsetX: -50,
+            offsetY: 0,
+            hollow: {
+              margin: 5,
+              size: "50%",
+              background: "transparent"
+            },
+            dataLabels: {
+              name: {
+                show: false
+              },
+              value: {
+                show: false
+              }
+            },
+            track: {
+              show: true,
+              opacity: 0.2
+            }
+          }
+        },
+        labels: [
+          "Failure - SIM doesn't exist",
+          "Failure - SIM already assigned",
+          "Success"
+        ],
+        stroke: {
+          lineCap: "round"
+        },
+        legend: {
+          show: true,
+          floating: true,
+          fontSize: "14px",
+          position: "left",
+          offsetX: 330,
+          offsetY: 230,
+          labels: {
+            useSeriesColors: false
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
+          },
+          itemMargin: {
+            horizontal: 1
+          }
+        },
+        responsive: [
+          {
+            breakpoint: 480,
+            options: {
+              legend: {
+                show: false
+              }
+            }
+          }
+        ]
+      }
+    };
+  }
+};
+</script>
+
+<style>
+#simStatusHour {
+  text-align: left;
+}
+</style>
