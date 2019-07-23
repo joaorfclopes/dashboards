@@ -6,7 +6,7 @@
       :width="100"
       :value="false"
       :labels="{checked: 'Average Time', unchecked: 'Success'}"
-      color="#4285F4"
+      color="#E60000"
       @change="switchPerformance"
       style="margin-top: -1%;"
     />
@@ -65,6 +65,18 @@ import TopAgentsHour from "./TopAgentsHour.vue";
 import CheckEligibilityHourAvg from "./CheckEligibilityHourAvg.vue";
 import ReserveNumberHourAvg from "./ReserveNumberHourAvg.vue";
 import DeviceSyncTimeHour from "./DeviceSyncTimeHour.vue";
+
+import axios from "axios";
+
+var checkEligibilityHourURL = "https://api.myjson.com/bins/x9pzv";
+var reserveNumberHourURL = "https://api.myjson.com/bins/ewlub";
+var simStatusHourURL = "https://api.myjson.com/bins/bqgcx";
+var simValidationHourURL = "https://api.myjson.com/bins/l54hl";
+var topAgentsHourURL = "https://api.myjson.com/bins/d0dwp";
+var topStoresHourURL = "https://api.myjson.com/bins/gn4p5";
+var checkEligibilityHourAvgURL = "https://api.myjson.com/bins/17cx05";
+var reserveNumberHourAvgURL = "https://api.myjson.com/bins/149w39";
+var deviceSyncTimeHourURL = "https://api.myjson.com/bins/rwxkl";
 
 export default {
   components: {

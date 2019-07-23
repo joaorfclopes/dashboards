@@ -1,6 +1,11 @@
 <template>
   <div id="simValidation">
-    <img id="loading" width="50px" v-if="loading" src="../../../assets/loading.svg" alt />
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <apexchart
       v-else
       type="donut"
@@ -13,13 +18,14 @@
 </template>
 
 <script>
-import store from "../../../store.js";
+import store from "../../../store";
 export default {
   data: function() {
     return {
       loading: false,
       series: [],
       chartOptions: {
+        labels: [],
         chart: {
           animations: {
             enabled: true,
@@ -46,7 +52,6 @@ export default {
         dataLabels: {
           enabled: false
         },
-        labels: [],
         theme: {
           mode: "dark",
           palette: "palette1"
@@ -95,15 +100,10 @@ export default {
         store.state.checkSimValidationHourData[0].value,
         store.state.checkSimValidationHourData[1].value
       ];
-      this.chartOptions = {
-        ...this.chartOptions,
-        ...{
-          labels: [
-            store.state.checkSimStatusHourData[0].title,
-            store.state.checkSimStatusHourData[1].title
-          ]
-        }
-      };
+      this.chartOptions.labels = [
+        store.state.checkSimValidationHourData[0].title,
+        store.state.checkSimValidationHourData[1].title
+      ];
     }
   },
   computed: {
@@ -117,9 +117,11 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchSimValidationHour").then(checkSimValidationHourData => {
-      this.loading = false;
-    });
+    store
+      .dispatch("fetchSimValidationHour")
+      .then(checkSimValidationHourData => {
+        this.loading = false;
+      });
   }
 };
 </script>

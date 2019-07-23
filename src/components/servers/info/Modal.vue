@@ -16,23 +16,6 @@
             </v-btn>
           </div>
           <div class="modal-body" style="text-align: center;">
-            <!--<v-card width="40%" style="margin-left: auto; margin-right: auto;">
-                <v-list-tile>
-                  <v-list-tile-content class="modal-title">Password Expires</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showOhs1 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showOhs2 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showWc1 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showWc2 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showApp1 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showApp2 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showDb1 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showDb2 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showOid1 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showOid2 == true">Jun 25, 2020</v-list-tile-content>
-                  <v-list-tile-content class="align-end" v-if="showBi == true">Jun 25, 2020</v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-            </v-card>-->
             <div id="modal-title" style="width: 100%; text-align: left; margin-bottom: 5%;">
               <h1 v-if="showOhs1 == true" style="color: white;">bvpr-dmsow01</h1>
               <h1 v-if="showOhs2 == true" style="color: white;">bvpr-dmsow02</h1>
@@ -202,7 +185,7 @@ export default {
 
 .modal-header h3 {
   margin-top: 0;
-  color: #4285f4;
+  color: #E60000;
 }
 
 .modal-body {

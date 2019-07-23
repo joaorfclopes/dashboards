@@ -6,7 +6,12 @@
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
     />
-    <img id="loading" width="50px" v-if="loading" src="../../../assets/loading.svg" alt />
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <v-card v-else id="topAgents-container" height="350">
       <v-toolbar height="50%" color="#343F57" dark>
         <v-toolbar-title id="topAgents-title">Top 10 Orders - Agents</v-toolbar-title>
@@ -30,7 +35,7 @@
 
 <script>
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-import store from "../../../store.js";
+import store from "../../../store";
 export default {
   components: {
     VuePerfectScrollbar

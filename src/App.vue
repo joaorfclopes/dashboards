@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <Main/>
+    <Main />
   </div>
 </template>
 
 <script>
 import Main from "./components/Main.vue";
-import store from "./store.js";
 
 export default {
   name: "app",

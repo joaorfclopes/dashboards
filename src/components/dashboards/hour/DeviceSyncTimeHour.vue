@@ -1,23 +1,22 @@
 <template>
   <div id="devSync" style="height: 350px;">
-    <apexchart type="area" height="350" :options="chartOptions" :series="series"/>
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "<= 5 mnts",
-          data: [0, 5]
-        },
-        {
-          name: "> 5 mnts",
-          data: [0, 0]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
           animations: {
@@ -97,6 +96,37 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkDeviceSyncTimeHourData[0].title,
+          data: store.state.checkDeviceSyncTimeHourData[0].value
+        },
+        {
+          name: store.state.checkDeviceSyncTimeHourData[1].title,
+          data: store.state.checkDeviceSyncTimeHourData[1].value
+        }
+      ];
+    }
+  },
+  computed: {
+    checkDeviceSyncTimeHourData() {
+      return store.state.checkDeviceSyncTimeHourData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchDeviceSyncTimeHour")
+      .then(checkDeviceSyncTimeHourData => {
+        this.loading = false;
+      });
   }
 };
 </script>

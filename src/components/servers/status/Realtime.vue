@@ -119,7 +119,12 @@ export default {
         },
         theme: {
           mode: "dark",
-          palette: "palette1"
+          monochrome: {
+            enabled: true,
+            color: "#E60000",
+            shadeTo: "light",
+            shadeIntensity: 0.65
+          }
         },
         title: {
           text: "Server Uptime",

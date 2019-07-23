@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import client from "api-client";
+import client from "./client";
 Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
@@ -9,7 +9,10 @@ export default new Vuex.Store({
     checkSimStatusHourData: [],
     checkSimValidationHourData: [],
     checkTopAgentsHourData: [],
-    checkTopStoresHourData: []
+    checkTopStoresHourData: [],
+    checkEligibilityHourAvgData: [],
+    checkReserveNumberHourAvgData: [],
+    checkDeviceSyncTimeHourData: []
   },
   mutations: {
     setCheckEligibilityHourData(state, checkEligibilityHourData) {
@@ -29,26 +32,53 @@ export default new Vuex.Store({
     },
     setCheckTopStoresHourData(state, checkTopStoresHourData) {
       state.checkTopStoresHourData = checkTopStoresHourData;
+    },
+    setCheckEligibilityHourAvgData(state, checkEligibilityHourAvgData) {
+      state.checkEligibilityHourAvgData = checkEligibilityHourAvgData;
+    },
+    setCheckReserveNumberHourAvgData(state, checkReserveNumberHourAvgData) {
+      state.checkReserveNumberHourAvgData = checkReserveNumberHourAvgData;
+    },
+    setcheckDeviceSyncTimeHourData(state, checkDeviceSyncTimeHourData) {
+      state.checkDeviceSyncTimeHourData = checkDeviceSyncTimeHourData;
     }
   },
   actions: {
-    fetchCheckEligibilityHour({ commit }) {
-      return client.fetchCheckEligibilityHour().then(checkEligibilityHourData => commit("setCheckEligibilityHourData", checkEligibilityHourData));
+    async fetchCheckEligibilityHour({ commit }) {
+      const checkEligibilityHourData = await client.fetchCheckEligibilityHour();
+      return commit("setCheckEligibilityHourData", checkEligibilityHourData);
     },
-    fetchReserveNumberHour({ commit }) {
-      return client.fetchReserveNumberHour().then(checkReserveNumberHourData => commit("setCheckReserveNumberHourData", checkReserveNumberHourData));
+    async fetchReserveNumberHour({ commit }) {
+      const checkReserveNumberHourData = await client.fetchReserveNumberHour();
+      return commit("setCheckReserveNumberHourData", checkReserveNumberHourData);
     },
-    fetchSimStatusHour({ commit }) {
-      return client.fetchSimStatusHour().then(checkSimStatusHourData => commit("setCheckSimStatusHourData", checkSimStatusHourData));
+    async fetchSimStatusHour({ commit }) {
+      const checkSimStatusHourData = await client.fetchSimStatusHour();
+      return commit("setCheckSimStatusHourData", checkSimStatusHourData);
     },
-    fetchSimValidationHour({ commit }) {
-      return client.fetchSimValidationHour().then(checkSimValidationHourData => commit("setCheckSimValidationHourData", checkSimValidationHourData));
+    async fetchSimValidationHour({ commit }) {
+      const checkSimValidationHourData = await client.fetchSimValidationHour();
+      return commit("setCheckSimValidationHourData", checkSimValidationHourData);
     },
-    fetchTopAgentsHour({ commit }) {
-      return client.fetchTopAgentsHour().then(checkTopAgentsHourData => commit("setCheckTopAgentsHourData", checkTopAgentsHourData));
+    async fetchTopAgentsHour({ commit }) {
+      const checkTopAgentsHourData = await client.fetchTopAgentsHour();
+      return commit("setCheckTopAgentsHourData", checkTopAgentsHourData);
     },
-    fetchTopStoresHour({ commit }) {
-      return client.fetchTopStoresHour().then(checkTopStoresHourData => commit("setCheckTopStoresHourData", checkTopStoresHourData));
+    async fetchTopStoresHour({ commit }) {
+      const checkTopStoresHourData = await client.fetchTopStoresHour();
+      return commit("setCheckTopStoresHourData", checkTopStoresHourData);
+    },
+    async fetchCheckEligibilityHourAvg({ commit }) {
+      const checkEligibilityHourAvgData = await client.fetchCheckEligibilityHourAvg();
+      return commit("setCheckEligibilityHourAvgData", checkEligibilityHourAvgData);
+    },
+    async fetchReserveNumberHourAvg({ commit }) {
+      const checkReserveNumberHourAvgData = await client.fetchReserveNumberHourAvg();
+      return commit("setCheckReserveNumberHourAvgData", checkReserveNumberHourAvgData);
+    },
+    async fetchDeviceSyncTimeHour({ commit }) {
+      const checkDeviceSyncTimeHourData = await client.fetchDeviceSyncTimeHour();
+      return commit("setcheckDeviceSyncTimeHourData", checkDeviceSyncTimeHourData);
     }
   }
 });

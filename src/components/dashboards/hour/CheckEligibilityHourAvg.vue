@@ -1,23 +1,22 @@
 <template>
-    <div id="checkElAvg">
-      <apexchart type="bar" height="350" :options="chartOptions" :series="series"/>
+  <div id="checkElAvg">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="bar" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "<= 3 sec",
-          data: [20]
-        },
-        {
-          name: "> 3 sec",
-          data: [3]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         plotOptions: {
           bar: {
@@ -90,6 +89,37 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkEligibilityHourAvgData[0].title,
+          data: [store.state.checkEligibilityHourAvgData[0].value]
+        },
+        {
+          name: store.state.checkEligibilityHourAvgData[1].title,
+          data: [store.state.checkEligibilityHourAvgData[1].value]
+        }
+      ];
+    }
+  },
+  computed: {
+    checkEligibilityHourAvgData() {
+      return store.state.checkEligibilityHourAvgData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchCheckEligibilityHourAvg")
+      .then(checkEligibilityHourAvgData => {
+        this.loading = false;
+      });
   }
 };
 </script>

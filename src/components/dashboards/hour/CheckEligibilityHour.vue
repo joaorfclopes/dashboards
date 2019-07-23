@@ -1,12 +1,17 @@
 <template>
   <div id="checkEl">
-    <img id="loading" width="50px" v-if="loading" src="../../../assets/loading.svg" alt />
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <apexchart v-else type="bar" height="350" :options="chartOptions" v-bind:series="series" />
   </div>
 </template>
 
 <script>
-import store from "../../../store.js";
+import store from "../../../store";
 export default {
   data: function() {
     return {
@@ -128,7 +133,4 @@ export default {
 </script>
 
 <style>
-#loading {
-  margin-top: 150px;
-}
 </style>

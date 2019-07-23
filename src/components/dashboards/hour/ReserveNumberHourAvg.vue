@@ -1,14 +1,22 @@
 <template>
-    <div id="reserveNrAvg">
-      <apexchart type="radialBar" height="350" :options="chartOptions" :series="series"/>
+  <div id="reserveNrAvg">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="radialBar" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [77, 33],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
           animations: {
@@ -31,7 +39,7 @@ export default {
         },
         theme: {
           mode: "dark",
-          palette: "palette1",
+          palette: "palette1"
         },
         title: {
           text: "Reserve Number",
@@ -56,8 +64,11 @@ export default {
               total: {
                 show: true,
                 label: "Total",
-                formatter: function(w) {
-                  return 28;
+                formatter: function() {
+                  var value1 = parseInt(store.state.checkReserveNumberHourAvgData[0].value);
+                  var value2 = parseInt(store.state.checkReserveNumberHourAvgData[1].value);
+                  var values = value1 + value2;
+                  return values + "%";
                 }
               }
             },
@@ -67,9 +78,38 @@ export default {
             }
           }
         },
-        labels: ["<= 3 sec", "> 3 sec"]
+        labels: []
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        store.state.checkReserveNumberHourAvgData[0].value,
+        store.state.checkReserveNumberHourAvgData[1].value
+      ];
+      this.chartOptions.labels = [
+        store.state.checkReserveNumberHourAvgData[0].title,
+        store.state.checkReserveNumberHourAvgData[1].title
+      ];
+    }
+  },
+  computed: {
+    checkReserveNumberHourData() {
+      return store.state.checkReserveNumberHourData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchReserveNumberHourAvg")
+      .then(checkReserveNumberHourData => {
+        this.loading = false;
+      });
   }
 };
 </script>

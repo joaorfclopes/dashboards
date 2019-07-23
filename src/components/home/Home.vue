@@ -1,14 +1,14 @@
 <template>
   <div id="home">
     <div id="welcome">
-      <img src="../../assets/vodafone-logo.png">
+      <img src="../../assets/vodafone-logo.png"/>
       <p>Welcome to your dashboards and monitoring!</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {}
 </script>
 
 <style>

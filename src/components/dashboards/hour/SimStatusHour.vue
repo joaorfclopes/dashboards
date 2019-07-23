@@ -1,6 +1,11 @@
 <template>
   <div id="simStatus">
-    <img id="loading" width="50px" v-if="loading" src="../../../assets/loading.svg" alt />
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <apexchart
       v-else
       id="simStatusHour"
@@ -13,7 +18,7 @@
 </template>
 
 <script>
-import store from "../../../store.js";
+import store from "../../../store";
 export default {
   data: function() {
     return {
@@ -130,16 +135,11 @@ export default {
         store.state.checkSimStatusHourData[1].value,
         store.state.checkSimStatusHourData[2].value
       ];
-      this.chartOptions = {
-        ...this.chartOptions,
-        ...{
-          labels: [
-            store.state.checkSimStatusHourData[0].title,
-            store.state.checkSimStatusHourData[1].title,
-            store.state.checkSimStatusHourData[2].title
-          ]
-        }
-      };
+      this.chartOptions.labels = [
+        store.state.checkSimStatusHourData[0].title,
+        store.state.checkSimStatusHourData[1].title,
+        store.state.checkSimStatusHourData[2].title
+      ];
     }
   },
   computed: {

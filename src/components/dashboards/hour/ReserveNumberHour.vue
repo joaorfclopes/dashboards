@@ -1,16 +1,22 @@
 <template>
   <div id="reserveNr">
-    <img id="loading" width="50px" v-if="loading" src="../../../assets/loading.svg" alt />
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
     <apexchart v-else type="line" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
 <script>
-import store from "../../../store.js";
+import store from "../../../store";
 export default {
   data: function() {
     return {
       loading: false,
+      series: [],
       chartOptions: {
         chart: {
           type: "line",
@@ -111,7 +117,7 @@ export default {
           name: store.state.checkReserveNumberHourData[1].title,
           data: store.state.checkReserveNumberHourData[1].value
         }
-      ]
+      ];
     }
   },
   computed: {

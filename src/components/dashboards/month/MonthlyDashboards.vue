@@ -6,7 +6,7 @@
       :width="100"
       :value="false"
       :labels="{checked: 'Average Time', unchecked: 'Success'}"
-      color="#4285F4"
+      color="#E60000"
       @change="switchPerformance"
       style="margin-top: -1%;"
     />

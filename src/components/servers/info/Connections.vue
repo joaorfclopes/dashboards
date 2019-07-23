@@ -27,11 +27,11 @@
             </div>
           </div>
           <v-flex class="box" v-for="i in 6" :key="`1${i}`" xs2>
-            <div v-if="i == 3" id="fw5">
+            <div v-if="i == 3" id="fw5" class="element">
               <img src="../../../assets/firewall.png" width="30%;" />
               <h5 id="title" style="text-transform: uppercase; color: white">fw5</h5>
             </div>
-            <div v-if="i == 6" class="lb">
+            <div v-if="i == 6" class="lb element">
               <img
                 id="lb-web"
                 src="../../../assets/loadbalancer.png"
@@ -42,23 +42,23 @@
             </div>
           </v-flex>
           <v-flex class="box" v-for="i in 6" :key="`2${i}`" xs2>
-            <div v-if="i == 3" id="fw5" style="height: 20px;"></div>
+            <div v-if="i == 3" id="fw5" style="height: 20px;" class="element"></div>
           </v-flex>
           <v-flex class="box" v-for="i in 6" :key="`3${i}`" xs2>
-            <div id="internet1" v-if="i == 2">
+            <div id="internet1" v-if="i == 2" class="element">
               <img src="../../../assets/internet.png" width="30%;" />
               <h5 id="title" style="text-transform: uppercase; color: white">internet</h5>
             </div>
-            <div id="fw2" v-if="i == 6">
+            <div id="fw2" v-if="i == 6" class="element">
               <img src="../../../assets/firewall.png" width="30%;" />
               <h5 id="title" style="text-transform: uppercase; color: white">fw2</h5>
             </div>
           </v-flex>
           <v-flex class="box" v-for="i in 6" :key="`4${i}`" xs2>
-            <div v-if="i == 3" id="fw5" style="height: 20px;"></div>
+            <div v-if="i == 3" id="fw5" style="height: 20px;" class="element"></div>
           </v-flex>
           <v-flex class="box" v-for="i in 6" :key="`5${i}`" xs2>
-            <div id="ecr-portal" v-if="i == 1">
+            <div id="ecr-portal" v-if="i == 1" class="element">
               <img
                 src="../../../assets/pc.png"
                 style="cursor: pointer"
@@ -67,7 +67,7 @@
               />
               <h5 id="title" style="text-transform: uppercase; color: white">ecr portal</h5>
             </div>
-            <div id="ecr-tablets" v-if="i == 3">
+            <div id="ecr-tablets" v-if="i == 3" class="element">
               <img
                 src="../../../assets/tablet.png"
                 style="cursor: pointer"
@@ -76,25 +76,25 @@
               />
               <h5 id="title" style="text-transform: uppercase; color: white">ecr tablets</h5>
             </div>
-            <div id="fw1" v-if="i == 5">
+            <div id="fw1" v-if="i == 5" class="element">
               <img src="../../../assets/firewall.png" width="30%;" />
               <h5 id="title" style="text-transform: uppercase; color: white">fw1</h5>
             </div>
           </v-flex>
           <v-flex class="box" v-for="i in 6" :key="`6${i}`" xs2>
-            <div v-if="i == 3" id="fw5" style="height: 20px;"></div>
+            <div v-if="i == 3" id="fw5" style="height: 20px;" class="element"></div>
           </v-flex>
           <v-flex class="box" v-for="i in 6" :key="`7${i}`" xs2>
-            <div id="internet2" v-if="i == 5">
+            <div id="internet2" v-if="i == 5" class="element">
               <img src="../../../assets/internet.png" width="30%;" />
               <h5 id="title" style="text-transform: uppercase; color: white">internet</h5>
             </div>
           </v-flex>
           <v-flex class="box" v-for="i in 6" :key="`8${i}`" xs2>
-            <div v-if="i == 3" id="fw5" style="height: 20px;"></div>
+            <div v-if="i == 3" id="fw5" style="height: 20px;" class="element"></div>
           </v-flex>
           <v-flex class="box" v-for="i in 6" :key="`9${i}`" xs2>
-            <div id="3rd-party" v-if="i == 5">
+            <div id="3rd-party" v-if="i == 5" class="element">
               <img
                 src="../../../assets/pc.png"
                 style="cursor: pointer"
