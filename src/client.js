@@ -10,6 +10,8 @@ var checkEligibilityHourAvg = "https://api.myjson.com/bins/17cx05";
 var reserveNumberHourAvg = "https://api.myjson.com/bins/149w39";
 var deviceSyncTimeHour = "https://api.myjson.com/bins/rwxkl";
 
+var checkEligibilityDay = "https://api.myjson.com/bins/1bfhgx";
+
 export default {
   async fetchCheckEligibilityHour() {
     const response = await axios.get(checkEligibilityHour);
@@ -45,6 +47,10 @@ export default {
   },
   async fetchDeviceSyncTimeHour() {
     const response = await axios.get(deviceSyncTimeHour);
+    return response.data;
+  },
+  async fetchCheckEligibilityDay() {
+    const response = await axios.get(checkEligibilityDay);
     return response.data;
   }
 };

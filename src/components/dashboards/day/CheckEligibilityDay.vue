@@ -1,27 +1,20 @@
 <template>
-    <div id="checkEl">
-      <apexchart type="bar" height="350" :options="chartOptions" :series="series"/>
-    </div>
+  <div class="lds-ellipsis" v-if="loading">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <apexchart v-else type="bar" height="350" :options="chartOptions" v-bind:series="series"/>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "Failure - more allowed connection",
-          data: [8]
-        },
-        {
-          name: "Failure - maximum number of connection",
-          data: [3]
-        },
-        {
-          name: "Success",
-          data: [25]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
           animations: {
@@ -40,7 +33,7 @@ export default {
           toolbar: {
             show: false
           },
-          fontFamily: 'Roboto, sans-serif'
+          fontFamily: "Roboto, sans-serif"
         },
         grid: {
           show: true,
@@ -98,6 +91,41 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkEligibilityDayData[0].title,
+          data: [store.state.checkEligibilityDayData[0].value]
+        },
+        {
+          name: store.state.checkEligibilityDayData[1].title,
+          data: [store.state.checkEligibilityDayData[1].value]
+        },
+        {
+          name: store.state.checkEligibilityDayData[2].title,
+          data: [store.state.checkEligibilityDayData[2].value]
+        }
+      ];
+    }
+  },
+  computed: {
+    checkEligibilityDayData() {
+      return store.state.checkEligibilityDayData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchCheckEligibilityDay")
+      .then(checkEligibilityDayData => {
+        this.loading = false;
+      });
   }
 };
 </script>

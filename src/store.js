@@ -12,7 +12,8 @@ export default new Vuex.Store({
     checkTopStoresHourData: [],
     checkEligibilityHourAvgData: [],
     checkReserveNumberHourAvgData: [],
-    checkDeviceSyncTimeHourData: []
+    checkDeviceSyncTimeHourData: [],
+    checkEligibilityDayData: []
   },
   mutations: {
     setCheckEligibilityHourData(state, checkEligibilityHourData) {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     },
     setcheckDeviceSyncTimeHourData(state, checkDeviceSyncTimeHourData) {
       state.checkDeviceSyncTimeHourData = checkDeviceSyncTimeHourData;
+    },
+    setCheckEligibilityDayData(state, checkEligibilityDayData) {
+      state.checkEligibilityDayData = checkEligibilityDayData;
     }
   },
   actions: {
@@ -79,6 +83,10 @@ export default new Vuex.Store({
     async fetchDeviceSyncTimeHour({ commit }) {
       const checkDeviceSyncTimeHourData = await client.fetchDeviceSyncTimeHour();
       return commit("setcheckDeviceSyncTimeHourData", checkDeviceSyncTimeHourData);
+    },
+    async fetchCheckEligibilityDay({ commit }) {
+      const checkEligibilityDayData = await client.fetchCheckEligibilityDay();
+      return commit("setCheckEligibilityDayData", checkEligibilityDayData);
     }
   }
 });
