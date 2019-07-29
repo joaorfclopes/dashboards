@@ -1,25 +1,25 @@
 <template>
-    <div id="reserveNr">
-      <apexchart type="line" height="350" :options="chartOptions" :series="series"/>
+  <div id="reserveNr">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="line" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "Success",
-          data: [67, 37, 81, 25, 41, 72, 73, 32, 69, 55, 80, 28]
-        },
-        {
-          name: "Failure - number not found",
-          data: [40, 42, 53, 38, 27, 19, 33, 20, 36, 29, 63, 41]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           type: "line",
           shadow: {
             enabled: false,
@@ -43,7 +43,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -60,7 +60,20 @@ export default {
           curve: "smooth"
         },
         xaxis: {
-          categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          categories: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ],
           labels: {
             show: true
           }
@@ -105,6 +118,35 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkReserveNumberMonthData[0].title,
+          data: store.state.checkReserveNumberMonthData[0].value
+        },
+        {
+          name: store.state.checkReserveNumberMonthData[1].title,
+          data: store.state.checkReserveNumberMonthData[1].value
+        }
+      ];
+    }
+  },
+  computed: {
+    checkReserveNumberMonthData() {
+      return store.state.checkReserveNumberMonthData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchReserveNumberMonth").then(checkReserveNumberMonthData => {
+      this.loading = false;
+    });
   }
 };
 </script>

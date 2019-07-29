@@ -1,16 +1,25 @@
 <template>
-    <div id="reserveNrAvg">
-      <apexchart type="radialBar" height="350" :options="chartOptions" :series="series"/>
+  <div id="reserveNrAvg">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="radialBar" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [50, 50],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -25,13 +34,13 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
         theme: {
           mode: "dark",
-          palette: "palette4",
+          palette: "palette4"
         },
         title: {
           text: "Reserve Number",
@@ -57,7 +66,14 @@ export default {
                 show: true,
                 label: "Total",
                 formatter: function(w) {
-                  return 500;
+                  var value1 = parseInt(
+                    store.state.checkReserveNumberMonthAvgData[0].value
+                  );
+                  var value2 = parseInt(
+                    store.state.checkReserveNumberMonthAvgData[1].value
+                  );
+                  var values = value1 + value2;
+                  return values + "%";
                 }
               }
             },
@@ -70,6 +86,35 @@ export default {
         labels: ["<= 3 sec", "> 3 sec"]
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        store.state.checkReserveNumberMonthAvgData[0].value,
+        store.state.checkReserveNumberMonthAvgData[1].value
+      ];
+      this.chartOptions.labels = [
+        store.state.checkReserveNumberMonthAvgData[0].title,
+        store.state.checkReserveNumberMonthAvgData[1].title
+      ];
+    }
+  },
+  computed: {
+    checkReserveNumberMonthData() {
+      return store.state.checkReserveNumberMonthData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchReserveNumberMonthAvg")
+      .then(checkReserveNumberMonthData => {
+        this.loading = false;
+      });
   }
 };
 </script>

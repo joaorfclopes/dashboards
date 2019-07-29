@@ -30,6 +30,16 @@ var checkEligibilityWeekAvg = "https://api.myjson.com/bins/1ellkl";
 var reserveNumberWeekAvg = "https://api.myjson.com/bins/pnr1h";
 var deviceSyncTimeWeek = "https://api.myjson.com/bins/12racl";
 
+var checkEligibilityMonth = "https://api.myjson.com/bins/pn4nx";
+var reserveNumberMonth = "https://api.myjson.com/bins/12qnz1";
+var simStatusMonth = "https://api.myjson.com/bins/1fu7a5";
+var simValidationMonth = "https://api.myjson.com/bins/hb271";
+var topAgentsMonth = "https://api.myjson.com/bins/hymyl";
+var topStoresMonth = "https://api.myjson.com/bins/6negt";
+var checkEligibilityMonthAvg = "https://api.myjson.com/bins/qapfh";
+var reserveNumberMonthAvg = "https://api.myjson.com/bins/xfwot";
+var deviceSyncTimeMonth = "https://api.myjson.com/bins/14l3y5";
+
 export default {
   async fetchCheckEligibilityHour() {
     const response = await axios.get(checkEligibilityHour);
@@ -137,6 +147,42 @@ export default {
   },
   async fetchDeviceSyncTimeWeek() {
     const response = await axios.get(deviceSyncTimeWeek);
+    return response.data;
+  },
+  async fetchCheckEligibilityMonth() {
+    const response = await axios.get(checkEligibilityMonth);
+    return response.data;
+  },
+  async fetchReserveNumberMonth() {
+    const response = await axios.get(reserveNumberMonth);
+    return response.data;
+  },
+  async fetchSimStatusMonth() {
+    const response = await axios.get(simStatusMonth);
+    return response.data;
+  },
+  async fetchSimValidationMonth() {
+    const response = await axios.get(simValidationMonth);
+    return response.data;
+  },
+  async fetchTopAgentsMonth() {
+    const response = await axios.get(topAgentsMonth);
+    return response.data;
+  },
+  async fetchTopStoresMonth() {
+    const response = await axios.get(topStoresMonth);
+    return response.data;
+  },
+  async fetchCheckEligibilityMonthAvg() {
+    const response = await axios.get(checkEligibilityMonthAvg);
+    return response.data;
+  },
+  async fetchReserveNumberMonthAvg() {
+    const response = await axios.get(reserveNumberMonthAvg);
+    return response.data;
+  },
+  async fetchDeviceSyncTimeMonth() {
+    const response = await axios.get(deviceSyncTimeMonth);
     return response.data;
   }
 };

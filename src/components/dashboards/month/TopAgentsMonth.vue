@@ -5,18 +5,20 @@
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
-    >
-    <v-card id="topAgents-container" height="350">
+    />
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <v-card v-else id="topAgents-container" height="350">
       <v-toolbar height="50%" color="#343F57" dark>
         <v-toolbar-title id="topAgents-title">Top 10 Orders - Agents</v-toolbar-title>
         <v-spacer></v-spacer>
       </v-toolbar>
       <v-list id="topAgents-content" dark dense>
-        <VuePerfectScrollbar
-          class="scroll-area"
-          v-once
-          :settings="settings"
-F        >
+        <VuePerfectScrollbar class="scroll-area" v-once :settings="settings" F>
           <v-list-tile v-for="item in items" :key="item.title" avatar>
             <v-list-tile-action>
               <v-icon v-if="item.icon" color="white">store</v-icon>
@@ -33,59 +35,50 @@ F        >
 
 <script>
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-
+import store from "../../../store";
 export default {
   components: {
     VuePerfectScrollbar
   },
   data() {
     return {
+      loading: false,
       settings: {
         maxScrollbarLength: 60
       },
-      items: [
-        {
-          icon: true,
-          title: "Shana Sultana"
-        },
-        {
-          icon: true,
-          title: "Mohammed Alyafei"
-        },
-        {
-          icon: true,
-          title: "Khara Joy"
-        },
-        {
-          icon: true,
-          title: "Susan Samson"
-        },
-        {
-          icon: true,
-          title: "Razeel Ali"
-        },
-        {
-          icon: true,
-          title: "JHK Twenty Three"
-        },
-        {
-          icon: true,
-          title: "Nizzar Pangaligan"
-        },
-        {
-          icon: true,
-          title: "Nagib Becherif"
-        },
-        {
-          icon: true,
-          title: "Orgaden Malima"
-        },
-        {
-          icon: true,
-          title: "Said Bellaadem"
-        }
-      ]
+      items: []
     };
+  },
+  methods: {
+    getData() {
+      this.items = [
+        store.state.checkTopAgentsMonthData[0],
+        store.state.checkTopAgentsMonthData[1],
+        store.state.checkTopAgentsMonthData[2],
+        store.state.checkTopAgentsMonthData[3],
+        store.state.checkTopAgentsMonthData[4],
+        store.state.checkTopAgentsMonthData[5],
+        store.state.checkTopAgentsMonthData[6],
+        store.state.checkTopAgentsMonthData[7],
+        store.state.checkTopAgentsMonthData[8],
+        store.state.checkTopAgentsMonthData[9]
+      ];
+    }
+  },
+  computed: {
+    checkTopAgentsMonthData() {
+      return store.state.checkTopAgentsMonthData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchTopAgentsMonth").then(checkTopAgentsMonthData => {
+      this.loading = false;
+    });
   }
 };
 </script>

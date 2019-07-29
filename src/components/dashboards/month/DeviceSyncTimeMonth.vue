@@ -1,25 +1,25 @@
 <template>
-    <div id="devSync" style="height: 350px;">
-      <apexchart type="area" height="350" :options="chartOptions" :series="series"/>
+  <div id="devSync" style="height: 350px;">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "<= 5 mnts",
-          data: [105, 122, 237, 172, 251, 322, 271, 172, 155, 222, 337, 372]
-        },
-        {
-          name: "> 5 mnts",
-          data: [85, 92, 120, 110, 85, 52, 92, 60, 53, 32, 42, 30]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -34,7 +34,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -110,6 +110,37 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkDeviceSyncTimeMonthData[0].title,
+          data: store.state.checkDeviceSyncTimeMonthData[0].value
+        },
+        {
+          name: store.state.checkDeviceSyncTimeMonthData[1].title,
+          data: store.state.checkDeviceSyncTimeMonthData[1].value
+        }
+      ];
+    }
+  },
+  computed: {
+    checkDeviceSyncTimeMonthData() {
+      return store.state.checkDeviceSyncTimeMonthData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchDeviceSyncTimeMonth")
+      .then(checkDeviceSyncTimeMonthData => {
+        this.loading = false;
+      });
   }
 };
 </script>

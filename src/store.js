@@ -32,7 +32,17 @@ export default new Vuex.Store({
     checkTopStoresWeekData: [],
     checkEligibilityWeekAvgData: [],
     checkReserveNumberWeekAvgData: [],
-    checkDeviceSyncTimeWeekData: []
+    checkDeviceSyncTimeWeekData: [],
+
+    checkEligibilityMonthData: [],
+    checkReserveNumberMonthData: [],
+    checkSimStatusMonthData: [],
+    checkSimValidationMonthData: [],
+    checkTopAgentsMonthData: [],
+    checkTopStoresMonthData: [],
+    checkEligibilityMonthAvgData: [],
+    checkReserveNumberMonthAvgData: [],
+    checkDeviceSyncTimeMonthData: []
   },
   mutations: {
     setCheckEligibilityHourData(state, checkEligibilityHourData) {
@@ -117,6 +127,34 @@ export default new Vuex.Store({
     },
     setcheckDeviceSyncTimeWeekData(state, checkDeviceSyncTimeWeekData) {
       state.checkDeviceSyncTimeWeekData = checkDeviceSyncTimeWeekData;
+    },
+
+    setCheckEligibilityMonthData(state, checkEligibilityMonthData) {
+      state.checkEligibilityMonthData = checkEligibilityMonthData;
+    },
+    setCheckReserveNumberMonthData(state, checkReserveNumberMonthData) {
+      state.checkReserveNumberMonthData = checkReserveNumberMonthData;
+    },
+    setCheckSimStatusMonthData(state, checkSimStatusMonthData) {
+      state.checkSimStatusMonthData = checkSimStatusMonthData;
+    },
+    setCheckSimValidationMonthData(state, checkSimValidationMonthData) {
+      state.checkSimValidationMonthData = checkSimValidationMonthData;
+    },
+    setCheckTopAgentsMonthData(state, checkTopAgentsMonthData) {
+      state.checkTopAgentsMonthData = checkTopAgentsMonthData;
+    },
+    setCheckTopStoresMonthData(state, checkTopStoresMonthData) {
+      state.checkTopStoresMonthData = checkTopStoresMonthData;
+    },
+    setCheckEligibilityMonthAvgData(state, checkEligibilityMonthAvgData) {
+      state.checkEligibilityMonthAvgData = checkEligibilityMonthAvgData;
+    },
+    setCheckReserveNumberMonthAvgData(state, checkReserveNumberMonthAvgData) {
+      state.checkReserveNumberMonthAvgData = checkReserveNumberMonthAvgData;
+    },
+    setcheckDeviceSyncTimeMonthData(state, checkDeviceSyncTimeMonthData) {
+      state.checkDeviceSyncTimeMonthData = checkDeviceSyncTimeMonthData;
     }
   },
   actions: {
@@ -267,6 +305,58 @@ export default new Vuex.Store({
       return commit(
         "setcheckDeviceSyncTimeWeekData",
         checkDeviceSyncTimeWeekData
+      );
+    },
+
+    async fetchCheckEligibilityMonth({ commit }) {
+      const checkEligibilityMonthData = await client.fetchCheckEligibilityMonth();
+      return commit("setCheckEligibilityMonthData", checkEligibilityMonthData);
+    },
+    async fetchReserveNumberMonth({ commit }) {
+      const checkReserveNumberMonthData = await client.fetchReserveNumberMonth();
+      return commit(
+        "setCheckReserveNumberMonthData",
+        checkReserveNumberMonthData
+      );
+    },
+    async fetchSimStatusMonth({ commit }) {
+      const checkSimStatusMonthData = await client.fetchSimStatusMonth();
+      return commit("setCheckSimStatusMonthData", checkSimStatusMonthData);
+    },
+    async fetchSimValidationMonth({ commit }) {
+      const checkSimValidationMonthData = await client.fetchSimValidationMonth();
+      return commit(
+        "setCheckSimValidationMonthData",
+        checkSimValidationMonthData
+      );
+    },
+    async fetchTopAgentsMonth({ commit }) {
+      const checkTopAgentsMonthData = await client.fetchTopAgentsMonth();
+      return commit("setCheckTopAgentsMonthData", checkTopAgentsMonthData);
+    },
+    async fetchTopStoresMonth({ commit }) {
+      const checkTopStoresMonthData = await client.fetchTopStoresMonth();
+      return commit("setCheckTopStoresMonthData", checkTopStoresMonthData);
+    },
+    async fetchCheckEligibilityMonthAvg({ commit }) {
+      const checkEligibilityMonthAvgData = await client.fetchCheckEligibilityMonthAvg();
+      return commit(
+        "setCheckEligibilityMonthAvgData",
+        checkEligibilityMonthAvgData
+      );
+    },
+    async fetchReserveNumberMonthAvg({ commit }) {
+      const checkReserveNumberMonthAvgData = await client.fetchReserveNumberMonthAvg();
+      return commit(
+        "setCheckReserveNumberMonthAvgData",
+        checkReserveNumberMonthAvgData
+      );
+    },
+    async fetchDeviceSyncTimeMonth({ commit }) {
+      const checkDeviceSyncTimeMonthData = await client.fetchDeviceSyncTimeMonth();
+      return commit(
+        "setcheckDeviceSyncTimeMonthData",
+        checkDeviceSyncTimeMonthData
       );
     }
   }

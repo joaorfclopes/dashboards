@@ -1,22 +1,32 @@
 <template>
-    <div id="simStatus">
-      <apexchart
-        id="simStatusMonth"
-        type="radialBar"
-        height="350"
-        :options="chartOptions"
-        :series="series"
-      />
+  <div id="simStatus">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart
+      v-else
+      id="simStatusMonth"
+      type="radialBar"
+      height="350"
+      :options="chartOptions"
+      :series="series"
+    />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [130, 160, 300],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -31,7 +41,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -82,11 +92,7 @@ export default {
             }
           }
         },
-        labels: [
-          "Failure - SIM doesn't exist",
-          "Failure - SIM already assigned",
-          "Success"
-        ],
+        labels: [],
         stroke: {
           lineCap: "round"
         },
@@ -122,6 +128,35 @@ export default {
         ]
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        store.state.checkSimStatusMonthData[0].value,
+        store.state.checkSimStatusMonthData[1].value,
+        store.state.checkSimStatusMonthData[2].value
+      ];
+      this.chartOptions.labels = [
+        store.state.checkSimStatusMonthData[0].title,
+        store.state.checkSimStatusMonthData[1].title,
+        store.state.checkSimStatusMonthData[2].title
+      ];
+    }
+  },
+  computed: {
+    checkSimStatusMonthData() {
+      return store.state.checkSimStatusMonthData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchSimStatusMonth").then(checkSimStatusMonthData => {
+      this.loading = false;
+    });
   }
 };
 </script>
