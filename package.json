@@ -5,10 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "pull": "git pull origin master",
-    "add": "git add .",
-    "commit": "git commit -a --allow-empty-message -m Auto",
-    "push": "git push origin master",
+    "git": "git add . && git commit -a --allow-empty-message -m Auto && git push origin master",
     "deploy": "now"
   },
   "dependencies": {
