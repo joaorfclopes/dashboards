@@ -93,7 +93,6 @@ export default {
 }
 #topAgents-content {
   max-height: 85.9%;
-  overflow-y: scroll;
   background-color: #343f57;
 }
 .scroll-area {
