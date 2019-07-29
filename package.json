@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "git add . && git commit -a --allow-empty-message -m Deployed && git push origin master && now"
+    "deploy": "git add . && git commit -a --allow-empty-message -m Deploy && git push origin master && now"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
