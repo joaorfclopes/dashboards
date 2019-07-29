@@ -51,7 +51,7 @@ export default {
           colors: ["#343F57"]
         },
         dataLabels: {
-          enabled: false
+          enabled: true
         },
         theme: {
           mode: "dark",

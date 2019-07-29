@@ -1,25 +1,25 @@
 <template>
-    <div id="reserveNr">
-      <apexchart type="line" height="350" :options="chartOptions" :series="series"/>
+  <div id="reserveNr">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="line" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "Success",
-          data: [5, 9, 2, 5, 1, 7, 3, 0, 6, 10, 2, 9, 12, 3, 1, 4, 7, 2, 9, 7, 3, 3, 2]
-        },
-        {
-          name: "Failure - number not found",
-          data: [9, 2, 3, 1, 1, 2, 3, 4, 8, 3, 1, 2, 1, 7, 5, 6, 2, 8, 1, 2, 5, 6, 3]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           type: "line",
           shadow: {
             enabled: false,
@@ -43,7 +43,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -129,6 +129,37 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkReserveNumberDayData[0].title,
+          data: store.state.checkReserveNumberDayData[0].value
+        },
+        {
+          name: store.state.checkReserveNumberDayData[1].title,
+          data: store.state.checkReserveNumberDayData[1].value
+        }
+      ];
+    }
+  },
+  computed: {
+    checkReserveNumberDayData() {
+      return store.state.checkReserveNumberDayData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchReserveNumberDay")
+      .then(checkReserveNumberDayData => {
+        this.loading = false;
+      });
   }
 };
 </script>

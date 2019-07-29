@@ -1,25 +1,25 @@
 <template>
-    <div id="devSync" style="height: 350px;">
-      <apexchart type="area" height="350" :options="chartOptions" :series="series"/>
+  <div id="devSync" style="height: 350px;">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "<= 5 mnts",
-          data: [5, 2, 3, 7, 5, 6, 2, 1, 3, 2, 4, 1, 5, 2, 6, 7, 9, 2, 6, 1, 7, 7, 2]
-        },
-        {
-          name: "> 5 mnts",
-          data: [0, 0, 1, 0, 0, 0, 3, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1, 0, 0, 0, 1]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -34,7 +34,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -121,6 +121,37 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkDeviceSyncTimeDayData[0].title,
+          data: store.state.checkDeviceSyncTimeDayData[0].value
+        },
+        {
+          name: store.state.checkDeviceSyncTimeDayData[1].title,
+          data: store.state.checkDeviceSyncTimeDayData[1].value
+        }
+      ];
+    }
+  },
+  computed: {
+    checkDeviceSyncTimeDayData() {
+      return store.state.checkDeviceSyncTimeDayData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchDeviceSyncTimeDay")
+      .then(checkDeviceSyncTimeDayData => {
+        this.loading = false;
+      });
   }
 };
 </script>

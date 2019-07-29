@@ -1,16 +1,25 @@
 <template>
-    <div id="reserveNrAvg">
-      <apexchart type="radialBar" height="350" :options="chartOptions" :series="series"/>
+  <div id="reserveNrAvg">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="radialBar" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [90, 10],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -25,13 +34,13 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
         theme: {
           mode: "dark",
-          palette: "palette5",
+          palette: "palette5"
         },
         title: {
           text: "Reserve Number",
@@ -57,7 +66,14 @@ export default {
                 show: true,
                 label: "Total",
                 formatter: function(w) {
-                  return 50;
+                  var value1 = parseInt(
+                    store.state.checkReserveNumberDayAvgData[0].value
+                  );
+                  var value2 = parseInt(
+                    store.state.checkReserveNumberDayAvgData[1].value
+                  );
+                  var values = value1 + value2;
+                  return values + "%";
                 }
               }
             },
@@ -67,9 +83,38 @@ export default {
             }
           }
         },
-        labels: ["<= 3 sec", "> 3 sec"]
+        labels: []
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        store.state.checkReserveNumberDayAvgData[0].value,
+        store.state.checkReserveNumberDayAvgData[1].value
+      ];
+      this.chartOptions.labels = [
+        store.state.checkReserveNumberDayAvgData[0].title,
+        store.state.checkReserveNumberDayAvgData[1].title
+      ];
+    }
+  },
+  computed: {
+    checkReserveNumberDayData() {
+      return store.state.checkReserveNumberDayData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchReserveNumberDayAvg")
+      .then(checkReserveNumberDayData => {
+        this.loading = false;
+      });
   }
 };
 </script>

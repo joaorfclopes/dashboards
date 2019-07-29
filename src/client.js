@@ -11,6 +11,14 @@ var reserveNumberHourAvg = "https://api.myjson.com/bins/149w39";
 var deviceSyncTimeHour = "https://api.myjson.com/bins/rwxkl";
 
 var checkEligibilityDay = "https://api.myjson.com/bins/1bfhgx";
+var reserveNumberDay = "https://api.myjson.com/bins/lqxlh";
+var simStatusDay = "https://api.myjson.com/bins/1c8xqd";
+var simValidationDay = "https://api.myjson.com/bins/1akx8l";
+var topAgentsDay = "https://api.myjson.com/bins/gve5h";
+var topStoresDay = "https://api.myjson.com/bins/jb9qd";
+var checkEligibilityDayAvg = "https://api.myjson.com/bins/s8rt1";
+var reserveNumberDayAvg = "https://api.myjson.com/bins/jdew5";
+var deviceSyncTimeDay = "https://api.myjson.com/bins/l5pph";
 
 export default {
   async fetchCheckEligibilityHour() {
@@ -51,6 +59,38 @@ export default {
   },
   async fetchCheckEligibilityDay() {
     const response = await axios.get(checkEligibilityDay);
+    return response.data;
+  },
+  async fetchReserveNumberDay() {
+    const response = await axios.get(reserveNumberDay);
+    return response.data;
+  },
+  async fetchSimStatusDay() {
+    const response = await axios.get(simStatusDay);
+    return response.data;
+  },
+  async fetchSimValidationDay() {
+    const response = await axios.get(simValidationDay);
+    return response.data;
+  },
+  async fetchTopAgentsDay() {
+    const response = await axios.get(topAgentsDay);
+    return response.data;
+  },
+  async fetchTopStoresDay() {
+    const response = await axios.get(topStoresDay);
+    return response.data;
+  },
+  async fetchCheckEligibilityDayAvg() {
+    const response = await axios.get(checkEligibilityDayAvg);
+    return response.data;
+  },
+  async fetchReserveNumberDayAvg() {
+    const response = await axios.get(reserveNumberDayAvg);
+    return response.data;
+  },
+  async fetchDeviceSyncTimeDay() {
+    const response = await axios.get(deviceSyncTimeDay);
     return response.data;
   }
 };

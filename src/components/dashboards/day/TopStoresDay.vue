@@ -5,8 +5,14 @@
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
-    >
-    <v-card id="topStores-container" height="350">
+    />
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <v-card v-else id="topStores-container" height="350">
       <v-toolbar height="50%" color="#343F57" dark>
         <v-toolbar-title id="topStores-title">Top 10 Orders - Stores</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -29,59 +35,50 @@
 
 <script>
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-
+import store from "../../../store";
 export default {
   components: {
     VuePerfectScrollbar
   },
   data() {
     return {
+      loading: false,
       settings: {
         maxScrollbarLength: 60
       },
-      items: [
-        {
-          icon: true,
-          title: "Al Habari Trading"
-        },
-        {
-          icon: true,
-          title: "JHK Group"
-        },
-        {
-          icon: true,
-          title: "Techno Park"
-        },
-        {
-          icon: true,
-          title: "Al Reem Mobile"
-        },
-        {
-          icon: true,
-          title: "Safwan Food Center"
-        },
-        {
-          icon: true,
-          title: "Al Serdal Supermarket"
-        },
-        {
-          icon: true,
-          title: "Akd Camp"
-        },
-        {
-          icon: true,
-          title: "Tawfeeq Cold Store"
-        },
-        {
-          icon: true,
-          title: "Al Malika Trading"
-        },
-        {
-          icon: true,
-          title: "Good Evening Grocery"
-        }
-      ]
+      items: []
     };
+  },
+  methods: {
+    getData() {
+      this.items = [
+        store.state.checkTopStoresDayData[0],
+        store.state.checkTopStoresDayData[1],
+        store.state.checkTopStoresDayData[2],
+        store.state.checkTopStoresDayData[3],
+        store.state.checkTopStoresDayData[4],
+        store.state.checkTopStoresDayData[5],
+        store.state.checkTopStoresDayData[6],
+        store.state.checkTopStoresDayData[7],
+        store.state.checkTopStoresDayData[8],
+        store.state.checkTopStoresDayData[9]
+      ];
+    }
+  },
+  computed: {
+    checkTopStoresDayData() {
+      return store.state.checkTopStoresDayData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchTopStoresDay").then(checkTopStoresDayData => {
+      this.loading = false;
+    });
   }
 };
 </script>
