@@ -22,7 +22,17 @@ export default new Vuex.Store({
     checkTopStoresDayData: [],
     checkEligibilityDayAvgData: [],
     checkReserveNumberDayAvgData: [],
-    checkDeviceSyncTimeDayData: []
+    checkDeviceSyncTimeDayData: [],
+
+    checkEligibilityWeekData: [],
+    checkReserveNumberWeekData: [],
+    checkSimStatusWeekData: [],
+    checkSimValidationWeekData: [],
+    checkTopAgentsWeekData: [],
+    checkTopStoresWeekData: [],
+    checkEligibilityWeekAvgData: [],
+    checkReserveNumberWeekAvgData: [],
+    checkDeviceSyncTimeWeekData: []
   },
   mutations: {
     setCheckEligibilityHourData(state, checkEligibilityHourData) {
@@ -79,6 +89,34 @@ export default new Vuex.Store({
     },
     setcheckDeviceSyncTimeDayData(state, checkDeviceSyncTimeDayData) {
       state.checkDeviceSyncTimeDayData = checkDeviceSyncTimeDayData;
+    },
+
+    setCheckEligibilityWeekData(state, checkEligibilityWeekData) {
+      state.checkEligibilityWeekData = checkEligibilityWeekData;
+    },
+    setCheckReserveNumberWeekData(state, checkReserveNumberWeekData) {
+      state.checkReserveNumberWeekData = checkReserveNumberWeekData;
+    },
+    setCheckSimStatusWeekData(state, checkSimStatusWeekData) {
+      state.checkSimStatusWeekData = checkSimStatusWeekData;
+    },
+    setCheckSimValidationWeekData(state, checkSimValidationWeekData) {
+      state.checkSimValidationWeekData = checkSimValidationWeekData;
+    },
+    setCheckTopAgentsWeekData(state, checkTopAgentsWeekData) {
+      state.checkTopAgentsWeekData = checkTopAgentsWeekData;
+    },
+    setCheckTopStoresWeekData(state, checkTopStoresWeekData) {
+      state.checkTopStoresWeekData = checkTopStoresWeekData;
+    },
+    setCheckEligibilityWeekAvgData(state, checkEligibilityWeekAvgData) {
+      state.checkEligibilityWeekAvgData = checkEligibilityWeekAvgData;
+    },
+    setCheckReserveNumberWeekAvgData(state, checkReserveNumberWeekAvgData) {
+      state.checkReserveNumberWeekAvgData = checkReserveNumberWeekAvgData;
+    },
+    setcheckDeviceSyncTimeWeekData(state, checkDeviceSyncTimeWeekData) {
+      state.checkDeviceSyncTimeWeekData = checkDeviceSyncTimeWeekData;
     }
   },
   actions: {
@@ -177,6 +215,58 @@ export default new Vuex.Store({
       return commit(
         "setcheckDeviceSyncTimeDayData",
         checkDeviceSyncTimeDayData
+      );
+    },
+
+    async fetchCheckEligibilityWeek({ commit }) {
+      const checkEligibilityWeekData = await client.fetchCheckEligibilityWeek();
+      return commit("setCheckEligibilityWeekData", checkEligibilityWeekData);
+    },
+    async fetchReserveNumberWeek({ commit }) {
+      const checkReserveNumberWeekData = await client.fetchReserveNumberWeek();
+      return commit(
+        "setCheckReserveNumberWeekData",
+        checkReserveNumberWeekData
+      );
+    },
+    async fetchSimStatusWeek({ commit }) {
+      const checkSimStatusWeekData = await client.fetchSimStatusWeek();
+      return commit("setCheckSimStatusWeekData", checkSimStatusWeekData);
+    },
+    async fetchSimValidationWeek({ commit }) {
+      const checkSimValidationWeekData = await client.fetchSimValidationWeek();
+      return commit(
+        "setCheckSimValidationWeekData",
+        checkSimValidationWeekData
+      );
+    },
+    async fetchTopAgentsWeek({ commit }) {
+      const checkTopAgentsWeekData = await client.fetchTopAgentsWeek();
+      return commit("setCheckTopAgentsWeekData", checkTopAgentsWeekData);
+    },
+    async fetchTopStoresWeek({ commit }) {
+      const checkTopStoresWeekData = await client.fetchTopStoresWeek();
+      return commit("setCheckTopStoresWeekData", checkTopStoresWeekData);
+    },
+    async fetchCheckEligibilityWeekAvg({ commit }) {
+      const checkEligibilityWeekAvgData = await client.fetchCheckEligibilityWeekAvg();
+      return commit(
+        "setCheckEligibilityWeekAvgData",
+        checkEligibilityWeekAvgData
+      );
+    },
+    async fetchReserveNumberWeekAvg({ commit }) {
+      const checkReserveNumberWeekAvgData = await client.fetchReserveNumberWeekAvg();
+      return commit(
+        "setCheckReserveNumberWeekAvgData",
+        checkReserveNumberWeekAvgData
+      );
+    },
+    async fetchDeviceSyncTimeWeek({ commit }) {
+      const checkDeviceSyncTimeWeekData = await client.fetchDeviceSyncTimeWeek();
+      return commit(
+        "setcheckDeviceSyncTimeWeekData",
+        checkDeviceSyncTimeWeekData
       );
     }
   }

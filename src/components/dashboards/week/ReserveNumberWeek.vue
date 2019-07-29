@@ -1,25 +1,25 @@
 <template>
-    <div id="reserveNr">
-      <apexchart type="line" height="350" :options="chartOptions" :series="series"/>
+  <div id="reserveNr">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="line" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "Success",
-          data: [31, 25, 43, 18]
-        },
-        {
-          name: "Failure - number not found",
-          data: [20, 12, 23, 8]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           type: "line",
           shadow: {
             enabled: false,
@@ -43,7 +43,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -60,12 +60,7 @@ export default {
           curve: "smooth"
         },
         xaxis: {
-          categories: [
-            "Week 1",
-            "Week 2",
-            "Week 3",
-            "Week 4"
-          ]
+          categories: ["Week 1", "Week 2", "Week 3", "Week 4"]
         },
         theme: {
           mode: "dark",
@@ -107,6 +102,35 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkReserveNumberWeekData[0].title,
+          data: store.state.checkReserveNumberWeekData[0].value
+        },
+        {
+          name: store.state.checkReserveNumberWeekData[1].title,
+          data: store.state.checkReserveNumberWeekData[1].value
+        }
+      ];
+    }
+  },
+  computed: {
+    checkReserveNumberWeekData() {
+      return store.state.checkReserveNumberWeekData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchReserveNumberWeek").then(checkReserveNumberWeekData => {
+      this.loading = false;
+    });
   }
 };
 </script>

@@ -1,29 +1,25 @@
 <template>
-    <div id="checkEl">
-      <apexchart type="bar" height="350" :options="chartOptions" :series="series"/>
+  <div id="checkEl">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="bar" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "Failure - more allowed connection",
-          data: [21]
-        },
-        {
-          name: "Failure - maximum number of connection",
-          data: [10]
-        },
-        {
-          name: "Success",
-          data: [40]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -38,9 +34,9 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
-          fontFamily: 'Roboto, sans-serif'
+          fontFamily: "Roboto, sans-serif"
         },
         grid: {
           show: true,
@@ -98,6 +94,39 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkEligibilityWeekData[0].title,
+          data: [store.state.checkEligibilityWeekData[0].value]
+        },
+        {
+          name: store.state.checkEligibilityWeekData[1].title,
+          data: [store.state.checkEligibilityWeekData[1].value]
+        },
+        {
+          name: store.state.checkEligibilityWeekData[2].title,
+          data: [store.state.checkEligibilityWeekData[2].value]
+        }
+      ];
+    }
+  },
+  computed: {
+    checkEligibilityWeekData() {
+      return store.state.checkEligibilityWeekData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchCheckEligibilityWeek").then(checkEligibilityWeekData => {
+      this.loading = false;
+    });
   }
 };
 </script>

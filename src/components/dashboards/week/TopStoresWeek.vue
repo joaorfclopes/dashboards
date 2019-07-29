@@ -5,8 +5,14 @@
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
       integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
       crossorigin="anonymous"
-    >
-    <v-card id="topStores-container" height="350">
+    />
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <v-card v-else id="topStores-container" height="350">
       <v-toolbar height="50%" color="#343F57" dark>
         <v-toolbar-title id="topStores-title">Top 10 Orders - Stores</v-toolbar-title>
         <v-spacer></v-spacer>
@@ -29,59 +35,50 @@
 
 <script>
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
-
+import store from "../../../store";
 export default {
   components: {
     VuePerfectScrollbar
   },
   data() {
     return {
+      loading: false,
       settings: {
         maxScrollbarLength: 60
       },
-      items: [
-        {
-          icon: true,
-          title: "Status Ablemart"
-        },
-        {
-          icon: true,
-          title: "Al Habari Trading"
-        },
-        {
-          icon: true,
-          title: "Al Dahiya Grocery (old Murra)"
-        },
-        {
-          icon: true,
-          title: "Al Reem Mobile"
-        },
-        {
-          icon: true,
-          title: "Al Khair Supermarket"
-        },
-        {
-          icon: true,
-          title: "Al Serdal Supermarket"
-        },
-        {
-          icon: true,
-          title: "Al Buraq Mobile"
-        },
-        {
-          icon: true,
-          title: "Tawfeeq Cold Store"
-        },
-        {
-          icon: true,
-          title: "Park And Shop"
-        },
-        {
-          icon: true,
-          title: "Amana Canteen"
-        }
-      ]
+      items: []
     };
+  },
+  methods: {
+    getData() {
+      this.items = [
+        store.state.checkTopStoresWeekData[0],
+        store.state.checkTopStoresWeekData[1],
+        store.state.checkTopStoresWeekData[2],
+        store.state.checkTopStoresWeekData[3],
+        store.state.checkTopStoresWeekData[4],
+        store.state.checkTopStoresWeekData[5],
+        store.state.checkTopStoresWeekData[6],
+        store.state.checkTopStoresWeekData[7],
+        store.state.checkTopStoresWeekData[8],
+        store.state.checkTopStoresWeekData[9]
+      ];
+    }
+  },
+  computed: {
+    checkTopStoresWeekData() {
+      return store.state.checkTopStoresWeekData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchTopStoresWeek").then(checkTopStoresWeekData => {
+      this.loading = false;
+    });
   }
 };
 </script>

@@ -1,25 +1,25 @@
 <template>
-    <div id="devSync" style="height: 350px;">
-      <apexchart type="area" height="350" :options="chartOptions" :series="series"/>
+  <div id="devSync" style="height: 350px;">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [
-        {
-          name: "<= 5 mnts",
-          data: [55, 22, 37, 72]
-        },
-        {
-          name: "> 5 mnts",
-          data: [5, 12, 2, 30]
-        }
-      ],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -34,7 +34,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -97,6 +97,37 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        {
+          name: store.state.checkDeviceSyncTimeWeekData[0].title,
+          data: store.state.checkDeviceSyncTimeWeekData[0].value
+        },
+        {
+          name: store.state.checkDeviceSyncTimeWeekData[1].title,
+          data: store.state.checkDeviceSyncTimeWeekData[1].value
+        }
+      ];
+    }
+  },
+  computed: {
+    checkDeviceSyncTimeWeekData() {
+      return store.state.checkDeviceSyncTimeWeekData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store
+      .dispatch("fetchDeviceSyncTimeWeek")
+      .then(checkDeviceSyncTimeWeekData => {
+        this.loading = false;
+      });
   }
 };
 </script>

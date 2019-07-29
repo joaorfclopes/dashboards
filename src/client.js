@@ -20,6 +20,16 @@ var checkEligibilityDayAvg = "https://api.myjson.com/bins/s8rt1";
 var reserveNumberDayAvg = "https://api.myjson.com/bins/jdew5";
 var deviceSyncTimeDay = "https://api.myjson.com/bins/l5pph";
 
+var checkEligibilityWeek = "https://api.myjson.com/bins/evdk5";
+var reserveNumberWeek = "https://api.myjson.com/bins/1gdoo5";
+var simStatusWeek = "https://api.myjson.com/bins/e1l11";
+var simValidationWeek = "https://api.myjson.com/bins/1f0lp1";
+var topAgentsWeek = "https://api.myjson.com/bins/cz051";
+var topStoresWeek = "https://api.myjson.com/bins/b6pbp";
+var checkEligibilityWeekAvg = "https://api.myjson.com/bins/1ellkl";
+var reserveNumberWeekAvg = "https://api.myjson.com/bins/pnr1h";
+var deviceSyncTimeWeek = "https://api.myjson.com/bins/12racl";
+
 export default {
   async fetchCheckEligibilityHour() {
     const response = await axios.get(checkEligibilityHour);
@@ -91,6 +101,42 @@ export default {
   },
   async fetchDeviceSyncTimeDay() {
     const response = await axios.get(deviceSyncTimeDay);
+    return response.data;
+  },
+  async fetchCheckEligibilityWeek() {
+    const response = await axios.get(checkEligibilityWeek);
+    return response.data;
+  },
+  async fetchReserveNumberWeek() {
+    const response = await axios.get(reserveNumberWeek);
+    return response.data;
+  },
+  async fetchSimStatusWeek() {
+    const response = await axios.get(simStatusWeek);
+    return response.data;
+  },
+  async fetchSimValidationWeek() {
+    const response = await axios.get(simValidationWeek);
+    return response.data;
+  },
+  async fetchTopAgentsWeek() {
+    const response = await axios.get(topAgentsWeek);
+    return response.data;
+  },
+  async fetchTopStoresWeek() {
+    const response = await axios.get(topStoresWeek);
+    return response.data;
+  },
+  async fetchCheckEligibilityWeekAvg() {
+    const response = await axios.get(checkEligibilityWeekAvg);
+    return response.data;
+  },
+  async fetchReserveNumberWeekAvg() {
+    const response = await axios.get(reserveNumberWeekAvg);
+    return response.data;
+  },
+  async fetchDeviceSyncTimeWeek() {
+    const response = await axios.get(deviceSyncTimeWeek);
     return response.data;
   }
 };

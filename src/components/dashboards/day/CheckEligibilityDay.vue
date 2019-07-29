@@ -1,11 +1,13 @@
 <template>
-  <div class="lds-ellipsis" v-if="loading">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+  <div id="checkEl">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <apexchart v-else type="bar" height="350" :options="chartOptions" v-bind:series="series" />
   </div>
-  <apexchart v-else type="bar" height="350" :options="chartOptions" v-bind:series="series"/>
 </template>
 
 <script>
@@ -122,11 +124,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchCheckEligibilityDay")
-      .then(checkEligibilityDayData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchCheckEligibilityDay").then(checkEligibilityDayData => {
+      this.loading = false;
+    });
   }
 };
 </script>

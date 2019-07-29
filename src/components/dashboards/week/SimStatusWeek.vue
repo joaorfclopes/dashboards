@@ -1,22 +1,32 @@
 <template>
-    <div id="simStatus">
-      <apexchart
-        id="simStatusHour"
-        type="radialBar"
-        height="350"
-        :options="chartOptions"
-        :series="series"
-      />
+  <div id="simStatus">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart
+      v-else
+      id="simStatusHour"
+      type="radialBar"
+      height="350"
+      :options="chartOptions"
+      :series="series"
+    />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [30, 60, 100],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -31,7 +41,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -82,11 +92,7 @@ export default {
             }
           }
         },
-        labels: [
-          "Failure - SIM doesn't exist",
-          "Failure - SIM already assigned",
-          "Success"
-        ],
+        labels: [],
         stroke: {
           lineCap: "round"
         },
@@ -122,6 +128,35 @@ export default {
         ]
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        store.state.checkSimStatusWeekData[0].value,
+        store.state.checkSimStatusWeekData[1].value,
+        store.state.checkSimStatusWeekData[2].value
+      ];
+      this.chartOptions.labels = [
+        store.state.checkSimStatusWeekData[0].title,
+        store.state.checkSimStatusWeekData[1].title,
+        store.state.checkSimStatusWeekData[2].title
+      ];
+    }
+  },
+  computed: {
+    checkSimStatusWeekData() {
+      return store.state.checkSimStatusWeekData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchSimStatusWeek").then(checkSimStatusWeekData => {
+      this.loading = false;
+    });
   }
 };
 </script>

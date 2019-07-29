@@ -1,16 +1,32 @@
 <template>
-    <div id="simValidation">
-      <apexchart type="donut" height="350" width="100%" :options="chartOptions" :series="series"/>
+  <div id="simValidation">
+    <div class="lds-ellipsis" v-if="loading">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
+    <apexchart
+      v-else
+      type="donut"
+      height="350"
+      width="100%"
+      :options="chartOptions"
+      :series="series"
+    />
+  </div>
 </template>
 
 <script>
+import store from "../../../store";
 export default {
   data: function() {
     return {
-      series: [120, 60],
+      loading: false,
+      series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           animations: {
             enabled: true,
             easing: "easeinout",
@@ -25,7 +41,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -34,9 +50,9 @@ export default {
           colors: ["#343F57"]
         },
         dataLabels: {
-          enabled: false
+          enabled: true
         },
-        labels: ["Success", "Failure - SIM already used"],
+        labels: [],
         theme: {
           mode: "dark",
           palette: "palette8"
@@ -78,6 +94,33 @@ export default {
         ]
       }
     };
+  },
+  methods: {
+    getData() {
+      this.series = [
+        store.state.checkSimValidationWeekData[0].value,
+        store.state.checkSimValidationWeekData[1].value
+      ];
+      this.chartOptions.labels = [
+        store.state.checkSimValidationWeekData[0].title,
+        store.state.checkSimValidationWeekData[1].title
+      ];
+    }
+  },
+  computed: {
+    checkSimValidationWeekData() {
+      return store.state.checkSimValidationWeekData;
+    }
+  },
+  beforeUpdate() {
+    this.getData();
+  },
+  created() {
+    this.loading = true;
+
+    store.dispatch("fetchSimValidationWeek").then(checkSimValidationWeekData => {
+      this.loading = false;
+    });
   }
 };
 </script>
