@@ -83,22 +83,5 @@ export default {
 };
 </script>
 
-<style scoped>
-#topAgents-container {
-  background-color: #343f57;
-  border-radius: 0%;
-}
-#topAgents-title {
-  font-size: 120%;
-}
-#topAgents-content {
-  max-height: 85.9%;
-  background-color: #343f57;
-}
-.scroll-area {
-  position: relative;
-  margin: auto;
-  width: 100%;
-  height: 290px;
-}
+<style>
 </style>

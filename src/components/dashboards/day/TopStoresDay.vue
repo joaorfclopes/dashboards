@@ -84,21 +84,4 @@ export default {
 </script>
 
 <style>
-#topStores-container {
-  background-color: #343f57;
-  border-radius: 0%;
-}
-#topStores-title {
-  font-size: 120%;
-}
-#topStores-content {
-  max-height: 85.9%;
-  background-color: #343f57;
-}
-.scroll-area {
-  position: relative;
-  margin: auto;
-  width: 100%;
-  height: 290px;
-}
 </style>

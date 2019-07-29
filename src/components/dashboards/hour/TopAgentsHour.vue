@@ -83,7 +83,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #topAgents-container {
   background-color: #343f57;
   border-radius: 0%;
