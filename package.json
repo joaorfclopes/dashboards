@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "pull": "git pull origin master",
     "add": "git add .",
-    "commit": "git commit -a --allow-empty-message -m Auto Commit",
+    "commit": "git commit -a --allow-empty-message -m Auto",
     "push": "git push origin master",
     "deploy": "now"
   },
