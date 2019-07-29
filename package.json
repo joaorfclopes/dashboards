@@ -5,7 +5,11 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "git push heroku master"
+    "pull": "git pull origin master",
+    "add": "git add .",
+    "commit": "git commit -m 'Auto Commit'",
+    "push": "git push origin master",
+    "deploy": "now"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
