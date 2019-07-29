@@ -19,6 +19,7 @@ export default {
       series: [],
       chartOptions: {
         chart: {
+          background: "#343F57",
           type: "line",
           shadow: {
             enabled: false,
@@ -42,7 +43,7 @@ export default {
             }
           },
           toolbar: {
-            show: false
+            show: true
           },
           fontFamily: "Roboto, sans-serif"
         },
