@@ -8,6 +8,7 @@
     </div>
     <apexchart
       v-else
+      id="simValidationDay"
       type="donut"
       height="350"
       width="100%"
@@ -19,6 +20,7 @@
 
 <script>
 import store from "../../../store";
+import style from "../../../styles/dashboards/style.css";
 export default {
   data: function() {
     return {
@@ -127,9 +129,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-#simValidationDay {
-  text-align: left;
-}
-</style>

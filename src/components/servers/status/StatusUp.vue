@@ -7,7 +7,7 @@
       </v-toolbar>
     </div>
     <div id="statusUp-content">
-      <img src="../../../assets/up.png" width="50">
+      <img src="../../../assets/up.png" width="50" />
       <h2>UP</h2>
       <p>Last down: {{days}} days ago</p>
     </div>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import style from "../../../styles/servers/style.css";
 export default {
   props: ["server"],
   data: function() {
@@ -24,23 +25,3 @@ export default {
   }
 };
 </script>
-
-
-<style>
-#statusUp {
-  background-color: #343f57;
-  border-radius: 0%;
-  height: 200px;
-  width: 200px;
-}
-#statusUp-content {
-  margin-top: 5%;
-}
-#statusUp-content > h2 {
-  color: #56d745;
-  margin-bottom: 10%;
-}
-#statusUp-content > p {
-  color: whitesmoke;
-}
-</style>

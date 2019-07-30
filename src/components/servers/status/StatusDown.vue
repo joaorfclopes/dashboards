@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import style from "../../../styles/servers/style.css";
 export default {
   props: ["server"],
   data: function() {
@@ -24,23 +25,3 @@ export default {
   }
 };
 </script>
-
-
-<style>
-#statusDown {
-  background-color: #343f57;
-  border-radius: 0%;
-  height: 200px;
-  width: 200px;
-}
-#statusDown-content {
-  margin-top: 5%;
-}
-#statusDown-content > h2 {
-  color: #D1010B;
-  margin-bottom: 10%;
-}
-#statusDown-content > p {
-  color: whitesmoke;
-}
-</style>

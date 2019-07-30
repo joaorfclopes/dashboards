@@ -28,6 +28,7 @@
 import StatusUp from "./StatusUp";
 import StatusDown from "./StatusDown";
 import Realtime from "./Realtime";
+import style from "../../../styles/servers/style.css";
 
 export default {
   components: {
@@ -37,9 +38,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#uptime-container {
-  margin-right: -1%;
-}
-</style>

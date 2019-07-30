@@ -64,6 +64,7 @@ import TopAgentsWeek from "./TopAgentsWeek.vue";
 import CheckEligibilityWeekAvg from "./CheckEligibilityWeekAvg.vue";
 import ReserveNumberWeekAvg from "./ReserveNumberWeekAvg.vue";
 import DeviceSyncTimeWeek from "./DeviceSyncTimeWeek.vue";
+import style from "../../../styles/dashboards/style.css";
 
 export default {
   components: {
@@ -97,6 +98,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

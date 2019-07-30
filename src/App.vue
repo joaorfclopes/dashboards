@@ -16,11 +16,14 @@ export default {
 </script>
 
 <style>
+html {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e21;
+  overflow: hidden;
+}
 #app {
   text-align: center;
-  scroll-behavior: smooth;
-}
-::-webkit-scrollbar {
-  display: none;
 }
 </style>

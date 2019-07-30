@@ -65,6 +65,7 @@ import TopAgentsHour from "./TopAgentsHour.vue";
 import CheckEligibilityHourAvg from "./CheckEligibilityHourAvg.vue";
 import ReserveNumberHourAvg from "./ReserveNumberHourAvg.vue";
 import DeviceSyncTimeHour from "./DeviceSyncTimeHour.vue";
+import style from "../../../styles/dashboards/style.css";
 
 import axios from "axios";
 
@@ -110,11 +111,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#btn {
-  float: left;
-  margin-left: 4%;
-  margin-top: 1%;
-}
-</style>

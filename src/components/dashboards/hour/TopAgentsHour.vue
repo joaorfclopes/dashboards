@@ -36,6 +36,7 @@
 <script>
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import store from "../../../store";
+import style from "../../../styles/dashboards/style.css";
 export default {
   components: {
     VuePerfectScrollbar
@@ -82,23 +83,3 @@ export default {
   }
 };
 </script>
-
-<style>
-#topAgents-container {
-  background-color: #343f57;
-  border-radius: 0%;
-}
-#topAgents-title {
-  font-size: 120%;
-}
-#topAgents-content {
-  max-height: 85.9%;
-  background-color: #343f57;
-}
-.scroll-area {
-  position: relative;
-  margin: auto;
-  width: 100%;
-  height: 290px;
-}
-</style>

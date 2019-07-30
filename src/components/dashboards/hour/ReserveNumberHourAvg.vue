@@ -12,6 +12,7 @@
 
 <script>
 import store from "../../../store";
+import style from "../../../styles/dashboards/style.css";
 export default {
   data: function() {
     return {
@@ -114,6 +115,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

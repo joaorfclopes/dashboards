@@ -7,6 +7,7 @@
       <div></div>
     </div>
     <apexchart
+      id="simValidationMonth"
       v-else
       type="donut"
       height="350"
@@ -19,6 +20,7 @@
 
 <script>
 import store from "../../../store";
+import style from "../../../styles/dashboards/style.css";
 export default {
   data: function() {
     return {
@@ -118,15 +120,11 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchSimValidationMonth").then(checkSimValidationMonthData => {
-      this.loading = false;
-    });
+    store
+      .dispatch("fetchSimValidationMonth")
+      .then(checkSimValidationMonthData => {
+        this.loading = false;
+      });
   }
 };
 </script>
-
-<style scoped>
-#simValidationHour {
-  text-align: left;
-}
-</style>

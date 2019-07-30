@@ -36,6 +36,7 @@
 <script>
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import store from "../../../store";
+import style from "../../../styles/dashboards/style.css";
 export default {
   components: {
     VuePerfectScrollbar
@@ -82,6 +83,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>

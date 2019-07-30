@@ -119,25 +119,25 @@
             </p>
           </div>
           <div id="tooltipContentPrtlLb">
-            <div style="color: red; text-transform: uppercase">
+            <div class="lb-title">
               <strong>prtl-lb</strong>
             </div>
             <div>10.160.0.113</div>
-            <div style="font-size: 12px;">http/* :7002 -> 7002</div>
+            <div class="lb-endpoint">http/* :7002 -> 7002</div>
           </div>
           <div id="tooltipContentLdapLb">
-            <div style="color: red; text-transform: uppercase">
+            <div class="lb-title">
               <strong>ldap-lb</strong>
             </div>
             <div>10.160.0.90</div>
-            <div style="font-size: 12px;">ldap/* :3060 -> 3060</div>
+            <div class="lb-endpoint">ldap/* :3060 -> 3060</div>
           </div>
           <div id="tooltipContentAppLb">
-            <div style="color: red; text-transform: uppercase">
+            <div class="lb-title">
               <strong>app-lb</strong>
             </div>
             <div>10.160.0.113</div>
-            <div style="font-size: 12px;">http/* :7005 -> 7005</div>
+            <div class="lb-endpoint">http/* :7005 -> 7005</div>
           </div>
         </div>
         <v-flex v-for="i in 3" :key="`1${i}`" xs12>
@@ -147,20 +147,15 @@
             dark
             color="#2A2A2E"
             height="200"
-            style="padding: 1%;"
+            class="zones"
           >
-            <div class="scheme-title-container" style="margin-top: 0.3%;">
+            <div class="scheme-title-container">
               <h4 id="scheme-title">internal presentation</h4>
             </div>
             <v-layout align-center justify-center row fill-height>
               <v-flex v-for="i in 3" :key="`4${i}`" xs4>
-                <div
-                  v-if="i == 1"
-                  id="ohs"
-                  class="card"
-                  style="margin-left: 20%; display: inline-block; width: 80%;"
-                >
-                  <div id="ohs1" style="float: left;">
+                <div v-if="i == 1" id="ohs" class="card margin">
+                  <div id="ohs1" class="left">
                     <h3>bvpr-dmsow01</h3>
                     <v-btn
                       @click="showOhs1func"
@@ -175,7 +170,7 @@
                       <img src="../../../assets/server.png" width="80%" />
                     </v-btn>
                   </div>
-                  <div id="ohs2" style="float: right">
+                  <div id="ohs2" class="right">
                     <h3>bvpr-dmsow02</h3>
                     <v-btn
                       @click="showOhs2func"
@@ -194,27 +189,21 @@
               </v-flex>
             </v-layout>
           </v-card>
-          <div v-if="i == 1" id="prtl-lb" class="lb" style="float: left; width: 40.5%">
+          <div v-if="i == 1" id="prtl-lb" class="lb left">
             <img
               src="../../../assets/loadbalancer.png"
               width="10%"
-              style="cursor: pointer"
               v-tooltip.left="{html: 'tooltipContentPrtlLb'}"
             />
           </div>
-          <v-card v-if="i == 2" dark color="#2A2A2E" height="200" style="padding: 1%;">
-            <div class="scheme-title-container" style="margin-top: 1.5%">
+          <v-card class="zones" v-if="i == 2" dark color="#2A2A2E" height="200">
+            <div class="scheme-title-container">
               <h4 id="scheme-title">application zone</h4>
             </div>
             <v-layout align-center justify-center row fill-height>
               <v-flex v-for="i in 3" :key="`4${i}`" xs4>
-                <div
-                  v-if="i == 1"
-                  id="wc"
-                  class="card"
-                  style="margin-left: 20%; display: inline-block; width: 80%;"
-                >
-                  <div id="wc1" style="float: left;">
+                <div v-if="i == 1" id="wc" class="card margin">
+                  <div id="wc1" class="left">
                     <h3>bvpr-dmswc01</h3>
                     <v-btn
                       @click="showWc1func"
@@ -229,7 +218,7 @@
                       <img src="../../../assets/server.png" width="80%" />
                     </v-btn>
                   </div>
-                  <div id="wc2" style="float: right">
+                  <div id="wc2" class="right">
                     <h3>bvpr-dmswc02</h3>
                     <v-btn
                       @click="showWc2func"
@@ -250,17 +239,11 @@
                     id="app-lb"
                     src="../../../assets/loadbalancer.png"
                     width="13%"
-                    style="cursor: pointer; margin-top: -1%"
                     v-tooltip.top="{html: 'tooltipContentAppLb'}"
                   />
                 </div>
-                <div
-                  v-if="i == 3"
-                  id="app-scheme"
-                  class="card"
-                  style="display: inline-block; width: 80%;"
-                >
-                  <div id="app1" style="float: left;">
+                <div v-if="i == 3" id="app-scheme" class="card">
+                  <div id="app1" class="left">
                     <h3>bvpr-dmsapp01</h3>
                     <v-btn
                       @click="showApp1func"
@@ -275,7 +258,7 @@
                       <img src="../../../assets/server.png" width="80%" />
                     </v-btn>
                   </div>
-                  <div id="app1" style="float: right">
+                  <div id="app1" class="right">
                     <h3>bvpr-dmsapp02</h3>
                     <v-btn
                       @click="showApp2func"
@@ -294,27 +277,21 @@
               </v-flex>
             </v-layout>
           </v-card>
-          <div v-if="i == 2" id="ldap-lb" class="lb" style="float: right; width: 34%">
+          <div v-if="i == 2" id="ldap-lb" class="lb right">
             <img
               src="../../../assets/loadbalancer.png"
               width="12%"
-              style="cursor: pointer"
               v-tooltip.left="{html: 'tooltipContentLdapLb'}"
             />
           </div>
-          <v-card v-if="i == 3" dark color="#2A2A2E" height="200" style="padding: 1%;">
-            <div class="scheme-title-container" style="margin-top: 2%;">
+          <v-card class="zones" v-if="i == 3" dark color="#2A2A2E" height="200">
+            <div class="scheme-title-container">
               <h4 id="scheme-title">database zone</h4>
             </div>
             <v-layout align-center justify-center row fill-height>
               <v-flex v-for="i in 3" :key="`4${i}`" xs4>
-                <div
-                  v-if="i == 1"
-                  id="db"
-                  class="card"
-                  style="margin-left: 20%; display: inline-block; width: 80%;"
-                >
-                  <div id="db1" style="float: left;">
+                <div v-if="i == 1" id="db" class="card margin">
+                  <div id="db1" class="left">
                     <h3>bvpr-dmsdb01</h3>
                     <v-btn
                       @click="showDb1func"
@@ -329,7 +306,7 @@
                       <img src="../../../assets/server.png" width="80%" />
                     </v-btn>
                   </div>
-                  <div id="db2" style="float: right">
+                  <div id="db2" class="right">
                     <h3>bvpr-dmsdb02</h3>
                     <v-btn
                       @click="showDb2func"
@@ -345,8 +322,8 @@
                     </v-btn>
                   </div>
                 </div>
-                <div v-if="i == 2" id="bi" class="card" style="display: inline-block; width: 80%;">
-                  <div id="bi1" style="float: left; margin-left: 32%">
+                <div v-if="i == 2" id="bi" class="card">
+                  <div id="bi1" class="left">
                     <h3>bvpr-dmsbibd01</h3>
                     <v-btn
                       @click="showBifunc"
@@ -362,8 +339,8 @@
                     </v-btn>
                   </div>
                 </div>
-                <div v-if="i == 3" id="oid" class="card" style="display: inline-block; width: 80%;">
-                  <div id="oid1" style="float: left;">
+                <div v-if="i == 3" id="oid" class="card">
+                  <div id="oid1" class="left">
                     <h3>bvpr-dmsodi01</h3>
                     <v-btn
                       @click="showOid1func"
@@ -378,7 +355,7 @@
                       <img src="../../../assets/server.png" width="80%" />
                     </v-btn>
                   </div>
-                  <div id="oid1" style="float: right">
+                  <div id="oid1" class="right">
                     <h3>bvpr-dmsodi02</h3>
                     <v-btn
                       @click="showOid2func"
@@ -410,6 +387,7 @@ import Tooltip from "vue-directive-tooltip";
 import "vue-directive-tooltip/css/index.css";
 import { setTimeout } from "timers";
 import jsplumb from "jsplumb";
+import style from "../../../styles/servers/style.css";
 
 Vue.use(Tooltip);
 
@@ -574,31 +552,3 @@ export default {
   }
 };
 </script>
-
-
-<style>
-.scheme-title-container {
-  position: fixed;
-}
-#scheme-title {
-  text-transform: uppercase;
-  writing-mode: vertical-rl;
-}
-#content {
-  margin-left: 7%;
-  margin-top: 1%;
-}
-.btn {
-  margin: 15%;
-  transition-duration: 0.5s;
-}
-.btn:hover {
-  transform: scale(1.1);
-}
-.lb {
-  margin-top: 1.5%;
-}
-.card {
-  border-radius: 5%;
-}
-</style>
