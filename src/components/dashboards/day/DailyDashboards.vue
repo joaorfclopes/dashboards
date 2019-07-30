@@ -64,7 +64,7 @@ import TopAgentsDay from "./TopAgentsDay.vue";
 import CheckEligibilityDayAvg from "./CheckEligibilityDayAvg.vue";
 import ReserveNumberDayAvg from "./ReserveNumberDayAvg.vue";
 import DeviceSyncTimeDay from "./DeviceSyncTimeDay.vue";
-import style from "../../../styles/dashboards/style.css";
+import "../../style.css";
 
 export default {
   components: {

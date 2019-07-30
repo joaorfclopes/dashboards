@@ -20,7 +20,6 @@
 
 <script>
 import store from "../../../store";
-import style from "../../../styles/dashboards/style.css";
 export default {
   data: function() {
     return {
@@ -80,20 +79,7 @@ export default {
               }
             }
           }
-        },
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              chart: {
-                width: 200
-              },
-              legend: {
-                position: "bottom"
-              }
-            }
-          }
-        ]
+        }
       }
     };
   },
@@ -128,3 +114,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#simValidationMonth {
+  text-align: left;
+}
+</style>

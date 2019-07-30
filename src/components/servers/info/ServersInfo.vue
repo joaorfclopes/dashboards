@@ -18,7 +18,6 @@
 <script>
 import Connections from "./Connections.vue";
 import Scheme from "./Scheme.vue";
-import style from "../../../styles/servers/style.css";
 
 export default {
   components: {
@@ -27,3 +26,14 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#left {
+  width: 40%;
+  float: left;
+}
+#right {
+  width: 60%;
+  float: right;
+}
+</style>

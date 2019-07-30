@@ -65,19 +65,7 @@ import TopAgentsHour from "./TopAgentsHour.vue";
 import CheckEligibilityHourAvg from "./CheckEligibilityHourAvg.vue";
 import ReserveNumberHourAvg from "./ReserveNumberHourAvg.vue";
 import DeviceSyncTimeHour from "./DeviceSyncTimeHour.vue";
-import style from "../../../styles/dashboards/style.css";
-
-import axios from "axios";
-
-var checkEligibilityHourURL = "https://api.myjson.com/bins/x9pzv";
-var reserveNumberHourURL = "https://api.myjson.com/bins/ewlub";
-var simStatusHourURL = "https://api.myjson.com/bins/bqgcx";
-var simValidationHourURL = "https://api.myjson.com/bins/l54hl";
-var topAgentsHourURL = "https://api.myjson.com/bins/d0dwp";
-var topStoresHourURL = "https://api.myjson.com/bins/gn4p5";
-var checkEligibilityHourAvgURL = "https://api.myjson.com/bins/17cx05";
-var reserveNumberHourAvgURL = "https://api.myjson.com/bins/149w39";
-var deviceSyncTimeHourURL = "https://api.myjson.com/bins/rwxkl";
+import "../../style.css";
 
 export default {
   components: {

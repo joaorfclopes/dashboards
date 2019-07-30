@@ -19,7 +19,6 @@
 
 <script>
 import store from "../../../store";
-import style from "../../../styles/dashboards/style.css";
 export default {
   data: function() {
     return {
@@ -116,17 +115,7 @@ export default {
           itemMargin: {
             horizontal: 1
           }
-        },
-        responsive: [
-          {
-            breakpoint: 480,
-            options: {
-              legend: {
-                show: false
-              }
-            }
-          }
-        ]
+        }
       }
     };
   },
@@ -161,3 +150,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#simStatusHour {
+  text-align: left;
+}
+</style>

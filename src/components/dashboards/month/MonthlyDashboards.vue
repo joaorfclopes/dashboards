@@ -64,7 +64,7 @@ import TopAgentsMonth from "./TopAgentsMonth.vue";
 import CheckEligibilityMonthAvg from "./CheckEligibilityMonthAvg.vue";
 import ReserveNumberMonthAvg from "./ReserveNumberMonthAvg.vue";
 import DeviceSyncTimeMonth from "./DeviceSyncTimeMonth.vue";
-import style from "../../../styles/dashboards/style.css";
+import "../../style.css";
 
 export default {
   components: {

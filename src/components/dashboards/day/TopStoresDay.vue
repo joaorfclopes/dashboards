@@ -36,6 +36,7 @@
 <script>
 import VuePerfectScrollbar from "vue-perfect-scrollbar";
 import store from "../../../store";
+import "../../style.css";
 export default {
   components: {
     VuePerfectScrollbar

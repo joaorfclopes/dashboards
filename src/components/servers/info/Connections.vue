@@ -118,7 +118,6 @@ import Tooltip from "vue-directive-tooltip";
 import "vue-directive-tooltip/css/index.css";
 import { setTimeout } from "timers";
 import jsplumb from "jsplumb";
-import style from "../../../styles/servers/style.css";
 
 Vue.use(Tooltip);
 
@@ -212,3 +211,32 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#connections-container {
+  margin-top: 6%;
+}
+.box {
+  margin-top: 4%;
+}
+#web-lb-title {
+  color: red;
+  text-transform: uppercase;
+}
+#web-lb-content {
+  font-size: 12px;
+}
+h5 {
+  color: white;
+}
+#title {
+  text-transform: uppercase;
+  color: white;
+}
+.point {
+  cursor: pointer;
+}
+.fw5 {
+  height: 20px;
+}
+</style>

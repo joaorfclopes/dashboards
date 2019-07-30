@@ -387,7 +387,6 @@ import Tooltip from "vue-directive-tooltip";
 import "vue-directive-tooltip/css/index.css";
 import { setTimeout } from "timers";
 import jsplumb from "jsplumb";
-import style from "../../../styles/servers/style.css";
 
 Vue.use(Tooltip);
 
@@ -552,3 +551,68 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.scheme-title-container {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+#scheme-title {
+  text-transform: uppercase;
+  writing-mode: vertical-rl;
+}
+#content {
+  margin-left: 7%;
+  margin-top: 1%;
+}
+.btn {
+  margin: 15%;
+  transition-duration: 0.5s;
+}
+.btn:hover {
+  transform: scale(1.1);
+}
+.lb {
+  margin-top: 1.5%;
+  cursor: pointer;
+}
+.card {
+  border-radius: 5%;
+  display: inline-block;
+  width: 80%;
+}
+.margin {
+  margin-left: 20%;
+}
+.lb-title {
+  color: red;
+  text-transform: uppercase;
+}
+.lb-endpoint {
+  font-size: 12px;
+}
+.zones {
+  padding: 1%;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+#prtl-lb {
+  width: 40.5%;
+}
+#app-lb {
+  margin-top: -1%;
+}
+#ldap-lb {
+  width: 34%;
+}
+#bi1 {
+  margin-left: 32%;
+}
+</style>

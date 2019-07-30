@@ -12,7 +12,7 @@
 
 <script>
 import store from "../../../store";
-import style from "../../../styles/dashboards/style.css";
+import "../../style.css";
 export default {
   data: function() {
     return {

@@ -120,7 +120,6 @@
 </template>
 
 <script>
-import style from "../../../styles/servers/style.css";
 export default {
   props: {
     showOhs1: false,
@@ -137,3 +136,100 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+.modal-wrapper {
+  animation-name: zoomIn;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 50%;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #1e1e21;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  transition: all 0.3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #e60000;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.align-end,
+.modal-title > h1 {
+  color: white;
+}
+.modal-title {
+  color: white;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 5%;
+}
+.modal-body {
+  text-align: center;
+}
+.modal-content {
+  height: 300px;
+}
+.topics {
+  width: 50%;
+  float: left;
+}
+h3 {
+  color: white;
+  margin-bottom: 8%;
+}
+</style>

@@ -187,3 +187,45 @@
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
   }
 }
+.apexcharts-menu-item.exportSVG {
+  display: none;
+}
+#btn {
+  float: left;
+  margin-left: 4%;
+  margin-top: 1%;
+}
+#topAgents-container {
+  background-color: #343f57;
+  border-radius: 0%;
+}
+#topAgents-title {
+  font-size: 120%;
+}
+#topAgents-content {
+  max-height: 85.9%;
+  background-color: #343f57;
+}
+.scroll-area {
+  position: relative;
+  margin: auto;
+  width: 100%;
+  height: 290px;
+}
+#topStores-container {
+  background-color: #343f57;
+  border-radius: 0%;
+}
+#topStores-title {
+  font-size: 120%;
+}
+#topStores-content {
+  max-height: 85.9%;
+  background-color: #343f57;
+}
+.scroll-area {
+  position: relative;
+  margin: auto;
+  width: 100%;
+  height: 290px;
+}

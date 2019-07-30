@@ -54,7 +54,7 @@ import MonthlyDashboards from "./dashboards/month/MonthlyDashboards.vue";
 import ServersStatus from "./servers/status/ServersStatus.vue";
 import ServersInfo from "./servers/info/ServersInfo.vue";
 import particles from "particles.js";
-import style from "../styles/style.css";
+import "./style.css";
 
 window.$ = require("jquery");
 window.JQuery = require("jquery");
