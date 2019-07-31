@@ -1,47 +1,34 @@
 <template>
-<html>
-  <body>
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <div id="main-container">
-      <link
-        rel="stylesheet"
-        href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-        crossorigin="anonymous"
-      />
-      <sidebar-menu collapsed id="sidebar" :menu="menu" />
-      <div id="content">
-        <div id="particles-js"></div>
-        <div v-if="showHeader == true" id="header">
-          <h1 id="title" v-if="showHourlyDashboards == true">Hour</h1>
-          <h1 id="title" v-if="showDailyDashboards == true">Day</h1>
-          <h1 id="title" v-if="showWeeklyDashboards == true">Week</h1>
-          <h1 id="title" v-if="showMonthlyDashboards == true">Month</h1>
-          <h1 id="title" v-if="showStatus == true">Servers Status</h1>
-          <h1 id="title" v-if="showInfo == true">Servers Info Details</h1>
-          <img v-if="showHome == false" src="../assets/vodafone-logo.png" />
-          <div id="celfocus" v-if="showHome == true">
-            <p>powered by</p>
-            <img src="../assets/celfocus-logo.png" />
-          </div>
-        </div>
-        <Home id="home" v-if="showHome == true"></Home>
-        <div id="dashboards" v-if="showDashboards== true">
-          <HourlyDashboards v-if="showHourlyDashboards == true" id="hour-dashboards"></HourlyDashboards>
-          <DailyDashboards v-if="showDailyDashboards == true" id="day-dashboards"></DailyDashboards>
-          <WeeklyDashboards v-if="showWeeklyDashboards == true" id="week-dashboards"></WeeklyDashboards>
-          <MonthlyDashboards v-if="showMonthlyDashboards == true" id="month-dashboards"></MonthlyDashboards>
-        </div>
-        <div id="servers">
-          <ServersStatus v-if="showStatus == true" id="servers-status"></ServersStatus>
-          <ServersInfo v-if="showInfo == true" id="servers-info"></ServersInfo>
+  <div id="main-container">
+    <sidebar-menu collapsed id="sidebar" :menu="menu" />
+    <div id="content">
+      <div id="particles-js"></div>
+      <div v-if="showHeader == true" id="header">
+        <h1 id="title" v-if="showHourlyDashboards == true">Hour</h1>
+        <h1 id="title" v-if="showDailyDashboards == true">Day</h1>
+        <h1 id="title" v-if="showWeeklyDashboards == true">Week</h1>
+        <h1 id="title" v-if="showMonthlyDashboards == true">Month</h1>
+        <h1 id="title" v-if="showStatus == true">Servers Status</h1>
+        <h1 id="title" v-if="showInfo == true">Servers Info Details</h1>
+        <img v-if="showHome == false" src="../assets/vodafone-logo.png" />
+        <div id="celfocus" v-if="showHome == true">
+          <p>powered by</p>
+          <img src="../assets/celfocus-logo.png" />
         </div>
       </div>
+      <Home id="home" v-if="showHome == true"></Home>
+      <div id="dashboards" v-if="showDashboards== true">
+        <HourlyDashboards v-if="showHourlyDashboards == true" id="hour-dashboards"></HourlyDashboards>
+        <DailyDashboards v-if="showDailyDashboards == true" id="day-dashboards"></DailyDashboards>
+        <WeeklyDashboards v-if="showWeeklyDashboards == true" id="week-dashboards"></WeeklyDashboards>
+        <MonthlyDashboards v-if="showMonthlyDashboards == true" id="month-dashboards"></MonthlyDashboards>
+      </div>
+      <div id="servers">
+        <ServersStatus v-if="showStatus == true" id="servers-status"></ServersStatus>
+        <ServersInfo v-if="showInfo == true" id="servers-info"></ServersInfo>
+      </div>
     </div>
-  </body>
-</html>
+  </div>
 </template>
 
 <script>
@@ -53,7 +40,7 @@ import WeeklyDashboards from "./dashboards/week/WeeklyDashboards.vue";
 import MonthlyDashboards from "./dashboards/month/MonthlyDashboards.vue";
 import ServersStatus from "./servers/status/ServersStatus.vue";
 import ServersInfo from "./servers/info/ServersInfo.vue";
-import particles from "particles.js";
+import "particles.js";
 import "./style.css";
 
 window.$ = require("jquery");
@@ -316,3 +303,114 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#main-container {
+  width: 100%;
+  margin: 0;
+}
+#content {
+  margin-left: 2%;
+}
+#home {
+  padding-top: 15%;
+}
+#header {
+  margin-left: 2%;
+  height: 10vh;
+  position: relative;
+  z-index: 10;
+}
+#header > h1 {
+  color: whitesmoke;
+  margin-top: 1.5%;
+  margin-left: 3%;
+  float: left;
+}
+#header > img {
+  float: right;
+  width: 10%;
+  margin-right: 4%;
+}
+#celfocus {
+  margin-left: 2%;
+  height: 10vh;
+}
+#celfocus > p {
+  font-size: 90%;
+  color: whitesmoke;
+  margin-top: 2%;
+  margin-left: 83%;
+  float: left;
+  opacity: 0;
+  animation-name: zoomInLeft, fade;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+  animation-duration: 2s;
+}
+#celfocus > img {
+  float: right;
+  width: 10%;
+  margin-right: 3%;
+  margin-top: 2%;
+  opacity: 0;
+  animation-name: zoomInRight, fade;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+  animation-duration: 2s;
+}
+#home {
+  position: relative;
+  z-index: 10;
+}
+#dashboards {
+  position: relative;
+  z-index: 10;
+}
+#servers {
+  position: relative;
+  z-index: 10;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes zoomInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+@keyframes zoomInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+</style>
