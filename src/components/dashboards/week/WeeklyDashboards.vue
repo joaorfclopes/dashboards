@@ -8,9 +8,8 @@
       :labels="{checked: 'Average Time', unchecked: 'Success'}"
       color="#E60000"
       @change="switchPerformance"
-      style="margin-top: -1%;"
     />
-    <div id="graphics" style="margin-top: 1%;">
+    <div id="graphics">
       <div id="success" v-if="this.checked === false">
         <v-container grid-list-md text-xs-center>
           <v-layout row wrap>

@@ -10,6 +10,7 @@ import "vue-sidebar-menu/dist/vue-sidebar-menu.css";
 import Vuetify from "vuetify";
 import VueApexCharts from "vue-apexcharts";
 import { ToggleButton } from "vue-js-toggle-button";
+import responsive from "vue-responsive";
 
 library.add(faCoffee, faArrowDown);
 
@@ -17,7 +18,7 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.component("apexchart", VueApexCharts);
 Vue.component("ToggleButton", ToggleButton);
 
-Vue.use(Vuetify, VueSidebarMenu, VueApexCharts);
+Vue.use(responsive, Vuetify, VueSidebarMenu, VueApexCharts);
 
 Vue.config.productionTip = false;
 

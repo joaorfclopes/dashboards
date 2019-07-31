@@ -85,6 +85,9 @@
 #btn {
   float: left;
   margin-left: 4%;
+  margin-top: -1%;
+}
+#graphics {
   margin-top: 1%;
 }
 #topAgents-container {
