@@ -1,19 +1,21 @@
 <template>
-  <div id="simStatus">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="simStatus">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart
+        v-else
+        id="simStatusHour"
+        type="radialBar"
+        height="350"
+        :options="chartOptions"
+        :series="series"
+      />
     </div>
-    <apexchart
-      v-else
-      id="simStatusHour"
-      type="radialBar"
-      height="350"
-      :options="chartOptions"
-      :series="series"
-    />
   </div>
 </template>
 
@@ -30,10 +32,10 @@ export default {
           animations: {
             enabled: true,
             easing: "easeinout",
-            speed: 1000,
+            speed: 800,
             animateGradually: {
-              delay: 150,
-              enabled: true
+              enabled: true,
+              delay: 150
             },
             dynamicAnimation: {
               enabled: true,
@@ -41,7 +43,14 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -68,11 +77,12 @@ export default {
         },
         plotOptions: {
           radialBar: {
+            size: 120,
             inverseOrder: true,
             startAngle: -180,
             endAngle: 90,
-            offsetX: -50,
-            offsetY: 0,
+            offsetX: 0,
+            offsetY: -20,
             hollow: {
               margin: 5,
               size: "50%",
@@ -98,13 +108,10 @@ export default {
         },
         legend: {
           show: true,
-          floating: true,
-          fontSize: "14px",
-          position: "left",
-          offsetX: 330,
-          offsetY: 230,
+          floating: false,
+          position: "bottom",
           labels: {
-            useSeriesColors: false
+            useSeriesColors: true
           },
           markers: {
             size: 0

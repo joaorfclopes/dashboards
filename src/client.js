@@ -7,7 +7,7 @@ var simValidationHour = "https://api.myjson.com/bins/l54hl";
 var topAgentsHour = "https://api.myjson.com/bins/d0dwp";
 var topStoresHour = "https://api.myjson.com/bins/gn4p5";
 var checkEligibilityHourAvg = "https://api.myjson.com/bins/17cx05";
-var reserveNumberHourAvg = "https://api.myjson.com/bins/149w39";
+var reserveNumberHourAvg = "https://api.myjson.com/bins/pcmnl";
 var deviceSyncTimeHour = "https://api.myjson.com/bins/rwxkl";
 
 var checkEligibilityDay = "https://api.myjson.com/bins/1bfhgx";

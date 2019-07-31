@@ -1,20 +1,21 @@
 <template>
-  <div id="simValidation">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="simValidation">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart
+        id="simValidationHour"
+        v-else
+        type="donut"
+        height="350"
+        :options="chartOptions"
+        :series="series"
+      />
     </div>
-    <apexchart
-      id="simValidationHour"
-      v-else
-      type="donut"
-      height="350"
-      width="100%"
-      :options="chartOptions"
-      :series="series"
-    />
   </div>
 </template>
 
@@ -32,10 +33,10 @@ export default {
           animations: {
             enabled: true,
             easing: "easeinout",
-            speed: 1000,
+            speed: 800,
             animateGradually: {
-              delay: 150,
-              enabled: true
+              enabled: true,
+              delay: 150
             },
             dynamicAnimation: {
               enabled: true,
@@ -43,7 +44,14 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -70,14 +78,32 @@ export default {
         },
         plotOptions: {
           pie: {
-            offsetX: 60,
+            size: 110,
+            offsetX: 0,
             offsetY: -10,
             donut: {
-              size: 70,
+              size: 60,
               labels: {
                 show: true
               }
             }
+          }
+        },
+        legend: {
+          show: true,
+          floating: false,
+          position: "bottom",
+          labels: {
+            useSeriesColors: true
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
+          },
+          itemMargin: {
+            horizontal: 1
           }
         }
       }

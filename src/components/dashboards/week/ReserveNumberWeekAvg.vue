@@ -24,10 +24,10 @@ export default {
           animations: {
             enabled: true,
             easing: "easeinout",
-            speed: 1000,
+            speed: 800,
             animateGradually: {
-              delay: 150,
-              enabled: true
+              enabled: true,
+              delay: 150
             },
             dynamicAnimation: {
               enabled: true,
