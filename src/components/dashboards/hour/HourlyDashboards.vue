@@ -9,7 +9,68 @@
       color="#E60000"
       @change="switchPerformance"
     />
-    <div v-responsive.lg.xl id="graphics">
+    <div v-if="resolution === 'xl'" id="graphics">
+      <div id="success" v-if="this.checked === false">
+        <v-container grid-list-md text-xs-center>
+          <v-layout align-start justify-space-around row fill-height>
+            <v-flex v-for="i in 2" :key="`1${i}`" xs5>
+              <v-card class="card" color="#343F57" height="350">
+                <CheckEligibilityHour v-if="i == 1"></CheckEligibilityHour>
+                <ReserveNumberHour v-if="i == 2"></ReserveNumberHour>
+              </v-card>
+            </v-flex>
+            <v-flex v-for="i in 1" :key="`2${i}`" xs2>
+              <v-card class="card" color="#343F57" height="350">
+                <TopStoresHour v-if="i == 1"></TopStoresHour>
+              </v-card>
+            </v-flex>
+          </v-layout>
+          <v-layout align-start justify-space-around row fill-height>
+            <v-flex v-for="i in 2" :key="`3${i}`" xs5>
+              <v-card class="card" color="#343F57" height="350">
+                <SimStatusHour v-if="i == 1"></SimStatusHour>
+                <SimValidationHour v-if="i == 2"></SimValidationHour>
+              </v-card>
+            </v-flex>
+            <v-flex v-for="i in 1" :key="`4${i}`" xs2>
+              <v-card class="card" color="#343F57" height="350">
+                <TopAgentsHour v-if="i == 1"></TopAgentsHour>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </div>
+      <div id="avg-time" v-if="this.checked === true">
+        <v-container grid-list-md text-xs-center>
+          <v-layout align-start justify-space-around row fill-height>
+            <v-flex v-for="i in 2" :key="`1${i}`" xs5>
+              <v-card class="card" color="#343F57" height="350">
+                <CheckEligibilityHourAvg v-if="i == 1"></CheckEligibilityHourAvg>
+                <ReserveNumberHourAvg v-if="i == 2"></ReserveNumberHourAvg>
+              </v-card>
+            </v-flex>
+            <v-flex v-for="i in 1" :key="`2${i}`" xs2>
+              <v-card class="card" color="#343F57" height="350">
+                <TopStoresHour v-if="i == 1"></TopStoresHour>
+              </v-card>
+            </v-flex>
+          </v-layout>
+          <v-layout align-start justify-space-around row fill-height>
+            <v-flex v-for="i in 1" :key="`3${i}`" xs10>
+              <v-card class="card" color="#343F57" height="350">
+                <DeviceSyncTimeHour v-if="i == 1"></DeviceSyncTimeHour>
+              </v-card>
+            </v-flex>
+            <v-flex v-for="i in 1" :key="`4${i}`" xs2>
+              <v-card class="card" color="#343F57" height="350">
+                <TopAgentsHour v-if="i == 1"></TopAgentsHour>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </div>
+    </div>
+    <div v-if="resolution === 'lg'" id="graphics">
       <div id="success" v-if="this.checked === false">
         <v-container grid-list-md text-xs-center>
           <v-layout align-start justify-space-around row fill-height>
@@ -105,9 +166,16 @@ export default {
       resolution: "xl"
     };
   },
+  created() {
+    this.getResolution();
+  },
   methods: {
     getResolution() {
-      alert("Your screen resolution is: " + screen.width + "x" + screen.height);
+      if (screen.width >= 1920) {
+        this.resolution = "xl";
+      } else {
+        this.resolution = "lg";
+      }
     },
     switchPerformance() {
       var btn = document.getElementById("btn");

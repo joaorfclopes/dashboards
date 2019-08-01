@@ -97,15 +97,31 @@
 }
 #topAgents-title,
 #topStores-title {
-  font-size: 120%;
+  font-size: 16px;
 }
 #topAgents-content,
 #topStores-content {
-  max-height: 80%;
+  max-height: 85%;
   color: white;
+}
+#list-content {
+  font-size: 14px;
 }
 .scroll-area {
   position: relative;
   margin: auto;
-  width: 100%;
+}
+.ps.ps--active-y > .ps__scrollbar-y-rail {
+  background-color: transparent !important;
+}
+.ps.ps--in-scrolling.ps--y > .ps__scrollbar-y-rail {
+  background-color: transparent !important;
+}
+.ps:hover.ps--in-scrolling.ps--y > .ps__scrollbar-y-rail {
+  background-color: transparent !important;
+  opacity: 0.9 !important;
+}
+.ps:hover > .ps__scrollbar-y-rail:hover {
+  background-color: transparent !important;
+  opacity: 0.9 !important;
 }

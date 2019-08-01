@@ -24,7 +24,7 @@
               <v-icon v-if="item.icon" color="white">store</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title v-text="item.title"></v-list-tile-title>
+              <v-list-tile-title v-text="item.title" id="list-content"></v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </VuePerfectScrollbar>
