@@ -1,5 +1,5 @@
 <template>
-  <div id="main-container" @click="getResolution">
+  <div id="main-container">
     <toggle-button
       v-tooltip.right="'Change to ' + label"
       id="btn"
