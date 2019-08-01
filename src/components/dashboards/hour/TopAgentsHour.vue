@@ -13,7 +13,7 @@
         <div></div>
         <div></div>
       </div>
-      <v-card v-else id="topAgents-container" height="350" width="250">
+      <v-card v-else id="topAgents-container" height="350">
         <v-toolbar height="50%" color="#343F57" dark>
           <v-toolbar-title id="topAgents-title">Top 10 Orders - Agents</v-toolbar-title>
           <v-spacer></v-spacer>

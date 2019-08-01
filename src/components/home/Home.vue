@@ -18,7 +18,7 @@ export default {};
   opacity: 0;
   animation-fill-mode: forwards;
   animation-name: bounceInUp, fade;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-delay: 1s;
   color: whitesmoke;
 }
@@ -26,7 +26,7 @@ export default {};
 #welcome > img {
   margin-top: -10vh;
   animation-name: fade;
-  animation-duration: 2s;
+  animation-duration: 1s;
   opacity: 0;
   animation-fill-mode: forwards;
 }

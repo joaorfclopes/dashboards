@@ -84,7 +84,7 @@ export default {
             donut: {
               size: 60,
               labels: {
-                show: true
+                show: false
               }
             }
           }

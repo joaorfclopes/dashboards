@@ -13,7 +13,7 @@
         <div></div>
         <div></div>
       </div>
-      <v-card v-else id="topStores-container" height="350" width="250">
+      <v-card v-else id="topStores-container" height="350">
         <v-toolbar height="50%" color="#343F57" dark>
           <v-toolbar-title id="topStores-title">Top 10 Orders - Stores</v-toolbar-title>
           <v-spacer></v-spacer>

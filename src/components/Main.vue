@@ -346,7 +346,7 @@ export default {
   animation-name: zoomInLeft, fade;
   animation-fill-mode: forwards;
   animation-delay: 2s;
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 #celfocus > img {
   float: right;
@@ -357,7 +357,7 @@ export default {
   animation-name: zoomInRight, fade;
   animation-fill-mode: forwards;
   animation-delay: 2s;
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 #home {
   position: relative;
