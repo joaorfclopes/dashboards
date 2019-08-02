@@ -1,6 +1,6 @@
 <template>
   <div id="main-container">
-    <sidebar-menu collapsed id="sidebar" :menu="menu" />
+    <sidebar-menu collapsed id="sidebar" @itemClick="checkUrl" :menu="menu" />
     <div id="content">
       <div id="particles-js"></div>
       <div v-if="showHeader" id="header">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <Home id="home" v-if="showHome"></Home>
-      <div id="dashboards" v-if="showDashboards== true">
+      <div id="dashboards">
         <HourlyDashboards
           :checked="checked"
           :label="label"
@@ -97,7 +97,6 @@ export default {
       showHeader: true,
       showButton: false,
       showHome: true,
-      showDashboards: false,
       showHourlyDashboards: false,
       showDailyDashboards: false,
       showWeeklyDashboards: false,
@@ -108,30 +107,34 @@ export default {
       label: "Average Time",
       menu: [
         {
-          href: "/home",
+          href: "/",
           title: "Home",
-          icon: "fas fa-home",
-          color: "red"
+          icon: "fa fa-home",
+          component: Home
         },
         {
           title: "Dashboards",
           icon: "fa fa-chart-line",
           child: [
             {
-              href: "/dashboards/hour",
-              title: "Hour"
+              href: "/hour",
+              title: "Hour",
+              component: HourlyDashboards
             },
             {
-              href: "/dashboards/day",
-              title: "Day"
+              href: "/day",
+              title: "Day",
+              component: DailyDashboards
             },
             {
-              href: "/dashboards/week",
-              title: "Week"
+              href: "/week",
+              title: "Week",
+              component: WeeklyDashboards
             },
             {
-              href: "/dashboards/month",
-              title: "Month"
+              href: "/month",
+              title: "Month",
+              component: MonthlyDashboards
             }
           ]
         },
@@ -140,22 +143,97 @@ export default {
           icon: "fas fa-server",
           child: [
             {
-              href: "/servers/status",
-              title: "Servers Status"
+              href: "/status",
+              title: "Status",
+              component: ServersStatus
             },
             {
-              href: "/servers/info",
-              title: "Servers Info Details"
+              href: "/info",
+              title: "Info Details",
+              component: ServersInfo
             }
           ]
         }
       ]
     };
   },
-  mounted() {
-    this.initParticles();
+  beforeMount() {
+    this.checkUrl();
   },
   methods: {
+    checkUrl() {
+      if (window.location.href.indexOf("hour") > -1) {
+        this.showHeader = true;
+        this.showButton = true;
+        this.showHome = false;
+        this.showHourlyDashboards = true;
+        this.showDailyDashboards = false;
+        this.showWeeklyDashboards = false;
+        this.showMonthlyDashboards = false;
+        this.showStatus = false;
+        this.showInfo = false;
+      } else if (window.location.href.indexOf("day") > -1) {
+        this.showHeader = true;
+        this.showButton = true;
+        this.showHome = false;
+        this.showHourlyDashboards = false;
+        this.showDailyDashboards = true;
+        this.showWeeklyDashboards = false;
+        this.showMonthlyDashboards = false;
+        this.showStatus = false;
+        this.showInfo = false;
+      } else if (window.location.href.indexOf("week") > -1) {
+        this.showHeader = true;
+        this.showButton = true;
+        this.showHome = false;
+        this.showHourlyDashboards = false;
+        this.showDailyDashboards = false;
+        this.showWeeklyDashboards = true;
+        this.showMonthlyDashboards = false;
+        this.showStatus = false;
+        this.showInfo = false;
+      } else if (window.location.href.indexOf("month") > -1) {
+        this.showHeader = true;
+        this.showButton = true;
+        this.showHome = false;
+        this.showHourlyDashboards = false;
+        this.showDailyDashboards = false;
+        this.showWeeklyDashboards = false;
+        this.showMonthlyDashboards = true;
+        this.showStatus = false;
+        this.showInfo = false;
+      } else if (window.location.href.indexOf("status") > -1) {
+        this.showHeader = true;
+        this.showButton = false;
+        this.showHome = false;
+        this.showHourlyDashboards = false;
+        this.showDailyDashboards = false;
+        this.showWeeklyDashboards = false;
+        this.showMonthlyDashboards = false;
+        this.showStatus = true;
+        this.showInfo = false;
+      } else if (window.location.href.indexOf("info") > -1) {
+        this.showHeader = true;
+        this.showButton = false;
+        this.showHome = false;
+        this.showHourlyDashboards = false;
+        this.showDailyDashboards = false;
+        this.showWeeklyDashboards = false;
+        this.showMonthlyDashboards = false;
+        this.showStatus = false;
+        this.showInfo = true;
+      } else {
+        this.showHeader = true;
+        this.showButton = false;
+        this.showHome = true;
+        this.showHourlyDashboards = false;
+        this.showDailyDashboards = false;
+        this.showWeeklyDashboards = false;
+        this.showMonthlyDashboards = false;
+        this.showStatus = false;
+        this.showInfo = false;
+      }
+    },
     initParticles() {
       window.particlesJS("particles-js", {
         particles: {
@@ -263,83 +341,6 @@ export default {
         retina_detect: true
       });
     },
-    checkUrl() {
-      if (window.location.href.indexOf("home") > -1) {
-        this.showHeader = true;
-        this.showButton = false;
-        this.showHome = true;
-        this.showDashboards = false;
-        this.showStatus = false;
-        this.showInfo = false;
-      } else if (window.location.href.indexOf("dashboards") > -1) {
-        this.showHeader = true;
-        this.showButton = true;
-        this.showHome = false;
-        this.showDashboards = true;
-        this.showStatus = false;
-        this.showInfo = false;
-        if (window.location.href.indexOf("hour") > -1) {
-          this.showHourlyDashboards = true;
-          this.showDailyDashboards = false;
-          this.showWeeklyDashboards = false;
-          this.showMonthlyDashboards = false;
-        } else if (window.location.href.indexOf("day") > -1) {
-          this.showHourlyDashboards = false;
-          this.showDailyDashboards = true;
-          this.showWeeklyDashboards = false;
-          this.showMonthlyDashboards = false;
-        } else if (window.location.href.indexOf("week") > -1) {
-          this.showHourlyDashboards = false;
-          this.showDailyDashboards = false;
-          this.showWeeklyDashboards = true;
-          this.showMonthlyDashboards = false;
-        } else if (window.location.href.indexOf("month") > -1) {
-          this.showHourlyDashboards = false;
-          this.showDailyDashboards = false;
-          this.showWeeklyDashboards = false;
-          this.showMonthlyDashboards = true;
-        } else if (window.location.href.indexOf("status") > -1) {
-          this.showHeader = true;
-          this.showHome = false;
-          this.showDashboards = false;
-          this.showStatus = true;
-          this.showInfo = false;
-        } else if (window.location.href.indexOf("info") > -1) {
-          this.showHeader = true;
-          this.showHome = false;
-          this.showDashboards = false;
-          this.showStatus = false;
-          this.showInfo = true;
-        } else {
-          this.showHeader = true;
-          this.showHome = true;
-          this.showDashboards = false;
-          this.showStatus = false;
-          this.showInfo = false;
-        }
-      } else if (window.location.href.indexOf("status") > -1) {
-        this.showHeader = true;
-        this.showButton = false;
-        this.showHome = false;
-        this.showDashboards = false;
-        this.showStatus = true;
-        this.showInfo = false;
-      } else if (window.location.href.indexOf("info") > -1) {
-        this.showHeader = true;
-        this.showButton = false;
-        this.showHome = false;
-        this.showDashboards = false;
-        this.showStatus = false;
-        this.showInfo = true;
-      } else {
-        this.showHeader = true;
-        this.showButton = false;
-        this.showHome = true;
-        this.showDashboards = false;
-        this.showStatus = false;
-        this.showInfo = false;
-      }
-    },
     switchPerformance() {
       var btn = document.getElementById("btn");
       if (btn.classList.contains("toggled")) {
@@ -351,8 +352,8 @@ export default {
       }
     }
   },
-  beforeMount() {
-    this.checkUrl();
+  mounted() {
+    this.initParticles();
   }
 };
 </script>
@@ -407,7 +408,6 @@ export default {
   margin-right: 4%;
 }
 #btn {
-  text-align: center;
   margin-top: 1.7%;
 }
 .container {
