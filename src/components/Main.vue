@@ -137,7 +137,7 @@ export default {
               component: MonthlyDashboards
             }
           ]
-        },
+        }/*,
         {
           title: "Servers",
           icon: "fas fa-server",
@@ -153,7 +153,7 @@ export default {
               component: ServersInfo
             }
           ]
-        }
+        }*/
       ]
     };
   },
