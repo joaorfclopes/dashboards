@@ -3,36 +3,69 @@
     <sidebar-menu collapsed id="sidebar" :menu="menu" />
     <div id="content">
       <div id="particles-js"></div>
-      <div v-if="showHeader == true" id="header">
-        <h1 id="title" v-if="showHourlyDashboards == true">Hour</h1>
-        <h1 id="title" v-if="showDailyDashboards == true">Day</h1>
-        <h1 id="title" v-if="showWeeklyDashboards == true">Week</h1>
-        <h1 id="title" v-if="showMonthlyDashboards == true">Month</h1>
-        <h1 id="title" v-if="showStatus == true">Servers Status</h1>
-        <h1 id="title" v-if="showInfo == true">Servers Info Details</h1>
+      <div v-if="showHeader" id="header">
+        <h1 id="title" v-if="showHourlyDashboards">Hour</h1>
+        <h1 id="title" v-if="showDailyDashboards">Day</h1>
+        <h1 id="title" v-if="showWeeklyDashboards">Week</h1>
+        <h1 id="title" v-if="showMonthlyDashboards">Month</h1>
+        <h1 id="title" v-if="showStatus">Servers Status</h1>
+        <h1 id="title" v-if="showInfo">Servers Info Details</h1>
+        <toggle-button
+          v-if="showButton"
+          v-tooltip.bottom="'Change to ' + label"
+          id="btn"
+          :width="100"
+          :value="false"
+          :labels="{checked: 'Average Time', unchecked: 'Success'}"
+          color="#E60000"
+          @change="switchPerformance"
+        />
         <img v-if="showHome == false" src="../assets/vodafone-logo.png" />
-        <div id="celfocus" v-if="showHome == true">
-          <p>powered by</p>
+        <div id="celfocus" v-if="showHome">
           <img src="../assets/celfocus-logo.png" />
+          <p>powered by</p>
         </div>
       </div>
-      <Home id="home" v-if="showHome == true"></Home>
+      <Home id="home" v-if="showHome"></Home>
       <div id="dashboards" v-if="showDashboards== true">
-        <HourlyDashboards v-if="showHourlyDashboards == true" id="hour-dashboards"></HourlyDashboards>
-        <DailyDashboards v-if="showDailyDashboards == true" id="day-dashboards"></DailyDashboards>
-        <WeeklyDashboards v-if="showWeeklyDashboards == true" id="week-dashboards"></WeeklyDashboards>
-        <MonthlyDashboards v-if="showMonthlyDashboards == true" id="month-dashboards"></MonthlyDashboards>
+        <HourlyDashboards
+          :checked="checked"
+          :label="label"
+          v-if="showHourlyDashboards"
+          id="hour-dashboards"
+        ></HourlyDashboards>
+        <DailyDashboards
+          :checked="checked"
+          :label="label"
+          v-if="showDailyDashboards"
+          id="day-dashboards"
+        ></DailyDashboards>
+        <WeeklyDashboards
+          :checked="checked"
+          :label="label"
+          v-if="showWeeklyDashboards"
+          id="week-dashboards"
+        ></WeeklyDashboards>
+        <MonthlyDashboards
+          :checked="checked"
+          :label="label"
+          v-if="showMonthlyDashboards"
+          id="month-dashboards"
+        ></MonthlyDashboards>
       </div>
       <div id="servers">
-        <ServersStatus v-if="showStatus == true" id="servers-status"></ServersStatus>
-        <ServersInfo v-if="showInfo == true" id="servers-info"></ServersInfo>
+        <ServersStatus v-if="showStatus" id="servers-status"></ServersStatus>
+        <ServersInfo v-if="showInfo" id="servers-info"></ServersInfo>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
 import { SidebarMenu } from "vue-sidebar-menu";
+import Tooltip from "vue-directive-tooltip";
+import "vue-directive-tooltip/css/index.css";
 import Home from "./home/Home.vue";
 import HourlyDashboards from "./dashboards/hour/HourlyDashboards.vue";
 import DailyDashboards from "./dashboards/day/DailyDashboards.vue";
@@ -42,6 +75,8 @@ import ServersStatus from "./servers/status/ServersStatus.vue";
 import ServersInfo from "./servers/info/ServersInfo.vue";
 import "particles.js";
 import "./style.css";
+
+Vue.use(Tooltip);
 
 window.$ = require("jquery");
 window.JQuery = require("jquery");
@@ -60,6 +95,7 @@ export default {
   data() {
     return {
       showHeader: true,
+      showButton: false,
       showHome: true,
       showDashboards: false,
       showHourlyDashboards: false,
@@ -68,6 +104,8 @@ export default {
       showMonthlyDashboards: false,
       showStatus: false,
       showInfo: false,
+      checked: false,
+      label: "Average Time",
       menu: [
         {
           href: "/home",
@@ -228,12 +266,14 @@ export default {
     checkUrl() {
       if (window.location.href.indexOf("home") > -1) {
         this.showHeader = true;
+        this.showButton = false;
         this.showHome = true;
         this.showDashboards = false;
         this.showStatus = false;
         this.showInfo = false;
       } else if (window.location.href.indexOf("dashboards") > -1) {
         this.showHeader = true;
+        this.showButton = true;
         this.showHome = false;
         this.showDashboards = true;
         this.showStatus = false;
@@ -279,22 +319,35 @@ export default {
         }
       } else if (window.location.href.indexOf("status") > -1) {
         this.showHeader = true;
+        this.showButton = false;
         this.showHome = false;
         this.showDashboards = false;
         this.showStatus = true;
         this.showInfo = false;
       } else if (window.location.href.indexOf("info") > -1) {
         this.showHeader = true;
+        this.showButton = false;
         this.showHome = false;
         this.showDashboards = false;
         this.showStatus = false;
         this.showInfo = true;
       } else {
         this.showHeader = true;
+        this.showButton = false;
         this.showHome = true;
         this.showDashboards = false;
         this.showStatus = false;
         this.showInfo = false;
+      }
+    },
+    switchPerformance() {
+      var btn = document.getElementById("btn");
+      if (btn.classList.contains("toggled")) {
+        this.checked = false;
+        this.label = "Average Time";
+      } else {
+        this.checked = true;
+        this.label = "Success";
       }
     }
   },
@@ -313,51 +366,52 @@ export default {
   margin-left: 2%;
 }
 #home {
-  padding-top: 15%;
+  padding-top: 10%;
 }
 #header {
-  margin-left: 2%;
-  height: 10vh;
   position: relative;
   z-index: 10;
 }
+#celfocus {
+  margin-right: 2%;
+  margin-top: 2%;
+}
+#celfocus > img {
+  margin-left: 1%;
+  float: right;
+  width: 10%;
+  opacity: 0;
+  animation-name: zoomInRight, fade;
+  animation-fill-mode: forwards;
+  animation-delay: 1.5s;
+  animation-duration: 1s;
+}
+#celfocus > p {
+  color: whitesmoke;
+  float: right;
+  opacity: 0;
+  animation-name: zoomInLeft, fade;
+  animation-fill-mode: forwards;
+  animation-delay: 1.5s;
+  animation-duration: 1s;
+}
 #header > h1 {
   color: whitesmoke;
-  margin-top: 1.5%;
-  margin-left: 3%;
   float: left;
+  margin-top: 1.5%;
+  margin-left: 4%;
 }
 #header > img {
   float: right;
   width: 10%;
   margin-right: 4%;
 }
-#celfocus {
-  margin-left: 2%;
-  height: 10vh;
+#btn {
+  text-align: center;
+  margin-top: 1.7%;
 }
-#celfocus > p {
-  font-size: 90%;
-  color: whitesmoke;
-  margin-top: 2%;
-  margin-left: 83%;
-  float: left;
-  opacity: 0;
-  animation-name: zoomInLeft, fade;
-  animation-fill-mode: forwards;
-  animation-delay: 2s;
-  animation-duration: 1s;
-}
-#celfocus > img {
-  float: right;
-  width: 10%;
-  margin-right: 3%;
-  margin-top: 2%;
-  opacity: 0;
-  animation-name: zoomInRight, fade;
-  animation-fill-mode: forwards;
-  animation-delay: 2s;
-  animation-duration: 1s;
+.container {
+  max-width: 100%;
 }
 #home {
   position: relative;

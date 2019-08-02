@@ -1,14 +1,5 @@
 <template>
   <div id="main-container">
-    <toggle-button
-      v-tooltip.right="'Change to ' + label"
-      id="btn"
-      :width="100"
-      :value="false"
-      :labels="{checked: 'Average Time', unchecked: 'Success'}"
-      color="#E60000"
-      @change="switchPerformance"
-    />
     <div id="graphics">
       <div id="success" v-if="this.checked === false">
         <v-container grid-list-md text-xs-center>
@@ -66,6 +57,16 @@ import DeviceSyncTimeMonth from "./DeviceSyncTimeMonth.vue";
 import "../../style.css";
 
 export default {
+  props: {
+    checked: {
+      type: Boolean,
+      required: true
+    },
+    label: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     CheckEligibilityMonth,
     ReserveNumberMonth,
@@ -78,22 +79,7 @@ export default {
     DeviceSyncTimeMonth
   },
   data() {
-    return {
-      checked: false,
-      label: "Average Time"
-    };
-  },
-  methods: {
-    switchPerformance() {
-      var btn = document.getElementById("btn");
-      if (btn.classList.contains("toggled")) {
-        this.checked = false;
-        this.label = "Average Time";
-      } else {
-        this.checked = true;
-        this.label = "Success";
-      }
-    }
+    return {};
   }
 };
 </script>

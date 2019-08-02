@@ -75,6 +75,7 @@
 }
 #sidebar {
   position: fixed;
+  margin-right: 2%;
 }
 #sidebar > button {
   display: none;
@@ -82,13 +83,8 @@
 .apexcharts-menu-item.exportSVG {
   display: none;
 }
-#btn {
-  float: left;
-  margin-left: 4%;
-  margin-top: -1%;
-}
 #graphics {
-  margin-top: 2%;
+  margin-top: 3%;
 }
 #topAgents-container,
 #topStores-container {

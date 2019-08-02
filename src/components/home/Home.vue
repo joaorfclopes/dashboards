@@ -13,7 +13,7 @@ export default {};
 
 <style scoped>
 #welcome > p {
-  font-size: 300%;
+  font-size: 3rem;
   font-weight: lighter;
   opacity: 0;
   animation-fill-mode: forwards;
@@ -24,7 +24,7 @@ export default {};
 }
 
 #welcome > img {
-  margin-top: -10vh;
+  width: 30%;
   animation-name: fade;
   animation-duration: 1s;
   opacity: 0;

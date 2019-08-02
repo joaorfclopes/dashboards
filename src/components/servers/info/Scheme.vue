@@ -382,13 +382,8 @@
 
 <script>
 import Modal from "./Modal.vue";
-import Vue from "vue";
-import Tooltip from "vue-directive-tooltip";
-import "vue-directive-tooltip/css/index.css";
 import { setTimeout } from "timers";
 import jsplumb from "jsplumb";
-
-Vue.use(Tooltip);
 
 export default {
   components: {

@@ -1,15 +1,6 @@
 <template>
   <div id="main-container">
-    <toggle-button
-      v-tooltip.right="'Change to ' + label"
-      id="btn"
-      :width="100"
-      :value="false"
-      :labels="{checked: 'Average Time', unchecked: 'Success'}"
-      color="#E60000"
-      @change="switchPerformance"
-    />
-    <div v-if="resolution === 'xl'" id="graphics">
+    <div v-if="resolution == 'xl'" id="graphics">
       <div id="success" v-if="this.checked === false">
         <v-container grid-list-md text-xs-center>
           <v-layout align-start justify-space-around row fill-height>
@@ -70,7 +61,7 @@
         </v-container>
       </div>
     </div>
-    <div v-if="resolution === 'lg'" id="graphics">
+    <div v-if="resolution == 'lg'" id="graphics">
       <div id="success" v-if="this.checked === false">
         <v-container grid-list-md text-xs-center>
           <v-layout align-start justify-space-around row fill-height>
@@ -148,6 +139,16 @@ import DeviceSyncTimeHour from "./DeviceSyncTimeHour.vue";
 import "../../style.css";
 
 export default {
+  props: {
+    checked: {
+      type: Boolean,
+      required: true
+    },
+    label: {
+      type: String,
+      required: true
+    }
+  },
   components: {
     CheckEligibilityHour,
     ReserveNumberHour,
@@ -161,30 +162,18 @@ export default {
   },
   data() {
     return {
-      checked: false,
-      label: "Average Time",
-      resolution: "xl"
+      resolution: ""
     };
   },
   created() {
-    this.getResolution();
+    this.checkResolution();
   },
   methods: {
-    getResolution() {
+    checkResolution() {
       if (screen.width >= 1920) {
         this.resolution = "xl";
       } else {
         this.resolution = "lg";
-      }
-    },
-    switchPerformance() {
-      var btn = document.getElementById("btn");
-      if (btn.classList.contains("toggled")) {
-        this.checked = false;
-        this.label = "Average Time";
-      } else {
-        this.checked = true;
-        this.label = "Success";
       }
     }
   }
