@@ -1,6 +1,5 @@
 <template>
   <div id="home">
-    <!--<div>celfocus</div>-->
     <div id="welcome">
       <img src="../../assets/vodafone-logo.png" />
       <p>Welcome to your dashboards and monitoring!</p>
