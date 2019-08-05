@@ -1,12 +1,14 @@
 <template>
-  <div id="reserveNr">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="reserveNr">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart v-else type="line" height="350" :options="chartOptions" :series="series" />
     </div>
-    <apexchart v-else type="line" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
@@ -44,7 +46,14 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -61,11 +70,15 @@ export default {
           curve: "smooth"
         },
         xaxis: {
-          categories: ["Week 1", "Week 2", "Week 3", "Week 4"]
+          type: "Week",
+          categories: ["Orders - Last Week", "Orders - Last Week"],
+          labels: {
+            show: false
+          }
         },
         theme: {
           mode: "dark",
-          palette: "palette8"
+          palette: "palette5"
         },
         title: {
           text: "Reserve Number",
@@ -82,7 +95,7 @@ export default {
           type: "gradient",
           gradient: {
             shade: "dark",
-            gradientToColors: ["#FDD835"],
+            gradientToColors: ["#C6FFB4"],
             shadeIntensity: 1,
             type: "vertical",
             opacityFrom: 1,
@@ -99,6 +112,23 @@ export default {
 
           hover: {
             size: 7
+          }
+        },
+        legend: {
+          show: true,
+          floating: false,
+          position: "bottom",
+          labels: {
+            useSeriesColors: true
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName;
+          },
+          itemMargin: {
+            horizontal: 1
           }
         }
       }

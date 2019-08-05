@@ -1,12 +1,14 @@
 <template>
-  <div id="devSync" style="height: 350px;">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="devSync">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
     </div>
-    <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
@@ -35,7 +37,14 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -77,7 +86,7 @@ export default {
         },
         theme: {
           mode: "dark",
-          palette: "palette4"
+          palette: "palette6"
         },
         title: {
           text: "Device Sync Time",
@@ -91,22 +100,26 @@ export default {
           }
         },
         xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec"
-          ],
+          categories: ["Orders - Last Month", "Orders - Last Month"],
           labels: {
-            show: true
+            show: false
+          }
+        },
+        legend: {
+          show: true,
+          floating: false,
+          position: "bottom",
+          labels: {
+            useSeriesColors: true
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName;
+          },
+          itemMargin: {
+            horizontal: 1
           }
         }
       }

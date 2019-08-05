@@ -1,12 +1,14 @@
 <template>
-  <div id="devSync" style="height: 350px;">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="devSync">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
     </div>
-    <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
@@ -35,7 +37,14 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -77,7 +86,7 @@ export default {
         },
         theme: {
           mode: "dark",
-          palette: "palette5"
+          palette: "palette4"
         },
         title: {
           text: "Device Sync Time",
@@ -91,33 +100,26 @@ export default {
           }
         },
         xaxis: {
-          categories: [
-            "00h-01h",
-            "01h-02h",
-            "02h-03h",
-            "03h-04h",
-            "04h-05h",
-            "05h-06h",
-            "06h-07h",
-            "07h-08h",
-            "08h-09h",
-            "09h-10h",
-            "10h-11h",
-            "11h-12h",
-            "12h-13h",
-            "13h-14h",
-            "14h-15h",
-            "15h-16h",
-            "16h-17h",
-            "17h-18h",
-            "18h-19h",
-            "19h-20h",
-            "20h-21h",
-            "21h-22h",
-            "23h-00h"
-          ],
+          categories: ["Orders - Last Day", "Orders - Last Day"],
           labels: {
             show: false
+          }
+        },
+        legend: {
+          show: true,
+          floating: false,
+          position: "bottom",
+          labels: {
+            useSeriesColors: true
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName;
+          },
+          itemMargin: {
+            horizontal: 1
           }
         }
       }

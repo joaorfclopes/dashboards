@@ -1,12 +1,14 @@
 <template>
-  <div id="reserveNr">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="reserveNr">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart v-else type="line" height="350" :options="chartOptions" :series="series" />
     </div>
-    <apexchart v-else type="line" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
@@ -44,7 +46,14 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -61,27 +70,15 @@ export default {
           curve: "smooth"
         },
         xaxis: {
-          categories: [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "May",
-            "Jun",
-            "Jul",
-            "Aug",
-            "Sep",
-            "Oct",
-            "Nov",
-            "Dec"
-          ],
+          type: "Month",
+          categories: ["Orders - Last Month", "Orders - Last Month"],
           labels: {
-            show: true
+            show: false
           }
         },
         theme: {
           mode: "dark",
-          palette: "palette4"
+          palette: "palette6"
         },
         title: {
           text: "Reserve Number",
@@ -98,7 +95,7 @@ export default {
           type: "gradient",
           gradient: {
             shade: "dark",
-            gradientToColors: ["#FDD835"],
+            gradientToColors: ["#FF7C87"],
             shadeIntensity: 1,
             type: "vertical",
             opacityFrom: 1,
@@ -115,6 +112,23 @@ export default {
 
           hover: {
             size: 7
+          }
+        },
+        legend: {
+          show: true,
+          floating: false,
+          position: "bottom",
+          labels: {
+            useSeriesColors: true
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName;
+          },
+          itemMargin: {
+            horizontal: 1
           }
         }
       }
@@ -145,9 +159,11 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchReserveNumberMonth").then(checkReserveNumberMonthData => {
-      this.loading = false;
-    });
+    store
+      .dispatch("fetchReserveNumberMonth")
+      .then(checkReserveNumberMonthData => {
+        this.loading = false;
+      });
   }
 };
 </script>

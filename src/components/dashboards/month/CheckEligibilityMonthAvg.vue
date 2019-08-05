@@ -1,12 +1,14 @@
 <template>
-  <div id="checkElAvg">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="checkElAvg">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart v-else type="bar" height="350" :options="chartOptions" :series="series" />
     </div>
-    <apexchart v-else type="bar" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
@@ -41,7 +43,14 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -64,7 +73,7 @@ export default {
         },
         theme: {
           mode: "dark",
-          palette: "palette4"
+          palette: "palette6"
         },
         title: {
           text: "Check Eligibility",
@@ -81,13 +90,30 @@ export default {
           enabled: false
         },
         xaxis: {
-          categories: ["Orders - Last Week"],
+          categories: ["Orders - Last Month"],
           labels: {
             show: false
           }
         },
         fill: {
           opacity: 1
+        },
+        legend: {
+          show: true,
+          floating: false,
+          position: "bottom",
+          labels: {
+            useSeriesColors: true
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
+          },
+          itemMargin: {
+            horizontal: 1
+          }
         }
       }
     };
@@ -96,19 +122,19 @@ export default {
     getData() {
       this.series = [
         {
-          name: store.state.checkEligibilityWeekAvgData[0].title,
-          data: [store.state.checkEligibilityWeekAvgData[0].value]
+          name: store.state.checkEligibilityMonthAvgData[0].title,
+          data: [store.state.checkEligibilityMonthAvgData[0].value]
         },
         {
-          name: store.state.checkEligibilityWeekAvgData[1].title,
-          data: [store.state.checkEligibilityWeekAvgData[1].value]
+          name: store.state.checkEligibilityMonthAvgData[1].title,
+          data: [store.state.checkEligibilityMonthAvgData[1].value]
         }
       ];
     }
   },
   computed: {
-    checkEligibilityWeekAvgData() {
-      return store.state.checkEligibilityWeekAvgData;
+    checkEligibilityMonthAvgData() {
+      return store.state.checkEligibilityMonthAvgData;
     }
   },
   beforeUpdate() {
@@ -118,8 +144,8 @@ export default {
     this.loading = true;
 
     store
-      .dispatch("fetchCheckEligibilityWeekAvg")
-      .then(checkEligibilityWeekAvgData => {
+      .dispatch("fetchCheckEligibilityMonthAvg")
+      .then(checkEligibilityMonthAvgData => {
         this.loading = false;
       });
   }

@@ -45,6 +45,7 @@ export default {
     return {
       loading: false,
       settings: {
+        wheelSpeed: 0.5,
         maxScrollbarLength: 60
       },
       items: []

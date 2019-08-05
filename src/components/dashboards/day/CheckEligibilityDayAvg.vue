@@ -1,12 +1,14 @@
 <template>
-  <div id="checkElAvg">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="checkElAvg">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart v-else type="bar" height="350" :options="chartOptions" :series="series" />
     </div>
-    <apexchart v-else type="bar" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
@@ -41,7 +43,14 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
@@ -64,7 +73,7 @@ export default {
         },
         theme: {
           mode: "dark",
-          palette: "palette5"
+          palette: "palette4"
         },
         title: {
           text: "Check Eligibility",
@@ -88,6 +97,23 @@ export default {
         },
         fill: {
           opacity: 1
+        },
+        legend: {
+          show: true,
+          floating: false,
+          position: "bottom",
+          labels: {
+            useSeriesColors: true
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex];
+          },
+          itemMargin: {
+            horizontal: 1
+          }
         }
       }
     };

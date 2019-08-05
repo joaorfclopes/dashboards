@@ -95,7 +95,7 @@ export default {
           type: "gradient",
           gradient: {
             shade: "dark",
-            gradientToColors: ["#FDD835"],
+            gradientToColors: ["#FFE770"],
             shadeIntensity: 1,
             type: "vertical",
             opacityFrom: 1,

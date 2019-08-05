@@ -4,26 +4,28 @@
     <div id="content">
       <div id="particles-js"></div>
       <div v-if="showHeader" id="header">
-        <h1 id="title" v-if="showHourlyDashboards">Hour</h1>
-        <h1 id="title" v-if="showDailyDashboards">Day</h1>
-        <h1 id="title" v-if="showWeeklyDashboards">Week</h1>
-        <h1 id="title" v-if="showMonthlyDashboards">Month</h1>
-        <h1 id="title" v-if="showStatus">Servers Status</h1>
-        <h1 id="title" v-if="showInfo">Servers Info Details</h1>
-        <toggle-button
-          v-if="showButton"
-          v-tooltip.bottom="'Change to ' + label"
-          id="btn"
-          :width="100"
-          :value="false"
-          :labels="{checked: 'Average Time', unchecked: 'Success'}"
-          color="#E60000"
-          @change="switchPerformance"
-        />
-        <img v-if="showHome == false" src="../assets/vodafone-logo.png" />
-        <div id="celfocus" v-if="showHome">
-          <img src="../assets/celfocus-logo.png" />
-          <p>powered by</p>
+        <div id="title">
+          <h1 v-if="showHourlyDashboards">Hour</h1>
+          <h1 v-if="showDailyDashboards">Day</h1>
+          <h1 v-if="showWeeklyDashboards">Week</h1>
+          <h1 v-if="showMonthlyDashboards">Month</h1>
+          <h1 v-if="showStatus">Servers Status</h1>
+          <h1 v-if="showInfo">Servers Info Details</h1>
+        </div>
+        <div id="button">
+          <toggle-button
+            id="btn"
+            v-if="showButton"
+            v-tooltip.bottom="'Change to ' + label"
+            :width="100"
+            :value="false"
+            :labels="{checked: 'Average Time', unchecked: 'Success'}"
+            color="#E60000"
+            @change="switchPerformance"
+          />
+        </div>
+        <div id="image">
+          <img v-if="showHome == false" src="../assets/vodafone-logo.png" />
         </div>
       </div>
       <Home id="home" v-if="showHome"></Home>
@@ -137,7 +139,7 @@ export default {
               component: MonthlyDashboards
             }
           ]
-        }/*,
+        } /*,
         {
           title: "Servers",
           icon: "fas fa-server",
@@ -372,46 +374,37 @@ export default {
 #header {
   position: relative;
   z-index: 10;
+  text-align: center;
+  margin: 0 auto;
+  height: 5vh;
 }
-#celfocus {
-  margin-right: 2%;
-  margin-top: 2%;
-}
-#celfocus > img {
-  margin-left: 1%;
-  float: right;
-  width: 10%;
-  opacity: 0;
-  animation-name: zoomInRight, fade;
-  animation-fill-mode: forwards;
-  animation-delay: 1.5s;
-  animation-duration: 1s;
-}
-#celfocus > p {
+#title > h1 {
   color: whitesmoke;
-  float: right;
-  opacity: 0;
-  animation-name: zoomInLeft, fade;
-  animation-fill-mode: forwards;
-  animation-delay: 1.5s;
-  animation-duration: 1s;
 }
-#header > h1 {
-  color: whitesmoke;
+#image > img {
+  width: 20%;
+}
+#title,
+#image {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+}
+#button {
+  display: inline-block;
+  vertical-align: top;
+  min-height: 250px;
+  margin: 0;
+}
+#title {
+  margin-top: 1.2%;
   float: left;
+}
+#button {
   margin-top: 1.5%;
-  margin-left: 4%;
 }
-#header > img {
+#image {
   float: right;
-  width: 10%;
-  margin-right: 4%;
-}
-#btn {
-  margin-top: 1.7%;
-}
-.container {
-  max-width: 100%;
 }
 #home {
   position: relative;

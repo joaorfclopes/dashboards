@@ -1,12 +1,14 @@
 <template>
-  <div id="reserveNrAvg">
-    <div class="lds-ellipsis" v-if="loading">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+  <div>
+    <div class="chart" id="reserveNrAvg">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart v-else type="radialBar" height="350" :options="chartOptions" :series="series" />
     </div>
-    <apexchart v-else type="radialBar" height="350" :options="chartOptions" :series="series" />
   </div>
 </template>
 
@@ -35,13 +37,20 @@ export default {
             }
           },
           toolbar: {
-            show: true
+            show: true,
+            tools: {
+              download: true,
+              selection: false,
+              zoom: false,
+              zoomin: false,
+              zoomout: false
+            }
           },
           fontFamily: "Roboto, sans-serif"
         },
         theme: {
           mode: "dark",
-          palette: "palette5"
+          palette: "palette4"
         },
         title: {
           text: "Reserve Number",
@@ -56,6 +65,8 @@ export default {
         },
         plotOptions: {
           radialBar: {
+            offsetX: 0,
+            offsetY: -10,
             dataLabels: {
               name: {
                 fontSize: "22px"
@@ -66,7 +77,7 @@ export default {
               total: {
                 show: true,
                 label: "Total",
-                formatter: function(w) {
+                formatter: function() {
                   var value1 = parseInt(
                     store.state.checkReserveNumberDayAvgData[0].value
                   );
@@ -84,7 +95,24 @@ export default {
             }
           }
         },
-        labels: []
+        labels: [],
+        legend: {
+          show: true,
+          floating: false,
+          position: "bottom",
+          labels: {
+            useSeriesColors: true
+          },
+          markers: {
+            size: 0
+          },
+          formatter: function(seriesName, opts) {
+            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
+          },
+          itemMargin: {
+            horizontal: 1
+          }
+        }
       }
     };
   },
