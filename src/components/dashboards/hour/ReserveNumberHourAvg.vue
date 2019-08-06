@@ -1,13 +1,37 @@
 <template>
   <div>
-    <div class="chart" id="reserveNrAvg">
-      <div class="lds-ellipsis" v-if="loading">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <apexchart v-else type="radialBar" height="350" :options="chartOptions" :series="series" />
+    <div v-if="this.$mq === 'desktopXL'" class="chart" id="reserveNrAvg">
+      <v-card class="card" color="#343F57" height="400">
+        <div class="lds-ellipsis" v-if="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <apexchart v-else type="radialBar" height="400" :options="chartOptions" :series="series" />
+      </v-card>
+    </div>
+    <div v-if="this.$mq === 'desktopL'" class="chart" id="reserveNrAvg">
+      <v-card class="card" color="#343F57" height="320">
+        <div class="lds-ellipsis" v-if="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <apexchart v-else type="radialBar" height="320" :options="chartOptions" :series="series" />
+      </v-card>
+    </div>
+    <div v-if="this.$mq === 'laptop'" class="chart" id="reserveNrAvg">
+      <v-card class="card" color="#343F57" height="290">
+        <div class="lds-ellipsis" v-if="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <apexchart v-else type="radialBar" height="290" :options="chartOptions" :series="series" />
+      </v-card>
     </div>
   </div>
 </template>
@@ -107,7 +131,9 @@ export default {
             size: 0
           },
           formatter: function(seriesName, opts) {
-            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
+            return (
+              seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%"
+            );
           },
           itemMargin: {
             horizontal: 1

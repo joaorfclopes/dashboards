@@ -30,30 +30,10 @@
       </div>
       <Home id="home" v-if="showHome"></Home>
       <div id="dashboards">
-        <HourlyDashboards
-          :checked="checked"
-          :label="label"
-          v-if="showHourlyDashboards"
-          id="hour-dashboards"
-        ></HourlyDashboards>
-        <DailyDashboards
-          :checked="checked"
-          :label="label"
-          v-if="showDailyDashboards"
-          id="day-dashboards"
-        ></DailyDashboards>
-        <WeeklyDashboards
-          :checked="checked"
-          :label="label"
-          v-if="showWeeklyDashboards"
-          id="week-dashboards"
-        ></WeeklyDashboards>
-        <MonthlyDashboards
-          :checked="checked"
-          :label="label"
-          v-if="showMonthlyDashboards"
-          id="month-dashboards"
-        ></MonthlyDashboards>
+        <HourlyDashboards :checked="checked" v-if="showHourlyDashboards" id="hour-dashboards"></HourlyDashboards>
+        <DailyDashboards :checked="checked" v-if="showDailyDashboards" id="day-dashboards"></DailyDashboards>
+        <WeeklyDashboards :checked="checked" v-if="showWeeklyDashboards" id="week-dashboards"></WeeklyDashboards>
+        <MonthlyDashboards :checked="checked" v-if="showMonthlyDashboards" id="month-dashboards"></MonthlyDashboards>
       </div>
       <div id="servers">
         <ServersStatus v-if="showStatus" id="servers-status"></ServersStatus>
@@ -122,7 +102,7 @@ export default {
               href: "/hour",
               title: "Hour",
               component: HourlyDashboards
-            },
+            } /*,
             {
               href: "/day",
               title: "Day",
@@ -137,7 +117,7 @@ export default {
               href: "/month",
               title: "Month",
               component: MonthlyDashboards
-            }
+            }*/
           ]
         } /*,
         {
@@ -158,9 +138,6 @@ export default {
         }*/
       ]
     };
-  },
-  beforeMount() {
-    this.checkUrl();
   },
   methods: {
     checkUrl() {
@@ -354,6 +331,9 @@ export default {
       }
     }
   },
+  beforeMount() {
+    this.checkUrl();
+  },
   mounted() {
     this.initParticles();
   }
@@ -376,7 +356,7 @@ export default {
   z-index: 10;
   text-align: center;
   margin: 0 auto;
-  height: 5vh;
+  height: 1vh;
 }
 #title > h1 {
   color: whitesmoke;

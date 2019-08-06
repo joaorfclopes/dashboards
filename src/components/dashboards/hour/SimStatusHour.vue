@@ -1,20 +1,58 @@
 <template>
   <div>
-    <div class="chart" id="simStatus">
-      <div class="lds-ellipsis" v-if="loading">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <apexchart
-        v-else
-        id="simStatusHour"
-        type="radialBar"
-        height="350"
-        :options="chartOptions"
-        :series="series"
-      />
+    <div v-if="this.$mq === 'desktopXL'" class="chart" id="simStatus">
+      <v-card class="card" color="#343F57" height="400">
+        <div class="lds-ellipsis" v-if="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <apexchart
+          v-else
+          id="simStatusHour"
+          type="radialBar"
+          height="400"
+          :options="chartOptions"
+          :series="series"
+        />
+      </v-card>
+    </div>
+    <div v-if="this.$mq === 'desktopL'" class="chart" id="simStatus">
+      <v-card class="card" color="#343F57" height="320">
+        <div class="lds-ellipsis" v-if="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <apexchart
+          v-else
+          id="simStatusHour"
+          type="radialBar"
+          height="320"
+          :options="chartOptions"
+          :series="series"
+        />
+      </v-card>
+    </div>
+    <div v-if="this.$mq === 'laptop'" class="chart" id="simStatus">
+      <v-card class="card" color="#343F57" height="290">
+        <div class="lds-ellipsis" v-if="loading">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <apexchart
+          v-else
+          id="simStatusHour"
+          type="radialBar"
+          height="290"
+          :options="chartOptions"
+          :series="series"
+        />
+      </v-card>
     </div>
   </div>
 </template>

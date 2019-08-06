@@ -121,3 +121,6 @@
   background-color: transparent !important;
   opacity: 0.9 !important;
 }
+.container {
+  max-width: 95%;
+}
