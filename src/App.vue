@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Main />
+    <Main v-if="this.$mq === 'desktopXL' || this.$mq === 'desktopL' || this.$mq === 'laptop'" />
+    <Error v-else />
   </div>
 </template>
 
 <script>
 import Main from "./components/Main.vue";
+import Error from "./components/Error.vue";
 
 export default {
   name: "app",
   components: {
-    Main
+    Main,
+    Error
   }
 };
 </script>
