@@ -1,37 +1,33 @@
 <template>
   <div>
-    <div v-if="this.$mq === 'desktopXL'" class="chart" id="reserveNrAvg">
-      <v-card class="card" color="#343F57" height="400">
-        <div class="lds-ellipsis" v-if="loading">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <apexchart v-else type="radialBar" height="400" :options="chartOptions" :series="series" />
-      </v-card>
-    </div>
-    <div v-if="this.$mq === 'desktopL'" class="chart" id="reserveNrAvg">
-      <v-card class="card" color="#343F57" height="320">
-        <div class="lds-ellipsis" v-if="loading">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <apexchart v-else type="radialBar" height="320" :options="chartOptions" :series="series" />
-      </v-card>
-    </div>
-    <div v-if="this.$mq === 'laptop'" class="chart" id="reserveNrAvg">
-      <v-card class="card" color="#343F57" height="290">
-        <div class="lds-ellipsis" v-if="loading">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <apexchart v-else type="radialBar" height="290" :options="chartOptions" :series="series" />
-      </v-card>
+    <div class="chart" id="reserveNrAvg">
+      <div class="lds-ellipsis" v-if="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <apexchart
+        v-if="loading == false && this.$mq === 'desktopXL'"
+        type="radialBar"
+        height="400"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        v-if="loading == false && this.$mq === 'desktopL'"
+        type="radialBar"
+        height="320"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        v-if="loading == false && this.$mq === 'laptop'"
+        type="radialBar"
+        height="290"
+        :options="chartOptions"
+        :series="series"
+      />
     </div>
   </div>
 </template>
@@ -67,7 +63,9 @@ export default {
               selection: false,
               zoom: false,
               zoomin: false,
-              zoomout: false
+              zoomout: false,
+              pan: false,
+              reset: false
             }
           },
           fontFamily: "Roboto, sans-serif"
