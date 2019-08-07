@@ -8,10 +8,26 @@
         <div></div>
       </div>
       <apexchart
-        v-else
+        v-if="loading == false && this.$mq === 'desktopXL'"
         id="simStatusDay"
         type="radialBar"
-        height="350"
+        height="400"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        v-if="loading == false && this.$mq === 'desktopL'"
+        id="simStatusDay"
+        type="radialBar"
+        height="320"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        v-if="loading == false && this.$mq === 'laptop'"
+        id="simStatusDay"
+        type="radialBar"
+        height="290"
         :options="chartOptions"
         :series="series"
       />
@@ -49,7 +65,9 @@ export default {
               selection: false,
               zoom: false,
               zoomin: false,
-              zoomout: false
+              zoomout: false,
+              pan: false,
+              reset: false
             }
           },
           fontFamily: "Roboto, sans-serif"

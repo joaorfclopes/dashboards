@@ -7,7 +7,27 @@
         <div></div>
         <div></div>
       </div>
-      <apexchart v-else type="radialBar" height="350" :options="chartOptions" :series="series" />
+      <apexchart
+        v-if="loading == false && this.$mq === 'desktopXL'"
+        type="radialBar"
+        height="400"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        v-if="loading == false && this.$mq === 'desktopL'"
+        type="radialBar"
+        height="320"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        v-if="loading == false && this.$mq === 'laptop'"
+        type="radialBar"
+        height="290"
+        :options="chartOptions"
+        :series="series"
+      />
     </div>
   </div>
 </template>
@@ -43,7 +63,9 @@ export default {
               selection: false,
               zoom: false,
               zoomin: false,
-              zoomout: false
+              zoomout: false,
+              pan: false,
+              reset: false
             }
           },
           fontFamily: "Roboto, sans-serif"
@@ -107,7 +129,9 @@ export default {
             size: 0
           },
           formatter: function(seriesName, opts) {
-            return seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%";
+            return (
+              seriesName + ":  " + opts.w.globals.series[opts.seriesIndex] + "%"
+            );
           },
           itemMargin: {
             horizontal: 1

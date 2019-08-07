@@ -7,7 +7,27 @@
         <div></div>
         <div></div>
       </div>
-      <apexchart v-else type="area" height="350" :options="chartOptions" :series="series" />
+      <apexchart
+        v-if="loading == false && this.$mq === 'desktopXL'"
+        type="area"
+        height="400"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        v-if="loading == false && this.$mq === 'desktopL'"
+        type="area"
+        height="320"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        v-if="loading == false && this.$mq === 'laptop'"
+        type="area"
+        height="290"
+        :options="chartOptions"
+        :series="series"
+      />
     </div>
   </div>
 </template>
@@ -43,7 +63,9 @@ export default {
               selection: false,
               zoom: false,
               zoomin: false,
-              zoomout: false
+              zoomout: false,
+              pan: false,
+              reset: false
             }
           },
           fontFamily: "Roboto, sans-serif"

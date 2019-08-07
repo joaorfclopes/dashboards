@@ -102,7 +102,7 @@ export default {
               href: "/hour",
               title: "Hour",
               component: HourlyDashboards
-            } /*,
+            },
             {
               href: "/day",
               title: "Day",
@@ -117,7 +117,7 @@ export default {
               href: "/month",
               title: "Month",
               component: MonthlyDashboards
-            }*/
+            }
           ]
         } /*,
         {

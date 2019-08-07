@@ -9,9 +9,25 @@
       </div>
       <apexchart
         id="simValidationDay"
-        v-else
+        v-if="loading == false && this.$mq === 'desktopXL'"
         type="donut"
-        height="350"
+        height="400"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        id="simValidationDay"
+        v-if="loading == false && this.$mq === 'desktopL'"
+        type="donut"
+        height="320"
+        :options="chartOptions"
+        :series="series"
+      />
+      <apexchart
+        id="simValidationDay"
+        v-if="loading == false && this.$mq === 'laptop'"
+        type="donut"
+        height="290"
         :options="chartOptions"
         :series="series"
       />
@@ -50,7 +66,9 @@ export default {
               selection: false,
               zoom: false,
               zoomin: false,
-              zoomout: false
+              zoomout: false,
+              pan: false,
+              reset: false
             }
           },
           fontFamily: "Roboto, sans-serif"
@@ -132,11 +150,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchSimValidationDay")
-      .then(checkSimValidationDayData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchSimValidationDay").then(checkSimValidationDayData => {
+      this.loading = false;
+    });
   }
 };
 </script>
