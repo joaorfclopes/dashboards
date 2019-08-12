@@ -142,16 +142,12 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        {
-          name: store.state.checkEligibilityWeekAvgData[0].title,
-          data: [store.state.checkEligibilityWeekAvgData[0].value]
-        },
-        {
-          name: store.state.checkEligibilityWeekAvgData[1].title,
-          data: [store.state.checkEligibilityWeekAvgData[1].value]
-        }
-      ];
+      for (let i = 0; i < store.state.checkEligibilityWeekAvgData.length; i++) {
+        this.series[i] = {
+          name: store.state.checkEligibilityWeekAvgData[i].title,
+          data: [store.state.checkEligibilityWeekAvgData[i].value]
+        };
+      }
     }
   },
   computed: {

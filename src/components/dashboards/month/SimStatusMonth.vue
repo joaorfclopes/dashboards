@@ -95,7 +95,7 @@ export default {
         },
         plotOptions: {
           radialBar: {
-            size: 120,
+            size: 140,
             inverseOrder: true,
             startAngle: -180,
             endAngle: 90,
@@ -146,16 +146,11 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        store.state.checkSimStatusMonthData[0].value,
-        store.state.checkSimStatusMonthData[1].value,
-        store.state.checkSimStatusMonthData[2].value
-      ];
-      this.chartOptions.labels = [
-        store.state.checkSimStatusMonthData[0].title,
-        store.state.checkSimStatusMonthData[1].title,
-        store.state.checkSimStatusMonthData[2].title
-      ];
+      for (let i = 0; i < store.state.checkSimStatusMonthData.length; i++) {
+        this.series[i] = store.state.checkSimStatusMonthData[i].value;
+        this.chartOptions.labels[i] =
+          store.state.checkSimStatusMonthData[i].title;
+      }
     }
   },
   computed: {

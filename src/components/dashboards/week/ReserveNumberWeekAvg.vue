@@ -142,19 +142,20 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        store.state.checkReserveNumberWeekAvgData[0].value,
-        store.state.checkReserveNumberWeekAvgData[1].value
-      ];
-      this.chartOptions.labels = [
-        store.state.checkReserveNumberWeekAvgData[0].title,
-        store.state.checkReserveNumberWeekAvgData[1].title
-      ];
+      for (
+        let i = 0;
+        i < store.state.checkReserveNumberWeekAvgData.length;
+        i++
+      ) {
+        this.series[i] = store.state.checkReserveNumberWeekAvgData[i].value;
+        this.chartOptions.labels[i] =
+          store.state.checkReserveNumberWeekAvgData[i].title;
+      }
     }
   },
   computed: {
-    checkReserveNumberWeekData() {
-      return store.state.checkReserveNumberWeekData;
+    checkReserveNumberWeekAvgData() {
+      return store.state.checkReserveNumberWeekAvgData;
     }
   },
   beforeUpdate() {
@@ -165,7 +166,7 @@ export default {
 
     store
       .dispatch("fetchReserveNumberWeekAvg")
-      .then(checkReserveNumberWeekData => {
+      .then(checkReserveNumberWeekAvgData => {
         this.loading = false;
       });
   }

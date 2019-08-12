@@ -149,16 +149,12 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        {
-          name: store.state.checkDeviceSyncTimeDayData[0].title,
-          data: store.state.checkDeviceSyncTimeDayData[0].value
-        },
-        {
-          name: store.state.checkDeviceSyncTimeDayData[1].title,
-          data: store.state.checkDeviceSyncTimeDayData[1].value
-        }
-      ];
+      for (let i = 0; i < store.state.checkDeviceSyncTimeDayData.length; i++) {
+        this.series[i] = {
+          name: store.state.checkDeviceSyncTimeDayData[i].title,
+          data: store.state.checkDeviceSyncTimeDayData[i].value
+        };
+      }
     }
   },
   computed: {

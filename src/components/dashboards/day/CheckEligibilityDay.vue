@@ -146,20 +146,12 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        {
-          name: store.state.checkEligibilityDayData[0].title,
-          data: [store.state.checkEligibilityDayData[0].value]
-        },
-        {
-          name: store.state.checkEligibilityDayData[1].title,
-          data: [store.state.checkEligibilityDayData[1].value]
-        },
-        {
-          name: store.state.checkEligibilityDayData[2].title,
-          data: [store.state.checkEligibilityDayData[2].value]
-        }
-      ];
+      for (let i = 0; i < store.state.checkEligibilityDayData.length; i++) {
+        this.series[i] = {
+          name: store.state.checkEligibilityDayData[i].title,
+          data: [store.state.checkEligibilityDayData[i].value]
+        };
+      }
     }
   },
   computed: {
@@ -173,11 +165,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchCheckEligibilityDay")
-      .then(checkEligibilityDayData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchCheckEligibilityDay").then(checkEligibilityDayData => {
+      this.loading = false;
+    });
   }
 };
 </script>

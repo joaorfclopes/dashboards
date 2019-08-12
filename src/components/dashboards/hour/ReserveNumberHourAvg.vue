@@ -142,19 +142,20 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        store.state.checkReserveNumberHourAvgData[0].value,
-        store.state.checkReserveNumberHourAvgData[1].value
-      ];
-      this.chartOptions.labels = [
-        store.state.checkReserveNumberHourAvgData[0].title,
-        store.state.checkReserveNumberHourAvgData[1].title
-      ];
+      for (
+        let i = 0;
+        i < store.state.checkReserveNumberHourAvgData.length;
+        i++
+      ) {
+        this.series[i] = store.state.checkReserveNumberHourAvgData[i].value;
+        this.chartOptions.labels[i] =
+          store.state.checkReserveNumberHourAvgData[i].title;
+      }
     }
   },
   computed: {
-    checkReserveNumberHourData() {
-      return store.state.checkReserveNumberHourData;
+    checkReserveNumberHourAvgData() {
+      return store.state.checkReserveNumberHourAvgData;
     }
   },
   beforeUpdate() {
@@ -165,7 +166,7 @@ export default {
 
     store
       .dispatch("fetchReserveNumberHourAvg")
-      .then(checkReserveNumberHourData => {
+      .then(checkReserveNumberHourAvgData => {
         this.loading = false;
       });
   }

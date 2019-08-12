@@ -134,18 +134,9 @@ export default {
   },
   methods: {
     getData() {
-      this.items = [
-        store.state.checkTopStoresMonthData[0],
-        store.state.checkTopStoresMonthData[1],
-        store.state.checkTopStoresMonthData[2],
-        store.state.checkTopStoresMonthData[3],
-        store.state.checkTopStoresMonthData[4],
-        store.state.checkTopStoresMonthData[5],
-        store.state.checkTopStoresMonthData[6],
-        store.state.checkTopStoresMonthData[7],
-        store.state.checkTopStoresMonthData[8],
-        store.state.checkTopStoresMonthData[9]
-      ];
+      for (let i = 0; i < store.state.checkTopStoresMonthData.length; i++) {
+        this.items[i] = store.state.checkTopStoresMonthData[i];
+      }
     }
   },
   computed: {

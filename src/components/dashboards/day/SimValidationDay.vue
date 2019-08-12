@@ -129,14 +129,11 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        store.state.checkSimValidationDayData[0].value,
-        store.state.checkSimValidationDayData[1].value
-      ];
-      this.chartOptions.labels = [
-        store.state.checkSimValidationDayData[0].title,
-        store.state.checkSimValidationDayData[1].title
-      ];
+      for (let i = 0; i < store.state.checkSimValidationDayData.length; i++) {
+        this.series[i] = store.state.checkSimValidationDayData[i].value;
+        this.chartOptions.labels[i] =
+          store.state.checkSimValidationDayData[i].title;
+      }
     }
   },
   computed: {

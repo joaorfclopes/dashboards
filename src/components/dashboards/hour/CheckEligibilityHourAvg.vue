@@ -142,16 +142,12 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        {
-          name: store.state.checkEligibilityHourAvgData[0].title,
-          data: [store.state.checkEligibilityHourAvgData[0].value]
-        },
-        {
-          name: store.state.checkEligibilityHourAvgData[1].title,
-          data: [store.state.checkEligibilityHourAvgData[1].value]
-        }
-      ];
+      for (let i = 0; i < store.state.checkEligibilityHourAvgData.length; i++) {
+        this.series[i] = {
+          name: store.state.checkEligibilityHourAvgData[i].title,
+          data: [store.state.checkEligibilityHourAvgData[i].value]
+        };
+      }
     }
   },
   computed: {

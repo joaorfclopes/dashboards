@@ -158,16 +158,12 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        {
-          name: store.state.checkReserveNumberHourData[0].title,
-          data: store.state.checkReserveNumberHourData[0].value
-        },
-        {
-          name: store.state.checkReserveNumberHourData[1].title,
-          data: store.state.checkReserveNumberHourData[1].value
-        }
-      ];
+      for (let i = 0; i < store.state.checkReserveNumberHourData.length; i++) {
+        this.series[i] = {
+          name: store.state.checkReserveNumberHourData[i].title,
+          data: store.state.checkReserveNumberHourData[i].value
+        };
+      }
     }
   },
   computed: {

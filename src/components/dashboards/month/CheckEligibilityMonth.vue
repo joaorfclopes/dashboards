@@ -146,20 +146,12 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        {
-          name: store.state.checkEligibilityMonthData[0].title,
-          data: [store.state.checkEligibilityMonthData[0].value]
-        },
-        {
-          name: store.state.checkEligibilityMonthData[1].title,
-          data: [store.state.checkEligibilityMonthData[1].value]
-        },
-        {
-          name: store.state.checkEligibilityMonthData[2].title,
-          data: [store.state.checkEligibilityMonthData[2].value]
-        }
-      ];
+      for (let i = 0; i < store.state.checkEligibilityMonthData.length; i++) {
+        this.series[i] = {
+          name: store.state.checkEligibilityMonthData[i].title,
+          data: [store.state.checkEligibilityMonthData[i].value]
+        };
+      }
     }
   },
   computed: {

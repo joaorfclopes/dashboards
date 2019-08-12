@@ -158,16 +158,12 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        {
-          name: store.state.checkReserveNumberWeekData[0].title,
-          data: store.state.checkReserveNumberWeekData[0].value
-        },
-        {
-          name: store.state.checkReserveNumberWeekData[1].title,
-          data: store.state.checkReserveNumberWeekData[1].value
-        }
-      ];
+      for (let i = 0; i < store.state.checkReserveNumberWeekData.length; i++) {
+        this.series[i] = {
+          name: store.state.checkReserveNumberWeekData[i].title,
+          data: store.state.checkReserveNumberWeekData[i].value
+        };
+      }
     }
   },
   computed: {

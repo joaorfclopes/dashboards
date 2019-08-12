@@ -142,19 +142,20 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        store.state.checkReserveNumberMonthAvgData[0].value,
-        store.state.checkReserveNumberMonthAvgData[1].value
-      ];
-      this.chartOptions.labels = [
-        store.state.checkReserveNumberMonthAvgData[0].title,
-        store.state.checkReserveNumberMonthAvgData[1].title
-      ];
+      for (
+        let i = 0;
+        i < store.state.checkReserveNumberMonthAvgData.length;
+        i++
+      ) {
+        this.series[i] = store.state.checkReserveNumberMonthAvgData[i].value;
+        this.chartOptions.labels[i] =
+          store.state.checkReserveNumberMonthAvgData[i].title;
+      }
     }
   },
   computed: {
-    checkReserveNumberMonthData() {
-      return store.state.checkReserveNumberMonthData;
+    checkReserveNumberMonthAvgData() {
+      return store.state.checkReserveNumberMonthAvgData;
     }
   },
   beforeUpdate() {
@@ -165,7 +166,7 @@ export default {
 
     store
       .dispatch("fetchReserveNumberMonthAvg")
-      .then(checkReserveNumberMonthData => {
+      .then(checkReserveNumberMonthAvgData => {
         this.loading = false;
       });
   }

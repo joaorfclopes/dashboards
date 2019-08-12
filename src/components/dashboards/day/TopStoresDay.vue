@@ -134,18 +134,9 @@ export default {
   },
   methods: {
     getData() {
-      this.items = [
-        store.state.checkTopStoresDayData[0],
-        store.state.checkTopStoresDayData[1],
-        store.state.checkTopStoresDayData[2],
-        store.state.checkTopStoresDayData[3],
-        store.state.checkTopStoresDayData[4],
-        store.state.checkTopStoresDayData[5],
-        store.state.checkTopStoresDayData[6],
-        store.state.checkTopStoresDayData[7],
-        store.state.checkTopStoresDayData[8],
-        store.state.checkTopStoresDayData[9]
-      ];
+      for (let i = 0; i < store.state.checkTopStoresDayData.length; i++) {
+        this.items[i] = store.state.checkTopStoresDayData[i];
+      }
     }
   },
   computed: {

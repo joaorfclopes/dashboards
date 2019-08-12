@@ -158,16 +158,12 @@ export default {
   },
   methods: {
     getData() {
-      this.series = [
-        {
-          name: store.state.checkReserveNumberDayData[0].title,
-          data: store.state.checkReserveNumberDayData[0].value
-        },
-        {
-          name: store.state.checkReserveNumberDayData[1].title,
-          data: store.state.checkReserveNumberDayData[1].value
-        }
-      ];
+      for (let i = 0; i < store.state.checkReserveNumberDayData.length; i++) {
+        this.series[i] = {
+          name: store.state.checkReserveNumberDayData[i].title,
+          data: store.state.checkReserveNumberDayData[i].value
+        };
+      }
     }
   },
   computed: {
@@ -181,11 +177,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchReserveNumberDay")
-      .then(checkReserveNumberDayData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchReserveNumberDay").then(checkReserveNumberDayData => {
+      this.loading = false;
+    });
   }
 };
 </script>
