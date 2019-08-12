@@ -96,7 +96,7 @@ export default {
         },
         plotOptions: {
           pie: {
-            size: 110,
+            size: 120,
             offsetX: 0,
             offsetY: -10,
             donut: {

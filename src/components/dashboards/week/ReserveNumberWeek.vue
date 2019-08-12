@@ -93,7 +93,7 @@ export default {
         },
         xaxis: {
           type: "Week",
-          categories: ["Orders - Last Week", "Orders - Last Week"],
+          categories: ["Week 1", "Week 2", "Week 3", "Week 4"],
           labels: {
             show: false
           }

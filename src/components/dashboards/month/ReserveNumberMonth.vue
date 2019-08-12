@@ -93,7 +93,20 @@ export default {
         },
         xaxis: {
           type: "Month",
-          categories: ["Orders - Last Month", "Orders - Last Month"],
+          categories: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec"
+          ],
           labels: {
             show: false
           }
