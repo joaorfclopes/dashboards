@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "lint": "vue-cli-service lint --fix",
     "build": "vue-cli-service build",
-    "deploy": "git add . && git commit -a --allow-empty-message -m Deploy && git push origin master && now"
+    "deploy": "now"
   },
   "dependencies": {
     "apexcharts": "^3.6.11",
