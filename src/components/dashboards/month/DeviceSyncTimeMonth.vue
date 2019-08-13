@@ -150,7 +150,7 @@ export default {
           markers: {
             size: 0
           },
-          formatter: function(seriesName, opts) {
+          formatter: function(seriesName) {
             return seriesName;
           },
           itemMargin: {
@@ -185,11 +185,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchDeviceSyncTimeMonth")
-      .then(checkDeviceSyncTimeMonthData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchDeviceSyncTimeMonth").then(() => {
+      this.loading = false;
+    });
   }
 };
 </script>

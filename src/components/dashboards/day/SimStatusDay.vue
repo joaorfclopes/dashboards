@@ -164,7 +164,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchSimStatusDay").then(checkSimStatusDayData => {
+    store.dispatch("fetchSimStatusDay").then(() => {
       this.loading = false;
     });
   }

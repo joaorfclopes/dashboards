@@ -150,7 +150,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchTopStoresHour").then(checkTopStoresHourData => {
+    store.dispatch("fetchTopStoresHour").then(() => {
       this.loading = false;
     });
   }

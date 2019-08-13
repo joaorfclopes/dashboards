@@ -161,7 +161,7 @@ export default {
           markers: {
             size: 0
           },
-          formatter: function(seriesName, opts) {
+          formatter: function(seriesName) {
             return seriesName;
           },
           itemMargin: {
@@ -192,11 +192,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchDeviceSyncTimeDay")
-      .then(checkDeviceSyncTimeDayData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchDeviceSyncTimeDay").then(() => {
+      this.loading = false;
+    });
   }
 };
 </script>

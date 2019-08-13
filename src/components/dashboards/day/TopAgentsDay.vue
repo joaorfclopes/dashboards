@@ -149,7 +149,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchTopAgentsDay").then(checkTopAgentsDayData => {
+    store.dispatch("fetchTopAgentsDay").then(() => {
       this.loading = false;
     });
   }

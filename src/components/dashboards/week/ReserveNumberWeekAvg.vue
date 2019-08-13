@@ -166,7 +166,7 @@ export default {
 
     store
       .dispatch("fetchReserveNumberWeekAvg")
-      .then(checkReserveNumberWeekAvgData => {
+      .then(() => {
         this.loading = false;
       });
   }

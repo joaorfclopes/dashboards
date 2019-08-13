@@ -150,7 +150,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchTopStoresDay").then(checkTopStoresDayData => {
+    store.dispatch("fetchTopStoresDay").then(() => {
       this.loading = false;
     });
   }

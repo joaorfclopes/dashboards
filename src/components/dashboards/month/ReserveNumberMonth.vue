@@ -159,7 +159,7 @@ export default {
           markers: {
             size: 0
           },
-          formatter: function(seriesName, opts) {
+          formatter: function(seriesName) {
             return seriesName;
           },
           itemMargin: {
@@ -190,11 +190,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchReserveNumberMonth")
-      .then(checkReserveNumberMonthData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchReserveNumberMonth").then(() => {
+      this.loading = false;
+    });
   }
 };
 </script>

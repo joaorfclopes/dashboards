@@ -170,7 +170,7 @@ export default {
           markers: {
             size: 0
           },
-          formatter: function(seriesName, opts) {
+          formatter: function(seriesName) {
             return seriesName;
           },
           itemMargin: {
@@ -201,7 +201,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchReserveNumberDay").then(checkReserveNumberDayData => {
+    store.dispatch("fetchReserveNumberDay").then(() => {
       this.loading = false;
     });
   }

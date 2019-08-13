@@ -165,7 +165,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchCheckEligibilityDay").then(checkEligibilityDayData => {
+    store.dispatch("fetchCheckEligibilityDay").then(() => {
       this.loading = false;
     });
   }

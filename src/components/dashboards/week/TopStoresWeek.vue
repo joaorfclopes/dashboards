@@ -150,7 +150,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchTopStoresWeek").then(checkTopStoresWeekData => {
+    store.dispatch("fetchTopStoresWeek").then(() => {
       this.loading = false;
     });
   }

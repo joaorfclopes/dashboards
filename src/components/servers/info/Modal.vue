@@ -122,17 +122,17 @@
 <script>
 export default {
   props: {
-    showOhs1: false,
-    showOhs2: false,
-    showWc1: false,
-    showWc2: false,
-    showApp1: false,
-    showApp2: false,
-    showDb1: false,
-    showDb2: false,
-    showOid1: false,
-    showOid2: false,
-    showBi: false
+    showOhs1: null,
+    showOhs2: null,
+    showWc1: null,
+    showWc2: null,
+    showApp1: null,
+    showApp2: null,
+    showDb1: null,
+    showDb2: null,
+    showOid1: null,
+    showOid2: null,
+    showBi: null
   }
 };
 </script>

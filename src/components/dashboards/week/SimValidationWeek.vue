@@ -147,11 +147,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchSimValidationWeek")
-      .then(checkSimValidationWeekData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchSimValidationWeek").then(() => {
+      this.loading = false;
+    });
   }
 };
 </script>

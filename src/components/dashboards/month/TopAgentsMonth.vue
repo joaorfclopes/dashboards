@@ -149,7 +149,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchTopAgentsMonth").then(checkTopAgentsMonthData => {
+    store.dispatch("fetchTopAgentsMonth").then(() => {
       this.loading = false;
     });
   }

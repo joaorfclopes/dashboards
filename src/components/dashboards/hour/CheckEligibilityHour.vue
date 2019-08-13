@@ -165,11 +165,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchCheckEligibilityHour")
-      .then(checkEligibilityHourData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchCheckEligibilityHour").then(() => {
+      this.loading = false;
+    });
   }
 };
 </script>

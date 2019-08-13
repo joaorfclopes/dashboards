@@ -119,7 +119,7 @@ export default {
               component: MonthlyDashboards
             }
           ]
-        } /*,
+        } /* ,
         {
           title: "Servers",
           icon: "fas fa-server",

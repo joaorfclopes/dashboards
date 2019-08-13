@@ -164,11 +164,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchReserveNumberMonthAvg")
-      .then(checkReserveNumberMonthAvgData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchReserveNumberMonthAvg").then(() => {
+      this.loading = false;
+    });
   }
 };
 </script>

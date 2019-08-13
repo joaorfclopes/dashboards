@@ -147,11 +147,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchSimValidationHour")
-      .then(checkSimValidationHourData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchSimValidationHour").then(() => {
+      this.loading = false;
+    });
   }
 };
 </script>

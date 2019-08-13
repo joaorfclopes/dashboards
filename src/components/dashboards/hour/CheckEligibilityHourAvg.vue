@@ -161,11 +161,9 @@ export default {
   created() {
     this.loading = true;
 
-    store
-      .dispatch("fetchCheckEligibilityHourAvg")
-      .then(checkEligibilityHourAvgData => {
-        this.loading = false;
-      });
+    store.dispatch("fetchCheckEligibilityHourAvg").then(() => {
+      this.loading = false;
+    });
   }
 };
 </script>

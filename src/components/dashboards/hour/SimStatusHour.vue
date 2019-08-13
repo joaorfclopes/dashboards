@@ -164,7 +164,7 @@ export default {
   created() {
     this.loading = true;
 
-    store.dispatch("fetchSimStatusHour").then(checkSimStatusHourData => {
+    store.dispatch("fetchSimStatusHour").then(() => {
       this.loading = false;
     });
   }

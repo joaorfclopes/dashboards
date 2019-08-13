@@ -146,7 +146,7 @@ export default {
           markers: {
             size: 0
           },
-          formatter: function(seriesName, opts) {
+          formatter: function(seriesName) {
             return seriesName;
           },
           itemMargin: {
@@ -179,7 +179,7 @@ export default {
 
     store
       .dispatch("fetchReserveNumberWeek")
-      .then(checkReserveNumberWeekData => {
+      .then(() => {
         this.loading = false;
       });
   }

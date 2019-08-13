@@ -383,7 +383,11 @@
 <script>
 import Modal from "./Modal.vue";
 import { setTimeout } from "timers";
-import jsplumb from "jsplumb";
+import jsPlumb from "jsplumb";
+
+global.jQuery = require("jquery");
+var $ = global.jQuery;
+window.$ = $;
 
 export default {
   components: {
