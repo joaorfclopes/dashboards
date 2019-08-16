@@ -83,9 +83,6 @@
 .apexcharts-menu-item.exportSVG {
   display: none;
 }
-#graphics {
-  margin-top: 3%;
-}
 #topAgents-container,
 #topStores-container {
   background-color: #343f57;

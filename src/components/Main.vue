@@ -1,8 +1,12 @@
 <template>
   <div id="main-container">
     <sidebar-menu collapsed id="sidebar" @itemClick="checkUrl" :menu="menu" />
+    <div id="particles-js"></div>
+    <div v-if="showHome" id="celfocus">
+      <img src="../assets/celfocus-logo.png" />
+      <p>powered by Celfocus</p>
+    </div>
     <div id="content">
-      <div id="particles-js"></div>
       <div v-if="showHeader" id="header">
         <div id="title">
           <h1 v-if="showHourlyDashboards">Hour</h1>
@@ -358,6 +362,34 @@ export default {
   margin: 0 auto;
   height: 1vh;
 }
+#celfocus {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  margin-top: 1%;
+}
+#celfocus > img {
+  margin-left: 0.5%;
+  margin-right: 1%;
+  float: right;
+  width: 10%;
+  opacity: 0;
+  animation-name: zoomInRight, fade;
+  animation-fill-mode: forwards;
+  animation-delay: 1.5s;
+  animation-duration: 1s;
+}
+#celfocus > p {
+  color: whitesmoke;
+  font-size: 90%;
+  float: right;
+  opacity: 0;
+  animation-name: zoomInLeft, fade;
+  animation-fill-mode: forwards;
+  animation-delay: 1.5s;
+  animation-duration: 1s;
+}
 #title > h1 {
   color: whitesmoke;
 }
@@ -393,9 +425,60 @@ export default {
 #dashboards {
   position: relative;
   z-index: 10;
+  margin-top: 3%;
 }
 #servers {
   position: relative;
   z-index: 10;
+}
+@media only screen and (min-height: 899px) {
+  #content {
+    padding: 60px 0;
+  }
+  #dashboards {
+    margin-top: 5%;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes zoomInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
+}
+@keyframes zoomInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);
+    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);
+  }
 }
 </style>
