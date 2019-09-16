@@ -13,8 +13,6 @@
           <h1 v-if="showDailyDashboards">Day</h1>
           <h1 v-if="showWeeklyDashboards">Week</h1>
           <h1 v-if="showMonthlyDashboards">Month</h1>
-          <h1 v-if="showStatus">Servers Status</h1>
-          <h1 v-if="showInfo">Servers Info Details</h1>
         </div>
         <div id="button">
           <toggle-button
