@@ -431,14 +431,6 @@ export default {
   position: relative;
   z-index: 10;
 }
-@media only screen and (min-height: 899px) {
-  #content {
-    padding: 60px 0;
-  }
-  #dashboards {
-    margin-top: 5%;
-  }
-}
 @keyframes fade {
   from {
     opacity: 0;
