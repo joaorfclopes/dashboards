@@ -188,16 +188,7 @@
 
 
 <script>
-import CheckEligibilityWeek from "./CheckEligibilityWeek.vue";
-import ReserveNumberWeek from "./ReserveNumberWeek.vue";
-import SimStatusWeek from "./SimStatusWeek.vue";
-import SimValidationWeek from "./SimValidationWeek.vue";
-import TopStoresWeek from "./TopStoresWeek.vue";
-import TopAgentsWeek from "./TopAgentsWeek.vue";
-import CheckEligibilityWeekAvg from "./CheckEligibilityWeekAvg.vue";
-import ReserveNumberWeekAvg from "./ReserveNumberWeekAvg.vue";
-import DeviceSyncTimeWeek from "./DeviceSyncTimeWeek.vue";
-import "../../style.css";
+import "@/style.css";
 
 export default {
   props: {
@@ -207,15 +198,15 @@ export default {
     }
   },
   components: {
-    CheckEligibilityWeek,
-    ReserveNumberWeek,
-    SimStatusWeek,
-    SimValidationWeek,
-    TopStoresWeek,
-    TopAgentsWeek,
-    CheckEligibilityWeekAvg,
-    ReserveNumberWeekAvg,
-    DeviceSyncTimeWeek
+    CheckEligibilityWeek: () => import("./CheckEligibilityWeek.vue"),
+    ReserveNumberWeek: () => import("./ReserveNumberWeek.vue"),
+    SimStatusWeek: () => import("./SimStatusWeek.vue"),
+    SimValidationWeek: () => import("./SimValidationWeek.vue"),
+    TopStoresWeek: () => import("./TopStoresWeek.vue"),
+    TopAgentsWeek: () => import("./TopAgentsWeek.vue"),
+    CheckEligibilityWeekAvg: () => import("./CheckEligibilityWeekAvg.vue"),
+    ReserveNumberWeekAvg: () => import("./ReserveNumberWeekAvg.vue"),
+    DeviceSyncTimeWeek: () => import("./DeviceSyncTimeWeek.vue")
   }
 };
 </script>

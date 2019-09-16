@@ -188,16 +188,7 @@
 
 
 <script>
-import CheckEligibilityDay from "./CheckEligibilityDay.vue";
-import ReserveNumberDay from "./ReserveNumberDay.vue";
-import SimStatusDay from "./SimStatusDay.vue";
-import SimValidationDay from "./SimValidationDay.vue";
-import TopStoresDay from "./TopStoresDay.vue";
-import TopAgentsDay from "./TopAgentsDay.vue";
-import CheckEligibilityDayAvg from "./CheckEligibilityDayAvg.vue";
-import ReserveNumberDayAvg from "./ReserveNumberDayAvg.vue";
-import DeviceSyncTimeDay from "./DeviceSyncTimeDay.vue";
-import "../../style.css";
+import "@/style.css";
 
 export default {
   props: {
@@ -207,15 +198,15 @@ export default {
     }
   },
   components: {
-    CheckEligibilityDay,
-    ReserveNumberDay,
-    SimStatusDay,
-    SimValidationDay,
-    TopStoresDay,
-    TopAgentsDay,
-    CheckEligibilityDayAvg,
-    ReserveNumberDayAvg,
-    DeviceSyncTimeDay
+    CheckEligibilityDay: () => import("./CheckEligibilityDay.vue"),
+    ReserveNumberDay: () => import("./ReserveNumberDay.vue"),
+    SimStatusDay: () => import("./SimStatusDay.vue"),
+    SimValidationDay: () => import("./SimValidationDay.vue"),
+    TopStoresDay: () => import("./TopStoresDay.vue"),
+    TopAgentsDay: () => import("./TopAgentsDay.vue"),
+    CheckEligibilityDayAvg: () => import("./CheckEligibilityDayAvg.vue"),
+    ReserveNumberDayAvg: () => import("./ReserveNumberDayAvg.vue"),
+    DeviceSyncTimeDay: () => import("./DeviceSyncTimeDay.vue")
   }
 };
 </script>

@@ -188,16 +188,7 @@
 
 
 <script>
-import CheckEligibilityMonth from "./CheckEligibilityMonth.vue";
-import ReserveNumberMonth from "./ReserveNumberMonth.vue";
-import SimStatusMonth from "./SimStatusMonth.vue";
-import SimValidationMonth from "./SimValidationMonth.vue";
-import TopStoresMonth from "./TopStoresMonth.vue";
-import TopAgentsMonth from "./TopAgentsMonth.vue";
-import CheckEligibilityMonthAvg from "./CheckEligibilityMonthAvg.vue";
-import ReserveNumberMonthAvg from "./ReserveNumberMonthAvg.vue";
-import DeviceSyncTimeMonth from "./DeviceSyncTimeMonth.vue";
-import "../../style.css";
+import "@/style.css";
 
 export default {
   props: {
@@ -207,15 +198,15 @@ export default {
     }
   },
   components: {
-    CheckEligibilityMonth,
-    ReserveNumberMonth,
-    SimStatusMonth,
-    SimValidationMonth,
-    TopStoresMonth,
-    TopAgentsMonth,
-    CheckEligibilityMonthAvg,
-    ReserveNumberMonthAvg,
-    DeviceSyncTimeMonth
+    CheckEligibilityMonth: () => import("./CheckEligibilityMonth.vue"),
+    ReserveNumberMonth: () => import("./ReserveNumberMonth.vue"),
+    SimStatusMonth: () => import("./SimStatusMonth.vue"),
+    SimValidationMonth: () => import("./SimValidationMonth.vue"),
+    TopStoresMonth: () => import("./TopStoresMonth.vue"),
+    TopAgentsMonth: () => import("./TopAgentsMonth.vue"),
+    CheckEligibilityMonthAvg: () => import("./CheckEligibilityMonthAvg.vue"),
+    ReserveNumberMonthAvg: () => import("./ReserveNumberMonthAvg.vue"),
+    DeviceSyncTimeMonth: () => import("./DeviceSyncTimeMonth.vue")
   }
 };
 </script>

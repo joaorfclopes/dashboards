@@ -188,16 +188,7 @@
 
 
 <script>
-import CheckEligibilityHour from "./CheckEligibilityHour.vue";
-import ReserveNumberHour from "./ReserveNumberHour.vue";
-import SimStatusHour from "./SimStatusHour.vue";
-import SimValidationHour from "./SimValidationHour.vue";
-import TopStoresHour from "./TopStoresHour.vue";
-import TopAgentsHour from "./TopAgentsHour.vue";
-import CheckEligibilityHourAvg from "./CheckEligibilityHourAvg.vue";
-import ReserveNumberHourAvg from "./ReserveNumberHourAvg.vue";
-import DeviceSyncTimeHour from "./DeviceSyncTimeHour.vue";
-import "../../style.css";
+import "@/style.css";
 
 export default {
   props: {
@@ -207,15 +198,15 @@ export default {
     }
   },
   components: {
-    CheckEligibilityHour,
-    ReserveNumberHour,
-    SimStatusHour,
-    SimValidationHour,
-    TopStoresHour,
-    TopAgentsHour,
-    CheckEligibilityHourAvg,
-    ReserveNumberHourAvg,
-    DeviceSyncTimeHour
+    CheckEligibilityHour: () => import("./CheckEligibilityHour.vue"),
+    ReserveNumberHour: () => import("./ReserveNumberHour.vue"),
+    SimStatusHour: () => import("./SimStatusHour.vue"),
+    SimValidationHour: () => import("./SimValidationHour.vue"),
+    TopStoresHour: () => import("./TopStoresHour.vue"),
+    TopAgentsHour: () => import("./TopAgentsHour.vue"),
+    CheckEligibilityHourAvg: () => import("./CheckEligibilityHourAvg.vue"),
+    ReserveNumberHourAvg: () => import("./ReserveNumberHourAvg.vue"),
+    DeviceSyncTimeHour: () => import("./DeviceSyncTimeHour.vue")
   }
 };
 </script>

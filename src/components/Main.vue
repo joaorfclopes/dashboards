@@ -39,10 +39,6 @@
         <WeeklyDashboards :checked="checked" v-if="showWeeklyDashboards" id="week-dashboards"></WeeklyDashboards>
         <MonthlyDashboards :checked="checked" v-if="showMonthlyDashboards" id="month-dashboards"></MonthlyDashboards>
       </div>
-      <div id="servers">
-        <ServersStatus v-if="showStatus" id="servers-status"></ServersStatus>
-        <ServersInfo v-if="showInfo" id="servers-info"></ServersInfo>
-      </div>
     </div>
   </div>
 </template>
@@ -57,10 +53,8 @@ import HourlyDashboards from "./dashboards/hour/HourlyDashboards.vue";
 import DailyDashboards from "./dashboards/day/DailyDashboards.vue";
 import WeeklyDashboards from "./dashboards/week/WeeklyDashboards.vue";
 import MonthlyDashboards from "./dashboards/month/MonthlyDashboards.vue";
-import ServersStatus from "./servers/status/ServersStatus.vue";
-import ServersInfo from "./servers/info/ServersInfo.vue";
 import "particles.js";
-import "./style.css";
+import "@/style.css";
 
 Vue.use(Tooltip);
 
@@ -74,9 +68,7 @@ export default {
     HourlyDashboards,
     DailyDashboards,
     WeeklyDashboards,
-    MonthlyDashboards,
-    ServersStatus,
-    ServersInfo
+    MonthlyDashboards
   },
   data() {
     return {
@@ -87,8 +79,6 @@ export default {
       showDailyDashboards: false,
       showWeeklyDashboards: false,
       showMonthlyDashboards: false,
-      showStatus: false,
-      showInfo: false,
       checked: false,
       label: "Average Time",
       menu: [
@@ -123,23 +113,7 @@ export default {
               component: MonthlyDashboards
             }
           ]
-        } /* ,
-        {
-          title: "Servers",
-          icon: "fas fa-server",
-          child: [
-            {
-              href: "/status",
-              title: "Status",
-              component: ServersStatus
-            },
-            {
-              href: "/info",
-              title: "Info Details",
-              component: ServersInfo
-            }
-          ]
-        }*/
+        }
       ]
     };
   },
@@ -153,8 +127,6 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
-        this.showStatus = false;
-        this.showInfo = false;
       } else if (window.location.href.indexOf("day") > -1) {
         this.showHeader = true;
         this.showButton = true;
@@ -163,8 +135,6 @@ export default {
         this.showDailyDashboards = true;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
-        this.showStatus = false;
-        this.showInfo = false;
       } else if (window.location.href.indexOf("week") > -1) {
         this.showHeader = true;
         this.showButton = true;
@@ -173,8 +143,6 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = true;
         this.showMonthlyDashboards = false;
-        this.showStatus = false;
-        this.showInfo = false;
       } else if (window.location.href.indexOf("month") > -1) {
         this.showHeader = true;
         this.showButton = true;
@@ -183,8 +151,6 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = true;
-        this.showStatus = false;
-        this.showInfo = false;
       } else if (window.location.href.indexOf("status") > -1) {
         this.showHeader = true;
         this.showButton = false;
@@ -194,7 +160,6 @@ export default {
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
         this.showStatus = true;
-        this.showInfo = false;
       } else if (window.location.href.indexOf("info") > -1) {
         this.showHeader = true;
         this.showButton = false;
@@ -203,7 +168,6 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
-        this.showStatus = false;
         this.showInfo = true;
       } else {
         this.showHeader = true;
@@ -213,8 +177,6 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
-        this.showStatus = false;
-        this.showInfo = false;
       }
     },
     initParticles() {

@@ -33,8 +33,7 @@
 </template>
 
 <script>
-import store from "../../../store";
-import "../../style.css";
+import store from "@/store";
 export default {
   data: function() {
     return {

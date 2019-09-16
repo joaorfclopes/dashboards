@@ -7,10 +7,6 @@
   </div>
 </template>
 
-<script>
-export default {};
-</script>
-
 <style scoped>
 #welcome > p {
   font-size: 3rem;

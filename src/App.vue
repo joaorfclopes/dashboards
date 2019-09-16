@@ -6,14 +6,11 @@
 </template>
 
 <script>
-import Main from "./components/Main.vue";
-import Error from "./components/Error.vue";
-
 export default {
   name: "app",
   components: {
-    Main,
-    Error
+    Main: () => import("@/components/Main.vue"),
+    Error: () => import("@/components/Error.vue")
   }
 };
 </script>
