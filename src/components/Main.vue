@@ -6,36 +6,38 @@
       <img src="../assets/celfocus-logo.png" />
       <p>powered by Celfocus</p>
     </div>
-    <div id="content">
-      <div v-if="showHeader" id="header">
-        <div id="title">
-          <h1 v-if="showHourlyDashboards">Hour</h1>
-          <h1 v-if="showDailyDashboards">Day</h1>
-          <h1 v-if="showWeeklyDashboards">Week</h1>
-          <h1 v-if="showMonthlyDashboards">Month</h1>
+    <div id="content-container">
+      <div id="content">
+        <div v-if="showHeader" id="header">
+          <div id="title">
+            <h1 v-if="showHourlyDashboards">Hour</h1>
+            <h1 v-if="showDailyDashboards">Day</h1>
+            <h1 v-if="showWeeklyDashboards">Week</h1>
+            <h1 v-if="showMonthlyDashboards">Month</h1>
+          </div>
+          <div id="button">
+            <toggle-button
+              id="btn"
+              v-if="showButton"
+              v-tooltip.bottom="'Change to ' + label"
+              :width="100"
+              :value="false"
+              :labels="{checked: 'Average Time', unchecked: 'Success'}"
+              color="#E60000"
+              @change="switchPerformance"
+            />
+          </div>
+          <div id="image">
+            <img v-if="showHome == false" src="../assets/vodafone-logo.png" />
+          </div>
         </div>
-        <div id="button">
-          <toggle-button
-            id="btn"
-            v-if="showButton"
-            v-tooltip.bottom="'Change to ' + label"
-            :width="100"
-            :value="false"
-            :labels="{checked: 'Average Time', unchecked: 'Success'}"
-            color="#E60000"
-            @change="switchPerformance"
-          />
+        <Home id="home" v-if="showHome"></Home>
+        <div id="dashboards">
+          <HourlyDashboards :checked="checked" v-if="showHourlyDashboards" id="hour-dashboards"></HourlyDashboards>
+          <DailyDashboards :checked="checked" v-if="showDailyDashboards" id="day-dashboards"></DailyDashboards>
+          <WeeklyDashboards :checked="checked" v-if="showWeeklyDashboards" id="week-dashboards"></WeeklyDashboards>
+          <MonthlyDashboards :checked="checked" v-if="showMonthlyDashboards" id="month-dashboards"></MonthlyDashboards>
         </div>
-        <div id="image">
-          <img v-if="showHome == false" src="../assets/vodafone-logo.png" />
-        </div>
-      </div>
-      <Home id="home" v-if="showHome"></Home>
-      <div id="dashboards">
-        <HourlyDashboards :checked="checked" v-if="showHourlyDashboards" id="hour-dashboards"></HourlyDashboards>
-        <DailyDashboards :checked="checked" v-if="showDailyDashboards" id="day-dashboards"></DailyDashboards>
-        <WeeklyDashboards :checked="checked" v-if="showWeeklyDashboards" id="week-dashboards"></WeeklyDashboards>
-        <MonthlyDashboards :checked="checked" v-if="showMonthlyDashboards" id="month-dashboards"></MonthlyDashboards>
       </div>
     </div>
   </div>
@@ -309,11 +311,21 @@ export default {
   width: 100%;
   margin: 0;
 }
+#content-container {
+  height: 100vh;
+  position: relative;
+}
 #content {
-  margin-left: 2%;
+  margin-left: 1%;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  z-index: 100;
 }
 #home {
-  padding-top: 10%;
+  padding-top: 1%;
 }
 #header {
   position: relative;
@@ -324,7 +336,7 @@ export default {
 }
 #celfocus {
   position: absolute;
-  top: 0;
+  top: 0; 
   right: 0;
   z-index: 10;
   margin-top: 1%;
