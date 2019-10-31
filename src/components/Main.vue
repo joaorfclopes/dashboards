@@ -2,9 +2,9 @@
   <div id="main-container">
     <sidebar-menu collapsed id="sidebar" @itemClick="checkUrl" :menu="menu" />
     <div id="particles-js"></div>
-    <div v-if="showHome" id="celfocus">
-      <img src="../assets/celfocus-logo.png" />
-      <p>powered by Celfocus</p>
+    <div v-if="showHome" id="me">
+      <img src="../assets/logo.svg" />
+      <p>powered by</p>
     </div>
     <div id="content-container">
       <div id="content">
@@ -334,25 +334,25 @@ export default {
   margin: 0 auto;
   height: 1vh;
 }
-#celfocus {
+#me {
   position: absolute;
   top: 0; 
   right: 0;
   z-index: 10;
   margin-top: 1%;
 }
-#celfocus > img {
+#me > img {
   margin-left: 0.5%;
-  margin-right: 1%;
+  margin-right: 5%;
   float: right;
-  width: 10%;
+  width: 30%;
   opacity: 0;
   animation-name: zoomInRight, fade;
   animation-fill-mode: forwards;
   animation-delay: 1.5s;
   animation-duration: 1s;
 }
-#celfocus > p {
+#me > p {
   color: whitesmoke;
   font-size: 90%;
   float: right;
