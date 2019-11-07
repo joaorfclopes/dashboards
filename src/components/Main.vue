@@ -2,8 +2,8 @@
   <div id="main-container">
     <sidebar-menu collapsed id="sidebar" @itemClick="checkUrl" :menu="menu" />
     <div id="particles-js"></div>
-    <div v-if="showHome" id="me">
-      <img src="../assets/logo.svg" />
+    <div v-if="showHome" id="celfocus">
+      <img src="../assets/logo.png" />
       <p>powered by</p>
     </div>
     <div id="content-container">
@@ -38,6 +38,11 @@
           <WeeklyDashboards :checked="checked" v-if="showWeeklyDashboards" id="week-dashboards"></WeeklyDashboards>
           <MonthlyDashboards :checked="checked" v-if="showMonthlyDashboards" id="month-dashboards"></MonthlyDashboards>
         </div>
+        <div id="jira">
+          <Ecr v-if="showEcr" />
+          <Webportal v-if="showWebportal" />
+          <Mva v-if="showMva" />
+        </div>
       </div>
     </div>
   </div>
@@ -53,6 +58,9 @@ import HourlyDashboards from "./dashboards/hour/HourlyDashboards.vue";
 import DailyDashboards from "./dashboards/day/DailyDashboards.vue";
 import WeeklyDashboards from "./dashboards/week/WeeklyDashboards.vue";
 import MonthlyDashboards from "./dashboards/month/MonthlyDashboards.vue";
+import Ecr from "./jira/Ecr.vue";
+import Webportal from "./jira/Webportal.vue";
+import Mva from "./jira/Mva.vue";
 import "particles.js";
 import "@/style.css";
 
@@ -68,7 +76,10 @@ export default {
     HourlyDashboards,
     DailyDashboards,
     WeeklyDashboards,
-    MonthlyDashboards
+    MonthlyDashboards,
+    Ecr,
+    Webportal,
+    Mva
   },
   data() {
     return {
@@ -79,6 +90,9 @@ export default {
       showDailyDashboards: false,
       showWeeklyDashboards: false,
       showMonthlyDashboards: false,
+      showEcr: false,
+      showWebportal: false,
+      showMva: false,
       checked: false,
       label: "Average Time",
       menu: [
@@ -113,6 +127,27 @@ export default {
               component: MonthlyDashboards
             }
           ]
+        },
+        {
+          title: "Jira",
+          icon: "fa fa-check-double",
+          child: [
+            {
+              href: "/ecr",
+              title: "ECR",
+              component: HourlyDashboards
+            },
+            {
+              href: "/webportal",
+              title: "Webportal",
+              component: DailyDashboards
+            },
+            {
+              href: "/mva",
+              title: "MVA",
+              component: WeeklyDashboards
+            }
+          ]
         }
       ]
     };
@@ -127,6 +162,9 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
+        this.showEcr = false;
+        this.showWebportal = false;
+        this.showMva = false;
       } else if (window.location.href.indexOf("day") > -1) {
         this.showHeader = true;
         this.showButton = true;
@@ -135,6 +173,9 @@ export default {
         this.showDailyDashboards = true;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
+        this.showEcr = false;
+        this.showWebportal = false;
+        this.showMva = false;
       } else if (window.location.href.indexOf("week") > -1) {
         this.showHeader = true;
         this.showButton = true;
@@ -143,6 +184,9 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = true;
         this.showMonthlyDashboards = false;
+        this.showEcr = false;
+        this.showWebportal = false;
+        this.showMva = false;
       } else if (window.location.href.indexOf("month") > -1) {
         this.showHeader = true;
         this.showButton = true;
@@ -151,24 +195,42 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = true;
-      } else if (window.location.href.indexOf("status") > -1) {
-        this.showHeader = true;
+        this.showEcr = false;
+        this.showWebportal = false;
+        this.showMva = false;
+      } else if (window.location.href.indexOf("ecr") > -1) {
+        this.showHeader = false;
         this.showButton = false;
         this.showHome = false;
         this.showHourlyDashboards = false;
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
-        this.showStatus = true;
-      } else if (window.location.href.indexOf("info") > -1) {
-        this.showHeader = true;
+        this.showEcr = true;
+        this.showWebportal = false;
+        this.showMva = false;
+      } else if (window.location.href.indexOf("webportal") > -1) {
+        this.showHeader = false;
         this.showButton = false;
         this.showHome = false;
         this.showHourlyDashboards = false;
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
-        this.showInfo = true;
+        this.showEcr = false;
+        this.showWebportal = true;
+        this.showMva = false;
+      } else if (window.location.href.indexOf("mva") > -1) {
+        this.showHeader = false;
+        this.showButton = false;
+        this.showHome = false;
+        this.showHourlyDashboards = false;
+        this.showDailyDashboards = false;
+        this.showWeeklyDashboards = false;
+        this.showMonthlyDashboards = false;
+        this.showEcr = false;
+        this.showWebportal = false;
+        this.showMva = true;
       } else {
         this.showHeader = true;
         this.showButton = false;
@@ -177,6 +239,9 @@ export default {
         this.showDailyDashboards = false;
         this.showWeeklyDashboards = false;
         this.showMonthlyDashboards = false;
+        this.showEcr = false;
+        this.showWebportal = false;
+        this.showMva = false;
       }
     },
     initParticles() {
@@ -334,25 +399,25 @@ export default {
   margin: 0 auto;
   height: 1vh;
 }
-#me {
+#celfocus {
   position: absolute;
-  top: 0; 
+  top: 0;
   right: 0;
   z-index: 10;
   margin-top: 1%;
 }
-#me > img {
+#celfocus > img {
   margin-left: 0.5%;
-  margin-right: 5%;
+  margin-right: 1%;
   float: right;
-  width: 30%;
+  width: 15%;
   opacity: 0;
   animation-name: zoomInRight, fade;
   animation-fill-mode: forwards;
   animation-delay: 1.5s;
   animation-duration: 1s;
 }
-#me > p {
+#celfocus > p {
   color: whitesmoke;
   font-size: 90%;
   float: right;
