@@ -1,6 +1,7 @@
 <template>
   <div id="ecr">
     <h1>ECR</h1>
+    <v-btn>click me</v-btn>
   </div>
 </template>
 

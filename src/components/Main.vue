@@ -1,6 +1,6 @@
 <template>
   <div id="main-container">
-    <sidebar-menu collapsed id="sidebar" @itemClick="checkUrl" :menu="menu" />
+    <sidebar-menu collapsed id="sidebar" @itemClick="checkUrl" :menu="menu" width="200px" />
     <div id="particles-js"></div>
     <div v-if="showHome" id="celfocus">
       <img src="../assets/logo.png" />
