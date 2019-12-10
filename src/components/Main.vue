@@ -38,11 +38,6 @@
           <WeeklyDashboards :checked="checked" v-if="showWeeklyDashboards" id="week-dashboards"></WeeklyDashboards>
           <MonthlyDashboards :checked="checked" v-if="showMonthlyDashboards" id="month-dashboards"></MonthlyDashboards>
         </div>
-        <div id="jira">
-          <Ecr v-if="showEcr" />
-          <Webportal v-if="showWebportal" />
-          <Mva v-if="showMva" />
-        </div>
       </div>
     </div>
   </div>
@@ -58,9 +53,6 @@ import HourlyDashboards from "./dashboards/hour/HourlyDashboards.vue";
 import DailyDashboards from "./dashboards/day/DailyDashboards.vue";
 import WeeklyDashboards from "./dashboards/week/WeeklyDashboards.vue";
 import MonthlyDashboards from "./dashboards/month/MonthlyDashboards.vue";
-import Ecr from "./jira/Ecr.vue";
-import Webportal from "./jira/Webportal.vue";
-import Mva from "./jira/Mva.vue";
 import "particles.js";
 import "@/style.css";
 
@@ -76,10 +68,7 @@ export default {
     HourlyDashboards,
     DailyDashboards,
     WeeklyDashboards,
-    MonthlyDashboards,
-    Ecr,
-    Webportal,
-    Mva
+    MonthlyDashboards
   },
   data() {
     return {
@@ -125,27 +114,6 @@ export default {
               href: "/month",
               title: "Month",
               component: MonthlyDashboards
-            }
-          ]
-        },
-        {
-          title: "Jira",
-          icon: "fa fa-check-double",
-          child: [
-            {
-              href: "/ecr",
-              title: "ECR",
-              component: HourlyDashboards
-            },
-            {
-              href: "/webportal",
-              title: "Webportal",
-              component: DailyDashboards
-            },
-            {
-              href: "/mva",
-              title: "MVA",
-              component: WeeklyDashboards
             }
           ]
         }
@@ -198,39 +166,6 @@ export default {
         this.showEcr = false;
         this.showWebportal = false;
         this.showMva = false;
-      } else if (window.location.href.indexOf("ecr") > -1) {
-        this.showHeader = false;
-        this.showButton = false;
-        this.showHome = false;
-        this.showHourlyDashboards = false;
-        this.showDailyDashboards = false;
-        this.showWeeklyDashboards = false;
-        this.showMonthlyDashboards = false;
-        this.showEcr = true;
-        this.showWebportal = false;
-        this.showMva = false;
-      } else if (window.location.href.indexOf("webportal") > -1) {
-        this.showHeader = false;
-        this.showButton = false;
-        this.showHome = false;
-        this.showHourlyDashboards = false;
-        this.showDailyDashboards = false;
-        this.showWeeklyDashboards = false;
-        this.showMonthlyDashboards = false;
-        this.showEcr = false;
-        this.showWebportal = true;
-        this.showMva = false;
-      } else if (window.location.href.indexOf("mva") > -1) {
-        this.showHeader = false;
-        this.showButton = false;
-        this.showHome = false;
-        this.showHourlyDashboards = false;
-        this.showDailyDashboards = false;
-        this.showWeeklyDashboards = false;
-        this.showMonthlyDashboards = false;
-        this.showEcr = false;
-        this.showWebportal = false;
-        this.showMva = true;
       } else {
         this.showHeader = true;
         this.showButton = false;
