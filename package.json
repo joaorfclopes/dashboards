@@ -9,7 +9,7 @@
     "deploy": "now"
   },
   "dependencies": {
-    "apexcharts": "^3.6.11",
+    "apexcharts": "^3.24.0",
     "axios": "^0.18.1",
     "core-js": "^2.6.9",
     "jquery": "^3.4.1",
